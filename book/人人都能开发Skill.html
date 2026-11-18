@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>人人都能开发 Skill（v9.0 出版级精修版）</title>
+<style>
+  @page {
+    size: 540pt 760pt;
+    margin: 40pt 38pt 42pt 38pt;
+    @top-left {
+      content: "人人都能开发 Skill ｜ 台州汇芯";
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 8.5pt; color: #9CA3AF;
+    }
+    @top-right {
+      content: "v9.0 出版级精修版";
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 8.5pt; color: #C8102E; font-weight: 700;
+    }
+    @bottom-center {
+      content: "— " counter(page) " —";
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 8.5pt; color: #6B7280;
+    }
+  }
+  @page :first {
+    margin: 0;
+    @top-left { content: none; }
+    @top-right { content: none; }
+    @bottom-center { content: none; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 9.85pt; line-height: 1.65; color: #1F2937; margin: 0; padding: 0;
+  }
+  code {
+    font-family: "SF Mono", Menlo, Monaco, monospace;
+    background: #FFF5F6; border: 0.6pt solid #FECDD3; padding: 1pt 4pt; border-radius: 3pt;
+    font-size: 8.8pt; color: #C8102E;
+  }
+  .page-break { page-break-before: always; break-before: page; }
+
+  /* Cover Page */
+  .cover-page {
+    width: 540pt; height: 760pt; position: relative; overflow: hidden; background: #FFFFFF;
+  }
+  .cover-top { padding: 40pt 44pt 12pt; }
+  .cover-kicker {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 10pt; color: #C8102E; letter-spacing: 1.5px; margin-bottom: 14pt; font-weight: 700;
+  }
+  .cover-v8-pill {
+    background: #C8102E; color: #FFFFFF; padding: 3pt 11pt; border-radius: 99px;
+    font-size: 9pt; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .cover-h1 { font-size: 40pt; font-weight: 900; line-height: 1.15; color: #18181B; margin: 0; }
+  .cover-h1 .red { color: #C8102E; display: block; }
+  .cover-rule { width: 100%; height: 3.5pt; background: #C8102E; margin: 14pt 0 11pt; }
+  .cover-sub { font-size: 15pt; font-weight: 900; color: #18181B; margin-bottom: 6pt; }
+  .cover-desc { font-size: 10pt; color: #C8102E; font-weight: 700; }
+
+  .cover-hero {
+    display: flex; align-items: stretch; justify-content: space-between;
+    gap: 14pt; padding: 8pt 44pt 0; height: 242pt;
+  }
+  .cover-hero-left {
+    flex: 1.25; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .cover-author-card {
+    background: #FFF5F6; border: 1.5pt solid #FECDD3; border-left: 4.5pt solid #C8102E;
+    border-radius: 10pt; padding: 12pt 14pt; flex: 1;
+  }
+  .ca-tag {
+    display: inline-block; background: #C8102E; color: #FFFFFF; font-size: 7.8pt;
+    font-weight: 700; padding: 1.5pt 7pt; border-radius: 99px; margin-bottom: 5pt;
+  }
+  .ca-name { font-size: 18pt; font-weight: 900; color: #18181B; line-height: 1.2; }
+  .ca-role { font-size: 9.2pt; font-weight: 700; color: #C8102E; margin-bottom: 8pt; }
+  .ca-points { margin: 0; padding-left: 14pt; font-size: 8.8pt; line-height: 1.58; color: #374151; }
+  .ca-points li { margin: 3.5pt 0; }
+  .cover-badges {
+    display: flex; gap: 6pt; margin-top: 8pt;
+  }
+  .cover-badges span {
+    flex: 1; text-align: center; background: #18181B; color: #FFFFFF;
+    font-size: 8.2pt; font-weight: 700; padding: 4.5pt 4pt; border-radius: 6pt;
+  }
+  .cover-hero-right {
+    width: 162pt; height: 100%; border-radius: 10pt; overflow: hidden;
+    border: 2pt solid #C8102E; background: #E5E7EB; flex-shrink: 0;
+  }
+  .cover-hero-right img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
+  }
+  .cover-bottom {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 156pt;
+    background: #C8102E; color: #FFFFFF; padding: 28pt 44pt;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .cover-quote { font-size: 14pt; font-weight: 700; line-height: 1.55; }
+  .cover-author { font-size: 10pt; opacity: 0.95; }
+
+  /* TOC Page */
+  .toc-page h1 {
+    font-size: 19pt; color: #C8102E; border-bottom: 2.5pt solid #C8102E;
+    padding-bottom: 6pt; margin: 0 0 8pt;
+  }
+  .toc-part { font-size: 9.8pt; font-weight: 900; color: #C8102E; margin: 6.5pt 0 2pt; }
+  .toc-item {
+    font-size: 9pt; color: #1F2937; padding-left: 8pt; margin: 1.8pt 0;
+    display: flex; align-items: baseline; text-decoration: none;
+  }
+  .toc-new { font-weight: 700; color: #C8102E; padding-left: 0; margin: 2.5pt 0; }
+  .toc-text { white-space: nowrap; }
+  .toc-dots {
+    flex: 1; border-bottom: 1pt dotted #D1D5DB; margin: 0 6pt; position: relative; top: -2pt;
+  }
+  .toc-pno {
+    font-family: "SF Mono", Menlo, monospace; font-size: 8.5pt; font-weight: 700;
+    color: #C8102E; min-width: 26pt; text-align: right;
+  }
+  .toc-badge {
+    background: #FFF5F6; color: #C8102E; border: 1px solid #FECDD3;
+    padding: 0.5pt 6pt; border-radius: 99px; font-size: 7.5pt; font-weight: 700; margin-left: 6pt;
+  }
+
+  /* Part Divider */
+  .part-page { padding-top: 118pt; }
+  .part-label { font-size: 11pt; color: #C8102E; letter-spacing: 3px; font-weight: 900; margin-bottom: 10pt; }
+  .part-title { font-size: 28pt; font-weight: 900; color: #18181B; line-height: 1.25; }
+  .part-line { width: 56pt; height: 4pt; background: #C8102E; margin: 16pt 0 12pt; }
+  .part-range { font-size: 11pt; color: #6B7280; margin-bottom: 34pt; }
+  .part-roadmap {
+    background: #FFF5F6; border: 1.2pt solid #FECDD3; border-radius: 10pt; padding: 14pt 16pt;
+  }
+  .roadmap-label { font-size: 9.5pt; font-weight: 900; color: #C8102E; margin-bottom: 8pt; }
+
+  /* Chapters */
+  .ch-tag {
+    display: inline-block; background: #C8102E; color: #FFFFFF;
+    font-size: 8.2pt; font-weight: 700; padding: 2pt 10pt; border-radius: 99px; margin-bottom: 6pt;
+  }
+  .chapter h2 {
+    font-size: 15.8pt; font-weight: 900; color: #18181B;
+    border-left: 4.5pt solid #C8102E; padding-left: 10pt; margin: 0 0 10pt; line-height: 1.28;
+  }
+  .chapter h3 {
+    font-size: 11.2pt; font-weight: 900; color: #C8102E; margin: 10pt 0 4.5pt;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .chapter p { margin: 0 0 6.2pt; text-align: justify; }
+  .code-line {
+    font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 8.8pt;
+    background: #F4F4F5; padding: 2pt 8pt; border-left: 2.5pt solid #C8102E; color: #18181B;
+  }
+  .tree-box {
+    font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 8.8pt; line-height: 1.45;
+    background: #F4F4F5; padding: 8pt 12pt; border-left: 3pt solid #C8102E; border-radius: 0 6pt 6pt 0;
+    color: #18181B; margin: 6pt 0 10pt; white-space: pre; page-break-inside: avoid;
+  }
+  .checklist-card {
+    background: #FFF5F6; border: 1.5pt solid #C8102E; border-radius: 10pt;
+    padding: 12pt 14pt; margin: 10pt 0; page-break-inside: avoid;
+  }
+  .chk-row {
+    display: flex; align-items: flex-start; gap: 10pt; padding: 8pt 0;
+    border-bottom: 1pt dashed #FECDD3; font-size: 9.5pt;
+  }
+  .chk-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .chk-box { font-size: 14pt; font-weight: 900; color: #C8102E; line-height: 1.2; }
+  .fig-cap {
+    font-size: 8.5pt; color: #6B7280; text-align: center; margin: 4pt 0 8pt; font-weight: 700;
+  }
+  .mini-grid {
+    display: flex; flex-wrap: wrap; gap: 5pt; margin: 6pt 0 8pt;
+    background: #FFF5F6; border: 1pt solid #FECDD3; border-radius: 8pt; padding: 7pt 9pt;
+  }
+  .mini-pill {
+    background: #FFFFFF; border: 1pt solid #FECDD3; border-radius: 6pt;
+    padding: 2.5pt 7pt; font-size: 8.8pt; font-weight: 700; color: #18181B;
+  }
+
+  /* GitHub Vector Showcase Card */
+  .gh-showcase {
+    background: #FAF8F7; border: 1.5pt solid #C8102E; border-top: 4pt solid #C8102E;
+    border-radius: 8pt; padding: 10pt 12pt; margin: 8pt 0 10pt; page-break-inside: avoid;
+  }
+  .gh-sc-kicker { font-size: 7.8pt; font-weight: 900; color: #C8102E; letter-spacing: 0.6px; margin-bottom: 4pt; }
+  .gh-sc-title { font-size: 13.5pt; font-weight: 900; color: #18181B; line-height: 1.25; margin-bottom: 4pt; }
+  .gh-sc-title span { color: #C8102E; }
+  .gh-sc-sub { font-size: 8.6pt; color: #4B5563; margin-bottom: 8pt; }
+  .gh-sc-metrics { display: flex; gap: 8pt; }
+  .gh-sc-m {
+    flex: 1; background: #FFFFFF; border: 1pt solid #FECDD3; border-radius: 6pt;
+    padding: 5pt 8pt; display: flex; flex-direction: column;
+  }
+  .gh-sc-m strong { font-size: 11pt; color: #C8102E; font-weight: 900; }
+  .gh-sc-m span { font-size: 7.8pt; color: #6B7280; }
+
+  /* Boxes */
+  .goal-box {
+    background: #FFF5F6; border: 1pt solid #FECDD3; border-radius: 8pt;
+    padding: 8pt 12pt; margin: 8pt 0 11pt; page-break-inside: avoid;
+  }
+  .box-title { font-size: 10pt; font-weight: 900; color: #C8102E; margin-bottom: 4pt; }
+  .goal-box ul { margin: 0; padding-left: 15pt; }
+  .goal-box li { margin: 2pt 0; font-size: 9.4pt; color: #1F2937; }
+
+  .prompt-box {
+    background: #FAF8F7; border-left: 3.5pt solid #C8102E; border-radius: 0 8pt 8pt 0;
+    padding: 8pt 12pt; margin: 8pt 0 10pt; page-break-inside: avoid;
+  }
+  .prompt-head { font-size: 9.2pt; font-weight: 900; color: #C8102E; margin-bottom: 3pt; }
+  .prompt-box p { margin: 2.5pt 0; font-size: 9.2pt; color: #18181B; }
+
+  .viz-card {
+    background: #FFFFFF; border: 1pt solid #FECDD3; border-radius: 10pt;
+    padding: 8pt 11pt; margin: 8pt 0 11pt; page-break-inside: avoid;
+  }
+  .viz-title { font-size: 9.4pt; font-weight: 900; color: #C8102E; margin-bottom: 5pt; }
+
+  .compare-grid { display: flex; gap: 9pt; margin: 8pt 0 11pt; page-break-inside: avoid; }
+  .cmp-card { flex: 1; border-radius: 8pt; padding: 9pt 10pt; font-size: 9pt; }
+  .cmp-bad { background: #F4F4F5; border: 1.2pt solid #9CA3AF; }
+  .cmp-good { background: #FFF5F6; border: 1.5pt solid #C8102E; }
+  .cmp-bad .cmp-head { font-weight: 900; color: #374151; margin-bottom: 4pt; font-size: 9.3pt; }
+  .cmp-good .cmp-head { font-weight: 900; color: #C8102E; margin-bottom: 4pt; font-size: 9.3pt; }
+  .cmp-why { margin-top: 5pt; padding-top: 4pt; border-top: 1px dashed #D1D5DB; font-size: 8.4pt; color: #374151; }
+
+  .prep-grid { display: flex; gap: 9pt; margin: 6pt 0 10pt; page-break-inside: avoid; }
+  .prep-card { flex: 1; background: #FFF5F6; border: 1pt solid #FECDD3; border-radius: 8pt; padding: 8pt 10pt; font-size: 9pt; }
+  .prep-head { font-weight: 900; color: #C8102E; margin-bottom: 4pt; font-size: 9.5pt; }
+  .clean-list { margin: 5pt 0 8pt; padding-left: 15pt; }
+  .clean-list li { margin: 3pt 0; }
+  .step-cards { margin: 5pt 0; }
+  .step-card {
+    background: #FFF5F6; border-left: 3pt solid #C8102E; padding: 5.5pt 9pt;
+    border-radius: 0 6pt 6pt 0; margin: 4pt 0; font-size: 9.2pt;
+  }
+  .step-card span { font-weight: 900; color: #C8102E; margin-right: 6pt; }
+  .code-block {
+    font-family: "SF Mono", Menlo, Monaco, monospace; font-size: 8.6pt; line-height: 1.48;
+    background: #18181B; color: #F9FAFB; padding: 8pt 11pt; border-radius: 8pt;
+    white-space: pre-wrap; margin: 5pt 0 9pt; page-break-inside: avoid;
+    border-left: 4pt solid #C8102E;
+  }
+
+  .fig-wrap { margin: 7pt 0 9pt; text-align: center; page-break-inside: avoid; }
+  .fig-wrap img {
+    border: 1pt solid #E5E7EB; border-radius: 8pt; display: block; margin: 0 auto;
+    max-height: 185pt; width: auto !important; max-width: 95%;
+  }
+  .gh-fig img {
+    border: 1.5pt solid #C8102E; border-radius: 8pt;
+  }
+
+  .rescue-box {
+    background: #FFF5F6; border: 1.2pt solid #C8102E; border-radius: 8pt;
+    padding: 8pt 11pt; margin: 10pt 0 8pt; page-break-inside: avoid;
+  }
+  .rescue-title { font-size: 9.8pt; font-weight: 900; color: #C8102E; margin-bottom: 5pt; }
+  .rescue-table { width: 100%; border-collapse: collapse; font-size: 8.6pt; background: #FFFFFF; page-break-inside: avoid; }
+  .rescue-table th {
+    background: #C8102E; color: #FFFFFF; text-align: left; padding: 4.5pt 6.5pt; font-weight: 700;
+  }
+  .rescue-table td {
+    border: 0.6pt solid #FECDD3; padding: 4.5pt 6.5pt; vertical-align: top; color: #1F2937;
+  }
+</style>
+</head>
+<body>
+
+<section class="cover-page">
+  <div class="cover-top">
+    <div class="cover-kicker"><span>台州汇芯 · 袁六伟 著</span><span class="cover-v8-pill">v9.0 出版级精修版</span></div>
+    <h1 class="cover-h1">人人都能<span class="red">开发 Skill</span></h1>
+    <div class="cover-rule"></div>
+    <div class="cover-sub">零基础打造你的 AI 员工技能库</div>
+    <div class="cover-desc">大量直观配图 · 全篇大白话 · 附 16 个 GitHub 真实开源实战经验</div>
+  </div>
+  <div class="cover-hero">
+    <div class="cover-hero-left">
+      <div class="cover-author-card">
+        <div class="ca-tag">本书作者</div>
+        <div class="ca-name">袁六伟</div>
+        <div class="ca-role">台州汇芯创始人 · AI 智能体实战派</div>
+        <ul class="ca-points">
+          <li>培训学员 <strong>7000+</strong>，服务商单客户 <strong>100+</strong>，覆盖近 <strong>20 个行业</strong></li>
+          <li>GitHub 开源 <strong>16+</strong> 真实可跑的 AI 技能仓库（<code>sixwei2025</code>）</li>
+          <li>把公众号、短视频、商单交付与团队管理全部做成可复用 Skill</li>
+        </ul>
+      </div>
+      <div class="cover-badges">
+        <span>✓ 会说话就能做</span>
+        <span>✓ 不用学编程</span>
+        <span>✓ 10 分钟跑通第 1 个</span>
+      </div>
+    </div>
+    <div class="cover-hero-right">
+      <img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/author_portrait.jpg" alt="袁六伟形象照" />
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-quote">你改过百遍的工作标准，就是最好的代码。<br/>把反复交代 AI 的话，封装成随时调用的专职岗位。</div>
+    <div class="cover-author">袁六伟 · 台州汇芯（公众号 / 视频号：袁六伟 · GitHub：sixwei2025）</div>
+  </div>
+</section>
+
+<section class="toc-page page-break">
+  <h1>目录｜人人都能开发 Skill（v9.0 出版级精修版）</h1>
+  <div class="toc-part">零基础起跑线</div>
+  <a class="toc-item toc-new" href="#ch-anchor-1"><span class="toc-text">第0章｜零基础准备：电脑 3 件事 + 10 分钟跑通第 1 个 Skill<span class="toc-badge">新升级</span></span><span class="toc-dots"></span><span class="toc-pno">P.03</span></a>
+  <a class="toc-item" href="#ch-anchor-2"><span class="toc-text">前言｜AI 时代，真正拉开差距的不是会不会聊天</span><span class="toc-dots"></span><span class="toc-pno">P.05</span></a>
+  <a class="toc-item" href="#ch-anchor-3"><span class="toc-text">开始之前｜带着一件事读这本书（附找按钮 4 步法）</span><span class="toc-dots"></span><span class="toc-pno">P.05</span></a>
+  <div class="toc-part">第一篇｜先上手，再懂原理（第1章 — 第3章）</div>
+  <a class="toc-item" href="#ch-anchor-4"><span class="toc-text">第1章 你已经拥有开发 Skill 最重要的资产</span><span class="toc-dots"></span><span class="toc-pno">P.09</span></a>
+  <a class="toc-item" href="#ch-anchor-5"><span class="toc-text">第2章 Skill 究竟是什么（新员工入职资料袋大白话版）</span><span class="toc-dots"></span><span class="toc-pno">P.11</span></a>
+  <a class="toc-item" href="#ch-anchor-6"><span class="toc-text">第3章 先用现成的：去哪里找、怎么装、怎么 3 眼挑对 Skill</span><span class="toc-dots"></span><span class="toc-pno">P.14</span></a>
+  <div class="toc-part">第二篇｜开发你的第一个 Skill（第4章 — 第7章）</div>
+  <a class="toc-item" href="#ch-anchor-7"><span class="toc-text">第4章 开发前的四步准备：用 6 格需求卡把经验说清楚</span><span class="toc-dots"></span><span class="toc-pno">P.18</span></a>
+  <a class="toc-item" href="#ch-anchor-8"><span class="toc-text">第5章 看懂 SKILL.md 的基本组成（含好坏写法对照）</span><span class="toc-dots"></span><span class="toc-pno">P.20</span></a>
+  <a class="toc-item" href="#ch-anchor-9"><span class="toc-text">第6章 用自然语言请 AI 帮你开发：四步闭环跑通第一版</span><span class="toc-dots"></span><span class="toc-pno">P.23</span></a>
+  <a class="toc-item" href="#ch-anchor-10"><span class="toc-text">第7章 把它改稳定，再交付：3 道安全网不改坏旧功能</span><span class="toc-dots"></span><span class="toc-pno">P.26</span></a>
+  <div class="toc-part">第三篇｜把 Skill 用到你的真实工作里（第8章 — 第12章）</div>
+  <a class="toc-item" href="#ch-anchor-11"><span class="toc-text">第8章 建立自己的 Skill 资产库</span><span class="toc-dots"></span><span class="toc-pno">P.31</span></a>
+  <a class="toc-item" href="#ch-anchor-12"><span class="toc-text">第9章 写作与短视频：两个内容 Skill</span><span class="toc-dots"></span><span class="toc-pno">P.31</span></a>
+  <a class="toc-item toc-new" href="#ch-anchor-13"><span class="toc-text">第10章 实战拆解：我们开源到 GitHub 的 Skill 是怎么炼成的？<span class="toc-badge">重磅实战</span></span><span class="toc-dots"></span><span class="toc-pno">P.37</span></a>
+  <a class="toc-item" href="#ch-anchor-14"><span class="toc-text">第11章 培训与交付：做课程和陪跑服务</span><span class="toc-dots"></span><span class="toc-pno">P.42</span></a>
+  <a class="toc-item" href="#ch-anchor-15"><span class="toc-text">第12章 数据与客服：表格、文件和客户跟进</span><span class="toc-dots"></span><span class="toc-pno">P.45</span></a>
+  <div class="toc-part">第四篇｜从一个人用到组织起来（第13章 — 第17章）</div>
+  <a class="toc-item" href="#ch-anchor-16"><span class="toc-text">第13章 不止一个技能：让多个岗位的 Skill 配合干活</span><span class="toc-dots"></span><span class="toc-pno">P.51</span></a>
+  <a class="toc-item" href="#ch-anchor-17"><span class="toc-text">第14章 从单兵到团队：一人公司怎么搭多 AI 员工</span><span class="toc-dots"></span><span class="toc-pno">P.54</span></a>
+  <a class="toc-item" href="#ch-anchor-18"><span class="toc-text">第15章 定时与自动跑：让固定动作按时自己启动</span><span class="toc-dots"></span><span class="toc-pno">P.57</span></a>
+  <a class="toc-item" href="#ch-anchor-19"><span class="toc-text">第16章 知识与资料整理：把散落的文件变成可用资产</span><span class="toc-dots"></span><span class="toc-pno">P.61</span></a>
+  <a class="toc-item" href="#ch-anchor-20"><span class="toc-text">第17章 把日常工作做成系统（附团队防翻车急救箱）</span><span class="toc-dots"></span><span class="toc-pno">P.64</span></a>
+  <div class="toc-part">第五篇｜给能干活的人看（第18章 — 第20章）</div>
+  <a class="toc-item" href="#ch-anchor-21"><span class="toc-text">第18章 什么叫高价值 Skill：5 级质量阶梯一眼看清</span><span class="toc-dots"></span><span class="toc-pno">P.68</span></a>
+  <a class="toc-item" href="#ch-anchor-22"><span class="toc-text">第19章 在不同平台上都能用得顺手</span><span class="toc-dots"></span><span class="toc-pno">P.71</span></a>
+  <a class="toc-item" href="#ch-anchor-23"><span class="toc-text">第20章 把技能交给别人用：打包、脱敏与 GitHub 开源</span><span class="toc-dots"></span><span class="toc-pno">P.74</span></a>
+  <div class="toc-part">第六篇｜回到你自己的事（第21章 — 第23章）+ 附录</div>
+  <a class="toc-item" href="#ch-anchor-24"><span class="toc-text">第21章 先做自己能看懂结果的事</span><span class="toc-dots"></span><span class="toc-pno">P.78</span></a>
+  <a class="toc-item" href="#ch-anchor-25"><span class="toc-text">第22章 建立你自己的 Skill 迭代节奏（附 7 天行动表）</span><span class="toc-dots"></span><span class="toc-pno">P.79</span></a>
+  <a class="toc-item" href="#ch-anchor-26"><span class="toc-text">第23章 收尾：现在就可以开始的三件小事</span><span class="toc-dots"></span><span class="toc-pno">P.82</span></a>
+  <a class="toc-item" href="#ch-anchor-27"><span class="toc-text">附录｜大白话速查表 &amp; 开源生态延伸阅读</span><span class="toc-dots"></span><span class="toc-pno">P.83</span></a>
+  <a class="toc-item toc-new" href="#ch-anchor-28"><span class="toc-text">随书一页纸｜Skill 上岗前 6 项自检卡片<span class="toc-badge">可打印</span></span><span class="toc-dots"></span><span class="toc-pno">P.85</span></a>
+</section>
+
+<section id="ch-anchor-1" class="chapter page-break">
+  <div class="ch-tag">零基础热身 · 先跑通再讲道理</div>
+  <h2>第0章 零基础准备：电脑 3 件事 + 10 分钟跑通第 1 个 Skill</h2>
+
+  <div class="goal-box">
+    <div class="box-title">这一章，你会拿到</div>
+    <ul>
+      <li>一次搞定 Mac / Windows「显示文件后缀名」，不再把 <code>SKILL.md.txt</code> 错当成 <code>SKILL.md</code></li>
+      <li>知道免费好用的文字编辑工具和电脑里 Skill 到底该放哪个文件夹</li>
+      <li>照抄 10 行示例文本 + 1 句测试话术，在 10 分钟内亲眼看见自己的第 1 个 Skill 跑起来</li>
+    </ul>
+  </div>
+
+  <p>很多第一次接触 Skill 的朋友不是学不会，而是卡在「第一步之前」：找不到文件夹、文件后缀被系统藏起来了、不知道该用什么软件打开写字。这一章不讲任何深奥概念，只陪你做好动手前的 3 件小事。</p>
+
+  
+<div class="viz-card">
+  <div class="viz-title">第 0 步全景地图：10 分钟跑通第 1 个 Skill 的 4 个动作</div>
+  <svg viewBox="0 0 680 120" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <defs>
+      <marker id="arrRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L7,3 z" fill="#C8102E"/>
+      </marker>
+    </defs>
+    <rect x="8" y="16" width="146" height="88" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.8"/>
+    <text x="81" y="42" text-anchor="middle" font-size="12" font-weight="900" fill="#C8102E">① 打开后缀名显示</text>
+    <text x="81" y="64" text-anchor="middle" font-size="10.5" fill="#3F3F46">Mac / Win 各点 2 下</text>
+    <text x="81" y="82" text-anchor="middle" font-size="10" fill="#6B7280">看清是不是 .md 文件</text>
+
+    <path d="M156 60 L176 60" stroke="#C8102E" stroke-width="2" marker-end="url(#arrRed)"/>
+    <rect x="180" y="16" width="146" height="88" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+    <text x="253" y="42" text-anchor="middle" font-size="12" font-weight="900" fill="#18181B">② 建一个练习文件夹</text>
+    <text x="253" y="64" text-anchor="middle" font-size="10.5" fill="#3F3F46">放进电脑指定技能目录</text>
+    <text x="253" y="82" text-anchor="middle" font-size="10" fill="#6B7280">或直接拖进工具窗口</text>
+
+    <path d="M328 60 L348 60" stroke="#C8102E" stroke-width="2" marker-end="url(#arrRed)"/>
+    <rect x="352" y="16" width="146" height="88" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+    <text x="425" y="42" text-anchor="middle" font-size="12" font-weight="900" fill="#18181B">③ 写入 10 行说明书</text>
+    <text x="425" y="64" text-anchor="middle" font-size="10.5" fill="#3F3F46">记事本 / 免费编辑器</text>
+    <text x="425" y="82" text-anchor="middle" font-size="10" fill="#6B7280">存成 SKILL.md</text>
+
+    <path d="M500 60 L520 60" stroke="#C8102E" stroke-width="2" marker-end="url(#arrRed)"/>
+    <rect x="524" y="16" width="148" height="88" rx="10" fill="#C8102E"/>
+    <text x="598" y="42" text-anchor="middle" font-size="12" font-weight="900" fill="#FFFFFF">④ 发一句大白话开跑</text>
+    <text x="598" y="64" text-anchor="middle" font-size="10.5" fill="#FFE4E8">AI 自动照章办事</text>
+    <text x="598" y="82" text-anchor="middle" font-size="10" fill="#FFE4E8">1 分钟看成果</text>
+  </svg>
+</div>
+
+
+  <h3>准备一：花 30 秒，让电脑显示文件后缀名</h3>
+  <p>Skill 最核心的文件叫 <code>SKILL.md</code>。如果电脑隐藏了后缀名，你用记事本保存后，它实际叫 <code>SKILL.md.txt</code>——AI 工具认不出来，就会一直说「找不到技能」。</p>
+  <div class="prep-grid">
+    <div class="prep-card">
+      <div class="prep-head">Mac 电脑（2 步开启）</div>
+      <p>1. 点桌面左上角「访达（Finder）」→「设置」（或按 <code>Command + ,</code>）。</p>
+      <p>2. 切到「高级」标签页，勾选 <strong>「显示所有文件扩展名」</strong>。</p>
+    </div>
+    <div class="prep-card">
+      <div class="prep-head">Windows 电脑（2 步开启）</div>
+      <p>1. 打开任意文件夹（「此电脑」），点顶部菜单栏的「查看」。</p>
+      <p>2. 鼠标移到「显示」，勾选 <strong>「文件扩展名」</strong>。</p>
+    </div>
+  </div>
+
+  <h3>准备二：选一个顺手的免费写字工具</h3>
+  <p>写 <code>SKILL.md</code> 本质上就是写纯文字清单，<strong>千万不要用 Word 或 WPS（它们自带看不见的排版格式符号）</strong>。推荐下面任意一款免费工具：</p>
+  <ul class="clean-list">
+    <li><strong>新手最省心</strong>：电脑自带「文本编辑」（Mac 需选“制作纯文本”）或「记事本」（Win）；或者免费的 <strong>Typora / Obsidian / VS Code</strong>。</li>
+    <li><strong>最推荐省事法</strong>：其实你根本不用自己敲文件——直接把需求发给 AI 助手，让它直接帮你建好文件夹和 <code>SKILL.md</code>。</li>
+  </ul>
+
+  <h3>准备三：知道 Skill 文件夹放电脑哪里</h3>
+  <p>不同 AI 工具放技能的“抽屉”名字略有差别，但放进去以后，AI 都会自动去读里面的 <code>SKILL.md</code>：</p>
+  <table class="rescue-table" style="margin-bottom:12pt;">
+    <thead><tr><th>你正在用的工具</th><th>电脑里的技能存放目录（大白话理解：技能抽屉）</th><th>小提醒</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Antigravity / 通用规范</strong></td><td><code>~/.gemini/skills/技能名/</code> 或 <code>~/.agents/skills/技能名/</code></td><td>把整个文件夹放进去即可</td></tr>
+      <tr><td><strong>Workbuddy / Codex</strong></td><td><code>~/.workbuddy/skills/</code> 或 <code>~/.codex/skills/</code></td><td>放完重启一次客户端更稳</td></tr>
+      <tr><td><strong>网页版 AI / 知识库助手</strong></td><td>在「自定义助手 / 技能 / 插件」入口直接上传文件夹或 <code>.zip</code></td><td>找不到按钮时用「技能」搜索</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10 分钟实战：跑通你的第 1 个「周报润色小助手」</h3>
+  <p>现在，不用等看完全书，跟着下面 3 步立刻热身一次：</p>
+  <div class="step-cards">
+    <div class="step-card"><span>第 1 步</span> 新建一个文件夹，起名叫 <code>weekly-helper</code>，在里面新建文件 <code>SKILL.md</code>。</div>
+    <div class="step-card"><span>第 2 步</span> 把下面这段话原封不动复制进 <code>SKILL.md</code> 并保存：</div>
+  </div>
+  <div class="code-block">---
+name: weekly-helper
+description: 当用户说“帮我把零碎记录整理成周报”时启动；日常闲聊不启动。
+---
+请按以下 3 步把零碎记录整理成部门周报：
+1. 第一段只写【本周完成】，用 3 条以内短句，每条带出具体结果。
+2. 第二段写【下周计划】，列出最关键的 2 件事。
+3. 硬红线：材料里没有的数字和成绩，一句都不要编。</div>
+  <div class="step-cards">
+    <div class="step-card"><span>第 3 步</span> 打开你的 AI 工具，把下面这句测试话术发给它，看看它是不是老老实实照着 3 条规矩出周报了！</div>
+  </div>
+  <div class="prompt-box">
+    <div class="prompt-head">💬 发给 AI 的测试指令（可直接复制）</div>
+    <p>请使用 weekly-helper 帮我把零碎记录整理成周报：周一拜访了 2 家老客户确认续费意向；周三把售后常见 5 个问题整理成了表格；周五配合同事录了新版产品演示视频。</p>
+  </div>
+</section>
+
+
+<section id="ch-anchor-2" class="chapter page-break">
+  <div class="ch-tag">序言</div>
+  <h2>前言｜AI 时代，真正拉开差距的不是会不会聊天</h2>
+  <p>前言｜让 AI 干活，把时间还给自己很多人用 AI，用到最后，自己反而更忙了。AI 写完一篇文章，你还要改事实、改语气、 找图片、排版；AI 说视频做好了，打开一看，字幕不对，声音也不对。工具越装越多，对话越聊越长，事情还是离不开你。问题出在哪里？在我看来，你一直在给 AI 派零活，还没有把自己做事的方法教给它。</p>
+<p> 我做一人 AI 公司，日常要做内容、研发课程、带学员，也要做客户交付。这些事情单独拿出来都不轻松，放在一起，更不能靠自己一直加班。我真正关心的是：哪些事必须由我判断，哪些事可以交出去，交出去以后，怎样知道它做对了。我们开发 Skill、搭专家团、跑自动化，都是为了回答这个问题。</p>
+<p> 过去两三年，从一段写作要求、一张课程模板，到一套公众号生产步骤，再到今天能够调用的 Skill，名字和工具换过很多次，做事的逻辑一直在往前走。我越来越看重那些看起来不显眼的东西：一份好用的材料清单，一次明确的退回修改，一个别人拿过去也能看懂的标准。它们让经验留了下来，下一次不用从头解释。 我看未来三五年，这件事都值得认真做。</p>
+<p>对公司，它关系到能不能把重复工作交给 AI； 对做培训和服务的人，它关系到能不能把自己会做的事教出去、交付出去。技术还会继续变，有些今天需要专门开发的能力，明天可能就成了软件自带功能。但你对客户、业务和结果的理解，不会因为按钮换了位置就失去价值。 这本书，我想带你做的，就是把这些理解变成 AI 能够使用的技能。</p>
+<p>你不用先学编程，也不用一口气建几十个 AI 员工。先选一件你经常做、也知道怎样做好的事，陪 AI 做一遍，把你的判断、纠正和标准留下来，再换一份材料试一次。你会慢慢发现，自己终于有机会从反复干活，走向安排事情怎样完成。 AI 负责当牛做马，我们面朝大海春暖花开。</p>
+<p> 这不是说以后什么都不用管了，而是我们应该把时间留给更值得自己做的事：见客户，做判断，打磨产品，陪家人，过自己的生活。接下来，我们就从你手头的一件小事开始。</p>
+<p>开始之前｜带着一件事读这本书如果你第一次接触 Skill，可以从第一篇读起，跟着做完标题工作台。已经在用AI 做内容、做课程或处理文件的朋友，可以先翻到第三篇，找一个最像自己工作的场景。想带团队、做培训和客户服务，就重点看第四篇和第五篇。全书六篇、22 章，不需要一口气读完， 更值得你边做边回来查。</p>
+<p> 动手之前，准备一个文件夹：放一份自己的材料，再放一份你认可的成品。书里所有指令都用同一套例子——周报、客户咨询、公众号文章，你读的时候把手上的东西换进去就行。软件界面会更新，入口位置可能变，先弄清这一步要完成什么，再去找对应功能。</p>
+<p> 读的时候，可以反复问自己三句话：这件事我有没有在做？我的标准是什么？下次还能不能这样做？书里会讲到我借鉴的公开分享，也会讲我们做错过什么。我的目的很简单：让你少一点收藏工具的兴奋，多一个真正能帮自己干活的技能。先跑通，再跑快。 如果你主要做短视频，或正打算搭一条「选题—脚本—成片—验收」的内容生产线，不必从第一章硬读到第九章。</p>
+<p>可以直接去第 9 章场景二：那里用竖屏 3D 地图当主案例，把对标、选题五审、五段式脚本、小样到全片、出品打分写清楚。读完场景二，回头看第 7 章里新增的「视频 Skill 验收」插段——四类输入怎么测、缺出处怎么办、什么叫越界「直接发抖音」、为何 ≥90 分才交片。两条合在一起，才是「能出片」加「敢交片」。</p>
+<p>做公众号的朋友仍以第 9 章场景一为主；两条线可以分开练，不必一次全开。</p>
+<h3>找不到入口的时候</h3>
+<p>界面会更新。书里写的位置对应的是写作时的版本，你打开时按钮可能换了地方、换了名字。遇到这种情况，别在设置里翻半小时，按下面四步找。 第一步，找输入框。 绝大多数动作都从“新建任务”开始：把这次要做的事写进那个框， 再看它旁边有什么选项。找不到某个功能，八成是因为你还没开始一个任务。 第二步，看两个角落。</p>
+<p> 左下角通常是设置、连接器、账号；右上角或输入框下方通常是模型选择、专家团、工作空间、权限范围。书里说“在专家团里新建角色”，先去这两个角落找一个像“人”或“组织”的图标。</p>
+</section>
+<section id="ch-anchor-3" class="chapter page-break">
+  <div class="ch-tag">阅读指南</div>
+  <h2>开始之前｜带着一件事读这本书</h2>
+  <p>第三步，用功能词搜，不用界面词搜。 搜“技能”“专家团”“定时”“工作空间”，不要搜 “上传按钮”“第三个标签页”——按钮会改名，功能不会。 第四步，找不到就先手动做一遍。 把整件事自己走完，记下你按了什么顺序、交出了什么。等你在界面上看到对应入口，就知道该往哪一步放。这比空等一个按钮有用。</p>
+<p><strong>名字对不上时，按这张表换算：</strong></p>
+<table class="rescue-table" style="margin:6pt 0 10pt;"><thead><tr><th style='width:28%'>书里叫</th><th>你在不同软件界面上可能看到的名字</th></tr></thead><tbody><tr><td><strong>技能</strong></td><td>Skill、能力、插件、自定义助手</td></tr><tr><td><strong>专家</strong></td><td>Agent、角色、智能体、助手</td></tr><tr><td><strong>专家团</strong></td><td>团队、协作组、多智能体（Multi-Agent）</td></tr><tr><td><strong>工作空间</strong></td><td>项目、文件夹、工作区（Workspace）</td></tr><tr><td><strong>定时任务</strong></td><td>自动化、计划任务、触发器（Schedule）</td></tr></tbody></table>
+<p>最后一句：先弄清这一步要完成什么，再去找哪个按钮。 按钮会变，这件事不会变。</p>
+<h3>第一篇</h3>
+<h3>先上手，再懂原理第1章 — 第3章</h3>
+</section>
+
+
+<section class="part-page page-break">
+  <div class="part-label">第一篇</div>
+  <div class="part-title">先上手，再懂原理</div>
+  <div class="part-line"></div>
+  <div class="part-range">第1章 — 第3章</div>
+  <div class="part-roadmap"><div class="roadmap-label">本篇通关路线图</div><svg viewBox="0 0 660 88" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif"><rect x="0" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="90.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">STEP 1</text><text x="90.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">盘点你的个人经验</text><line x1="184" y1="44" x2="236" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="240" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="330.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">STEP 2</text><text x="330.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">用生活例子看懂 Skill</text><line x1="424" y1="44" x2="476" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="480" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="570.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">STEP 3</text><text x="570.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">3 眼挑对现成技能</text></svg></div>
+</section>
+<section id="ch-anchor-4" class="chapter page-break">
+  <div class="ch-tag">第一篇 · 第 1 章</div>
+  <h2>第1章 你已经拥有开发 Skill 最重要的资产</h2>
+  
+<div class="viz-card">
+  <div class="viz-title">小白对照：为什么平时聊天 AI 总瞎编，装进 Skill 后就听话了？</div>
+  <svg viewBox="0 0 680 135" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <rect x="10" y="14" width="318" height="106" rx="10" fill="#F4F4F5" stroke="#9CA3AF" stroke-width="1.4"/>
+    <text x="26" y="38" font-size="12" font-weight="900" fill="#374151">普通聊天：凭感觉硬猜</text>
+    <text x="26" y="60" font-size="11" fill="#4B5563">你：“帮我想 5 个标题，要吸引人。”</text>
+    <text x="26" y="80" font-size="11" fill="#4B5563">AI：“我靠这套方法月入 10 万！”（← 没依据乱吹）</text>
+    <text x="26" y="102" font-size="10.5" font-weight="700" fill="#6B7280">结果：每次都要花半小时返工修改</text>
+
+    <rect x="352" y="14" width="318" height="106" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="2"/>
+    <text x="368" y="38" font-size="12" font-weight="900" fill="#C8102E">Skill 上岗：先看红线再动手</text>
+    <text x="368" y="60" font-size="11" fill="#18181B">1. 先核对真实材料清单（没有的成绩一律不写）</text>
+    <text x="368" y="80" font-size="11" fill="#18181B">2. 对照 2 份好样板，按 14~22 字输出 10 条</text>
+    <text x="368" y="102" font-size="10.5" font-weight="700" fill="#C8102E">结果：90% 一次过，只微调 10% 细节</text>
+  </svg>
+</div>
+
+  <div class="goal-box"><div class="box-title">这一章，你会拿到</div><ul>
+<li>一张填完六个空格的任务定义卡</li>
+<li>一个你认可的成品，能说清好在哪</li>
+<li>一个被你退回的坏例子，写清为什么退</li>
+<li>从一次做课程的返工说起</li>
+</ul></div>
+<p>有一次，我让 AI 专家团配合做课程上架包。大纲、详情页、PPT、招生文案、学员指引，看起来都做出来了。打开检查，问题一个接一个：视觉没先看参考，讲师介绍用了旧数据，PPT 的大字跑出了页面。团队明明建好了，前面却还是一个人往下做，其他岗位没有真正配合起来。忙了不少，离能拿出去用，还有一段距离。 怎么办？一项一项改。</p>
+<p>视觉先看参考，再动手；介绍统一用最新确认的数据；该分工的事，开工就分；课件导出来，逐页打开看。你看，这些要求没有哪一条很神奇，但少一条， 后面就可能多一轮返工。你的经验，很多就藏在“这个不行，应该这样做”里面。 你也有类似的经验。</p>
+<p>销售时知道什么时候追问，教课时知道学生容易卡在哪一步，写文章时知道哪种标题正文接不住，给客户做文件时知道什么地方不能漏。这些经验没有变成说明之前，只能由你反复亲自使用。整理出来以后，AI 才可能按你的标准参与。</p>
+<h3>第一个练习：从昨天做过的事里选任务</h3>
+<p>不要先问有什么热门技能。先写下昨天做过的五项工作：给客户回了一段说明、修改一个标题、整理一次会议、剪了一条视频、检查一份交付。圈出其中你能够判断对错、近期还会重复的一个。第一项任务不需要很大，但要真实。 以标题为例，任务可以是“基于已经写完的文章，比较十二个标题并推荐三个”。这比“自动运营公众号”更容易开始。</p>
+<p>你手上有文章、有目标读者，也有自己不愿采用的写法。做完以后，你能直接检查标题是否讲清对象、是否有阅读理由、正文是否兑现。 把选中的任务写成一张小卡：我什么时候做它；开始前拿什么材料；通常经过哪几步； 最容易出现什么错；最后交什么。暂时不知道的地方，保留空白。空白能提醒你补资料，漂</p>
+<p>亮但不真实的答案只会把问题藏起来。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>我想交给 AI 的事：根据正文提出标题并说明取舍。 我已有的材料：文章全文、读者是谁、真实事实清单。 我的习惯：先找最强判断，再起候选，不先堆情绪词。 我最担心的错：把目标写成成绩，把别人的经历写成我的。 做完的标志：有差异明显的候选、推荐理由和正文兑现位置。</p>
+</div>
+<h3>把你改过的地方留下来</h3>
+<p>假如一个标题写“我靠这套方法做出十万阅读”，你指出自己没有这项成绩，这就是非常有价值的开发材料。不要只让 AI 换一个标题，还要让它说明错误属于什么：把目标写成已发生结果。然后把这个区别写进下一版规则。 经验变成技能，中间隔着的不是灵感，是这五步</p>
+<div class="mini-grid">
+<span class="mini-pill">做过的任务</span>
+<span class="mini-pill">选一件真做过的</span>
+<span class="mini-pill">具体纠正</span>
+</div>
+<p>记下“不对，应该这样”</p>
+<div class="mini-grid">
+<span class="mini-pill">稳定步骤</span>
+<span class="mini-pill">把改法排成顺序</span>
+<span class="mini-pill">写成说明</span>
+<span class="mini-pill">落成 SKILL.md</span>
+<span class="mini-pill">再次验证</span>
+<span class="mini-pill">换一份材料复测</span>
+<span class="mini-pill">少一步，下一次还得重新解释；五步走完，换一份材料也能用</span>
+</div>
+<div class="fig-cap">图 1 经验变成技能的五步：少一步，下一次还得重新解释</div>
+<p>同样，PPT第一页字太多，不能只改这一页。要看是不是每页都在机械搬运讲稿。客户简报出现其他客户姓名，不能只替换一个名字。要看是不是没有隔离材料。你从单次错误里找到共同原因，经验才开始变成方法。 我常说，先把会做的事情变成能交出去的事情。你做销售，听到客户一句话就知道该问什么；你做运营，看一份表就知道哪里不对。</p>
+<p>这些判断在你看来很平常，换一个刚接手的人，未必知道。别急着说自己没有专业能力，先回头看看，别人经常在哪件事上找你帮忙。 那个地方，往往就有值得开发的第一项技能。 现在先别急着规划一整家公司。把那张任务卡、一个你认可的成品，以及一个被你改过的坏例子放在一起。这就是第一份开发材料。</p>
+<p>你能讲清楚为什么接受、为什么退回，AI 才有机会学会你的做法。先把这一小步做好，后面的 Skill 就有东西可写了。</p>
+<h3>第2章 Skill 究竟是什么</h3>
+<div class="goal-box"><div class="box-title">这一章，你会拿到</div><ul>
+<li>一句能说清的技能介绍：拿到什么、帮谁、交什么</li>
+<li>一张角色分工表，把你这件事填进对应格子</li>
+<li>一份能跑通的最小目录，知道文件该放哪</li>
+<h3>一张表看清各自负责什么</h3>
+<table class="rescue-table" style="margin:6pt 0 10pt;"><thead><tr><th style='width:24%'>角色名称</th><th>大白话解释：它在工作里负责什么</th></tr></thead><tbody><tr><td><strong>模型（Model）</strong></td><td>大脑：理解材料、作出判断、生成文字内容</td></tr><tr><td><strong>工具（Tool）</strong></td><td>双手：完成读写文件、处理图片、搜索网页等具体动作</td></tr><tr><td><strong>技能（Skill）</strong></td><td>操作手册：写明特定任务的材料、步骤、红线和验收标准</td></tr><tr><td><strong>专家（Agent）</strong></td><td>专职员工：在某个固定岗位上选择并使用对应技能干活</td></tr><tr><td><strong>专家团</strong></td><td>小团队：按先后顺序交接材料，由主理人汇总把关验收</td></tr></tbody></table>
+<li>一份标题技能，里面到底写什么</li>
+</ul></div>
+<p>打开我的标题工作台，你会看到一个叫 SKILL.md 的文件。名字有点像程序文件，其实里面很大一部分就是普通文字：什么时候用，先看什么，怎样起标题，怎样筛选，什么话不能写。它负责把文章的标题做好，后面的配图、排版和发布，交给另外的技能。分清这一段，它反而更容易做好。</p>
+</section>
+<section id="ch-anchor-5" class="chapter page-break">
+  <div class="ch-tag">第一篇 · 第 2 章</div>
+  <h2>第2章 Skill 究竟是什么</h2>
+  
+<div class="viz-card">
+  <div class="viz-title">一眼看懂：普通聊天 vs 写一次就能一直用的 Skill</div>
+  <svg viewBox="0 0 680 185" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <rect x="10" y="12" width="206" height="162" rx="10" fill="#F4F4F5" stroke="#D1D5DB" stroke-width="1.5"/>
+    <text x="113" y="38" text-anchor="middle" font-size="13" font-weight="900" fill="#18181B">① 普通聊天（零散点菜）</text>
+    <line x1="26" y1="50" x2="200" y2="50" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="26" y="74" font-size="11" fill="#374151">• 每次重新打几百字要求</text>
+    <text x="26" y="96" font-size="11" fill="#374151">• 换个新窗口就忘掉习惯</text>
+    <text x="26" y="118" font-size="11" fill="#374151">• 今天稳、明天突然乱写</text>
+    <rect x="26" y="134" width="174" height="26" rx="6" fill="#E5E7EB"/>
+    <text x="113" y="151" text-anchor="middle" font-size="10.5" font-weight="700" fill="#374151">适合：一次性随口问问</text>
+
+    <rect x="237" y="12" width="206" height="162" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="2"/>
+    <text x="340" y="38" text-anchor="middle" font-size="13" font-weight="900" fill="#C8102E">② Skill（老员工操作手册）</text>
+    <line x1="253" y1="50" x2="427" y2="50" stroke="#FECDD3" stroke-width="1"/>
+    <text x="253" y="74" font-size="11" fill="#18181B">• 目标、顺序、红线一次写死</text>
+    <text x="253" y="96" font-size="11" fill="#18181B">• 配套自带样板文章和检查表</text>
+    <text x="253" y="118" font-size="11" fill="#18181B">• 发 1 句话就按同一标准交货</text>
+    <rect x="253" y="134" width="174" height="26" rx="6" fill="#C8102E"/>
+    <text x="340" y="151" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FFFFFF">适合：每周都在做的核心工作</text>
+
+    <rect x="464" y="12" width="206" height="162" rx="10" fill="#18181B" stroke="#18181B" stroke-width="1.5"/>
+    <text x="567" y="38" text-anchor="middle" font-size="13" font-weight="900" fill="#FFFFFF">③ 流水线（多个岗位接力）</text>
+    <line x1="480" y1="50" x2="654" y2="50" stroke="#3F3F46" stroke-width="1"/>
+    <text x="480" y="74" font-size="11" fill="#E4E4E7">• 写标题 + 配图 + 排版串起来</text>
+    <text x="480" y="96" font-size="11" fill="#E4E4E7">• 上一步不达标，下一步不启动</text>
+    <text x="480" y="118" font-size="11" fill="#E4E4E7">• 像开了一家 24 小时小作坊</text>
+    <rect x="480" y="134" width="174" height="26" rx="6" fill="#C8102E"/>
+    <text x="567" y="151" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FFFFFF">适合：公众号 / 视频完整出品</text>
+  </svg>
+</div>
+
+  <div class="mini-grid">
+<span class="mini-pill">一份 SKILL.md 里，四块内容各管一件事</span>
+<span class="mini-pill">① 头部信息</span>
+<span class="mini-pill">name / description</span>
+<span class="mini-pill">平台靠它判断：什么时候该调用我</span>
+<span class="mini-pill">② 执行步骤</span>
+<span class="mini-pill">把顺序写死，不让 AI 自己猜</span>
+<span class="mini-pill">③ 边界红线</span>
+<span class="mini-pill">决定它什么时候必须停下来问你</span>
+<span class="mini-pill">④ 输出约定</span>
+<span class="mini-pill">下一步接得住，才算交付</span>
+</div>
+<p>先读什么 → 做什么 → 交什么不能编、不能越权、缺料要停候选表 / 推荐 / 补料清单写文件的人，要把“我为什么退回”写进去；只写“专业、高效”，等于什么都没写。</p>
+<div class="fig-cap">图 2 标题工作台：名称、用途与执行方法写进同一份说明。</div>
+<p>把它与一次临时聊天放在一起看，区别就清楚了。临时聊天里，你可能连续补充“别这么夸张”“不要编经历”“保留具体工具名”。技能里，这些反复出现的要求被组织成稳定步骤；下次换一篇文章，仍然可以使用。需要调用工具时，再由工具完成文件或图片的具体处理。 一个技能通常不只有文字，也可以带参考材料、模板和程序。</p>
+<p>比如标题任务需要文章及事实边界；视频任务需要镜头、声音和素材处理方法；文档任务需要样式和检查。不同任务的配套条件不一样，不能看见一个说明文件就断言任何电脑都能跑。</p>
+<h3>用一个例子分清四件事</h3>
+<p>上一张表是按角色分的，落到一次具体任务里，只要盯住四件事就够了。 假设你要把一篇文章做成视频。专家帮助判断什么值得讲，Skill 说明怎样把稿件变成分镜和作品，工具负责生成声音、处理图片和导出文件，材料提供文章事实和可用画面。四者少了任何一项，都可能影响最终结果。</p>
+<p> 一个“视频专家”如果只给了脚本，还没有完成视频；一个“剪辑技能”如果没有可用的剪辑工具，也不能完成导出；有了工具但没有合法可用素材，同样不能直接交付。把这几件事拆开，你就知道该补的是什么，而不是反复要求 AI 更努力。 怎么选第一个任务？我会看三件事：最近还会不会做，材料能不能拿到，结果自己能不能判断。</p>
+<p>比如你每天都要处理会议文字，手上也有记录，整理得对不对一眼能看出来，就适</p>
+<p>合开始。反过来，完全不懂的行业报告，连数字错了都看不出来，先别把它当第一站。你要借 AI 放大已有经验，起步时不必给自己加一道陌生业务的难题。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>当任务没有做完，先回答：是我没给清楚材料？是方法说明不完整？是工具或账号不可用？还是结果做出来了，但没有按标准检查？请指出具体证据，不要只评价自己“能力不足”。</p>
+</div>
+<h3>文件结构，只记住最小的一组</h3>
+<p>文件结构先别记太多。你只要知道：SKILL.md 放核心做法，需要补充的例子、参考和工具另放。这也是 Agent Skills 格式规范的基本组织方式。刚开始，一个说明文件加一份练习材料就可以做起来，等任务真的需要，再增加目录。不要把搭文件夹，当成了开发能力。</p>
+<p> 可以先建立一个“标题小助手”目录，里面放技能说明、一篇练习文章和一次输出记录。 这个版本已经足以帮助你研究输入、步骤和结果。等到规则稳定，再讨论怎样导入自己的工作平台。 “零基础能开发”并不等于完全不用理解结果。</p>
+<p>你可以让 AI 写文件，但要知道文件是干什么的；可以让 AI 准备程序，但要知道程序会改哪些东西；可以让 AI 检查，却不能把它的一句通过当作所有问题都已解决。 试着用一句话介绍你的技能：“它拿到什么，帮谁完成哪一段工作，最后交什么。”这句话如果说得绕，先缩小范围。</p>
+<p>能把一件小事讲明白，比给一个什么都做的助手起个厉害名字， 更接近真正会用 AI。</p>
+<h3>第3章去哪里寻找别人做好的优质 Skill</h3>
+<div class="goal-box"><div class="box-title">这一章，你会拿到</div><ul>
+<li>一张研究卡：输入、步骤、输出、依赖、验证过什么</li>
+<li>一次自己动手的小实验，用你的材料跑一遍</li>
+<li>一条结论：这个做法能不能搬到你的任务上</li>
+<li>找一个能看见过程的分享</li>
+</ul></div>
+<p>找别人做好的 Skill，我先看一件事：能不能看见它到底怎样做。只有一个漂亮结果、一句“全自动完成”，还不够。我要知道开始时给了什么，中间经过哪几步，最后留下什么文件。你要借鉴的是做事的方法，光看热闹，带不回自己的工作里。</p>
+<div class="fig-cap">图 3 精选场景和专家团：先按业务找场景，再看这个场景里配了哪些岗位</div>
+</section>
+<section id="ch-anchor-6" class="chapter page-break">
+  <div class="ch-tag">第一篇 · 第 3 章</div>
+  <h2>第3章 先用现成的：去哪里找、怎么装、怎么用</h2>
+  
+<div class="viz-card">
+  <div class="viz-title">拿到别人分享的 Skill，3 眼看出值不值得装进电脑</div>
+  <svg viewBox="0 0 680 120" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <rect x="10" y="14" width="210" height="92" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/>
+    <text x="115" y="40" text-anchor="middle" font-size="12" font-weight="900" fill="#C8102E">第 1 眼：看“门口招牌”</text>
+    <text x="115" y="64" text-anchor="middle" font-size="11" fill="#18181B">有没有写清什么时候用？</text>
+    <text x="115" y="84" text-anchor="middle" font-size="10" fill="#6B7280">只吹“全能助手”的直接跳过</text>
+
+    <rect x="235" y="14" width="210" height="92" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+    <text x="340" y="40" text-anchor="middle" font-size="12" font-weight="900" fill="#18181B">第 2 眼：看“有没有样板”</text>
+    <text x="340" y="64" text-anchor="middle" font-size="11" fill="#18181B">带没带好例子和检查单？</text>
+    <text x="340" y="84" text-anchor="middle" font-size="10" fill="#6B7280">光喊口号没步骤的用不稳</text>
+
+    <rect x="460" y="14" width="210" height="92" rx="10" fill="#18181B"/>
+    <text x="565" y="40" text-anchor="middle" font-size="12" font-weight="900" fill="#FFFFFF">第 3 眼：看“实话红线”</text>
+    <text x="565" y="64" text-anchor="middle" font-size="11" fill="#E4E4E7">缺材料时会不会停下来问？</text>
+    <text x="565" y="84" text-anchor="middle" font-size="10" fill="#FCA5A5">会瞎编成绩的绝对不能留</text>
+  </svg>
+</div>
+
+  <p>宝玉老师的公开分享和开源项目，值得这样读。比如翻译任务，不只是一句“翻译得自然”，还会涉及长文怎样处理、术语怎样保持一致、中间稿怎样保留。我看重的是这些具体安排。</p>
+<p>你也可以挑一个自己常做的任务，顺着文件读下去：如果换成我的文章、我的客户材料，哪一步还成立，哪一步必须改？ 研究一个项目，先回答三件事：它的输入是什么，实际交出什么，中间依赖什么。介绍说“自动配图”，就继续看它是否负责判断配图位置、生成图片、保存文件和插入正文；介绍说“自动视频”，就继续看交付停在描述、片段还是完整成片。</p>
+<h3>一份分享，拆成一张研究卡</h3>
+<p>把网址交给 AI 时，不要只说“总结一下”。你可以直接使用下面这段要求，让它把研究结果转成你能比较的材料。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>请阅读这个原始分享和能够访问的技能文件。 只回答：解决哪项真实工作、输入材料、执行步骤、输出文件、需要的工具、作者实际验证过什么、还有什么没有验证。 如果只看见介绍或标题，明确说明，不补写完整过程。 最后指出：哪些做法能搬到我的标题任务上，需要改什么。</p>
+</div>
+<p>它给出结果以后，自己回到原文核对一处关键内容。比如说“支持中文”，原文有没有这项说明；说“可以直接发公众号”，原文是否区分草稿和正式发布；说“无需配置”，有没有其他地方要求付费账号。核对一次，你就能发现很多介绍性的夸张。 这里还有一个很容易忽略的区别：开源作者的作品、社区打包版本和别人重新包装的技能，并不一定是同一份东西。</p>
+<p>优先找到作者原始地址，记录查看日期，再研究具体版本。不要凭一个相似名称，就把第三方包当作官方作品。</p>
+<h3>公众号和 X，要把线索追到原文</h3>
+<p>公众号里，我会优先看把过程讲清楚的实战文章。“划船渡学海”在《从能跑到能用—— skill实战经验》里谈到，固定计算和需要理解语义的处理，要区别安排。这个思路很实用：让</p>
+<p>表格负责算数，让 AI 帮你理解和解释，再由人核对关键结果。后面做数据练习时，你可以直接用起来。 X 上常有作者一边开发一边分享，适合找新思路。但别停在一张转发截图上。看到感兴趣的做法，继续找作者原文、项目文件和后续修改。尤其是“只要一句话就能做完”的内容， 更要看看那句话背后已经准备了什么。</p>
+<p>别人省略的准备工作，往往正是你第一次使用会卡住的地方。 挑选时不必要求每位作者都跟你使用同一软件。真正值得迁移的是任务如何拆、材料如何组织、失败怎么处理。平台入口可以不同，工作问题往往很相近。你要学的是把别人的有效做法改成适合自己的方法，而不是抄一份配置就期待复制成绩。</p>
+<p> 收藏之前，给自己留一个动作：选一份与你工作有关的 Skill，拿自己的小材料试一次。 写下好用在哪里、哪里不适合、下一步准备改什么。你真正拿到的，是一次能继续往前走的经验，而不是收藏夹里又多了一个链接。</p>
+<div class="mini-grid">
+<span class="mini-pill">第二篇</span>
+<span class="mini-pill">从零创建第一个 Skill 第4章 — 第8章</span>
+<span class="mini-pill">第4章先写需求，不急着写代码</span>
+</div>
+<div class="goal-box"><div class="box-title">这一章，你会拿到</div><ul>
+<li>一份填完的任务卡（目标、材料、步骤、边界、结果、验收）</li>
+<li>三份材料：正文、读者说明、事实表</li>
+<li>一段可以直接发给 AI 的需求说明</li>
+<li>任务卡：六个空格先填清楚要填的目标材料步骤边界结果验收</li>
+</ul></div>
+<p>写清楚什么这次到底解决什么问题。 正文、事实、参考、素材分别在哪里。 先确认什么，再做什么。 缺什么就停；哪些内容不能编。 交什么文件，保存在哪里。 你怎样判断它已经做好。</p>
+<h3>先把任务放进一个明确的工作空间</h3>
+<p>我们做公众号和课程时，反复遇到的麻烦是材料散、版本多。标题用了一个说法，详情页用了另一个说法，后面再改就牵动一堆文件。所以正式开工前，先把这次允许使用的材料放到一起，明确哪些已经确认，哪些仅供参考。</p>
+<div class="fig-cap">图 4 WorkBuddy 首页：这次要做的事写在中间；下面几项决定它能不能读你的文件、联网查资料</div>
+<p>用 WorkBuddy 练习，可以先从新建任务开始。把这次的文章和相关材料放进去，说清要什么结果、保存什么文件。先把普通任务做完，别急着找创建技能的按钮。一次任务都没交代清楚，直接封装，往往只是把含糊的要求保存得更正式。 这里不用先整理整台电脑。新建一个项目练习目录，放本次文章、读者说明和已确认事实表。</p>
+<p>文件名尽量让自己一眼知道用途，例如“01-文章正文”“02-目标读者”“03-事实边界”。不要把客户名单和无关私人文件混进去。</p>
+  
+<div class="rescue-box">
+  <div class="rescue-title">小白翻车急救箱｜第一篇新手最容易卡住的 3 件事</div>
+  <table class="rescue-table">
+    <thead><tr><th style="width:28%">常见卡点 / 报错</th><th style="width:32%">多半是什么原因</th><th style="width:40%">30 秒解决动作</th></tr></thead>
+    <tbody><tr><td><strong>文件建好了，AI 却说找不到</strong></td><td>文件名其实叫 SKILL.md.txt（系统藏了后缀名）</td><td>照第 0 章打开后缀名显示，删掉多余的 .txt</td></tr><tr><td><strong>装好 Skill 后，聊半天它也不启动</strong></td><td>“门口招牌”description 写太窄，没包含你常用的口令</td><td>在第一行招牌里加上你平常习惯说的话，如“写标题”</td></tr><tr><td><strong>明明只是随便闲聊，它也硬套模板</strong></td><td>“门口招牌”写得太宽泛（如“全能助手”）</td><td>加上边界：“普通闲聊或纯英文翻译时不要启动”</td></tr></tbody>
+  </table>
+</div>
+
+</section>
+
+
+<section class="part-page page-break">
+  <div class="part-label">第二篇</div>
+  <div class="part-title">开发你的第一个 Skill</div>
+  <div class="part-line"></div>
+  <div class="part-range">第4章 — 第7章</div>
+  <div class="part-roadmap"><div class="roadmap-label">本篇通关路线图</div><svg viewBox="0 0 660 88" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif"><rect x="0" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="67.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">STEP 1</text><text x="67.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">填好 6 格需求卡</text><line x1="139" y1="44" x2="171" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="175" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="242.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">STEP 2</text><text x="242.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">看懂入职资料袋</text><line x1="314" y1="44" x2="346" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="350" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="417.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">STEP 3</text><text x="417.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">大白话请 AI 生成</text><line x1="489" y1="44" x2="521" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="525" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="592.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">STEP 4</text><text x="592.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">安全试跑并交付</text></svg></div>
+</section>
+<section id="ch-anchor-7" class="chapter page-break">
+  <div class="ch-tag">第二篇 · 第 4 章</div>
+  <h2>第4章 开发前的四步准备：用需求卡把经验说清楚</h2>
+  
+<div class="compare-grid">
+  <div class="cmp-card cmp-bad">
+    <div class="cmp-head">✕ 常见误区：大而空的写法（AI 必定乱猜）</div>
+    <p>“帮我做一个超好用的内容创作助手，以后我写文章、做周报、写小红书都能用，记得文笔高级一点、专业一点、有网感。”</p>
+    <div class="cmp-why">问题：AI 不知道给谁看、什么叫“高级”，最后只能给你堆一堆假大空套话。</div>
+  </div>
+  <div class="cmp-card cmp-good">
+    <div class="cmp-head">✓ 推荐写法：具体可交差的 6 格需求卡</div>
+    <p>“<strong>任务</strong>：根据文章正文起 10 个标题；<strong>材料</strong>：正文+读者是谁+事实清单；<strong>红线</strong>：正文没写的数据绝对不能编；<strong>交付</strong>：候选表+推荐 3 个+依据在哪一段。”</p>
+    <div class="cmp-why">好处：边界和交货单清清楚楚，AI 一次就能交出能用的成品。</div>
+  </div>
+</div>
+
+  <h3>用我们的标题任务写需求</h3>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>目标：给这篇已完成文章选择标题。 读者：已经在尝试使用 AI 做内容的普通人。 材料：文章全文、真实作品说明、不能写成成绩的目标。 步骤：提炼最强判断，生成不同方向，比较后推荐三个。 边界：不编客户、不编收入、不把希望获得的结果写成已经发生。 交付：候选表、推荐理由、每个推荐标题在正文里的兑现位置。 验收：不看正文也知道讲什么，看完正文能够找到标题承诺的内容。</p>
+</div>
+<p>这张卡并不高深，却解决了大部分容易跑偏的地方。它让 AI 知道这是一篇作品介绍，不是一份已发生的效果报告；也让它知道你不是要十二句同义句，而是希望比较不同切入点。 如果文章还没有写完，任务就应该改为讨论标题方向，不能把方向稿当作最终标题。输入状态变了，输出状态也要变。需求里把这些区别说明白，比反复催它“再有吸引力一点”更省事。</p>
+<h3>把关键事实放在一张表里</h3>
+<p>事实表可以只有三列：允许使用的内容、依据、状态。比如“已经写出一份标题技能”有本地文件依据；“可以稳定制造高阅读量”没有传播记录，就不能写成确定结论；“这次希望争取更多阅读”是目标，可以明确写为目标。 同一原则也适用于课程项目。讲师是谁、课程面向谁、包含什么、价格是否确认，都应在开工前统一。</p>
+<p>我们以前出现过旧数据被多个文件重复引用的返工，后来的做法就是把事实表放在前面，让后续岗位读取同一份确认内容。 我会把事实表和表达参考分开放。事实表回答“这次能讲什么”，参考文章回答“我喜欢怎样讲”。上一篇写得再好，也可能有已经过期的信息。AI 学语气时顺手拿了旧数字，最后你还得逐份找出来改。</p>
+<p>两份材料用途分清楚，既能保住你的表达，也不必把历史信息一路带到新作品里。 别让事实表变成新的一堆无人维护的资料。每次只保留会影响当前交付的项目，标明由谁确认。没有确认的留空，或者写待确认。你需要的是一份所有参与者都能据以行动的材</p>
+<p>料，不是一张用漂亮词填满的表。 开工前，把任务卡、材料目录和事实表放好，让 AI 先读一遍，指出还有什么缺口。能继续的就继续，真正影响方向的再找你确认。你花在这里的几分钟，是在减少后面一堆文件一起修改的麻烦。需求说清楚，本身就是开发的一部分。</p>
+<h3>跟做一：三份材料怎样写，才不用让 AI 猜</h3>
+<p>先拿一篇短文试手。下面这组周报材料是练习用的，你照着建三个文件就能开始：一份正文，一份读者说明，一份不能随便改动的事实要求。它不需要写得漂亮，先让 AI 明白我们到底在讲什么。</p>
+<div class="step-cards"><div class="step-card"><span>📄 01-正文.txt</span>很多人让 AI 帮忙写周报，得到一篇很长的文章，但负责人仍然看不清项目在哪里卡住。我的建议是先整理原始工作记录，再统一三个字段：本周完成、当前问题、下周需要的配合。没有数据就标待补，不能为了完整而让 AI 猜。这是一种整理方法，本文没有效率测试或客户效果数据。</div><div class="step-card"><span>📄 02-读者.txt</span>有项目协调任务的小团队负责人，已经会用基本的 AI 对话。</div><div class="step-card"><span>📄 03-事实边界.txt</span><strong>可以写：</strong>统一字段、保留依据、缺数据不补写。<br/><strong>不可以写：</strong>效率提升十倍、客户已经采用、领导一定满意。</div></div>
+<p>先让 AI 复述三份材料的关系。合格复述应当说明：正文提出一种整理方法，读者有协调任务，事实边界不支持效果承诺。如果它复述成“作者实测证明周报提效”，说明第一步已经读错，不要继续生成标题。 再让它给出问题型、行动型、判断型三个方向。比如“周报写很长，为什么还是看不清进度”“先统一这三个字段，再让 AI 写周报”。先别急着挑最顺口的一句，回头看正文：这个问题回答了吗，这个动作讲清楚了吗？起标题和检查标题，要连着做。</p>
+<p>用同一份事实表检查所有候选，比逐句凭感觉挑选更容易发现越界。这个练习做完，你就真正准备过一套可运行输入，而不是只读懂了任务卡的定义。</p>
+</section>
+<section id="ch-anchor-8" class="chapter page-break">
+  <div class="ch-tag">第二篇 · 第 5 章</div>
+  <h2>第5章 看懂 SKILL.md 的基本组成</h2>
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-001.png" style="width:92%;" /><div class="fig-cap">图：真实 SKILL.md 文件长什么样（其实就是纯文字清单）</div></div>
+  
+<div class="viz-card">
+  <div class="viz-title">小白秒懂图：把 Skill 文件夹看成「新员工入职资料袋」</div>
+  <svg viewBox="0 0 680 165" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <rect x="12" y="18" width="152" height="130" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="2.2"/>
+    <text x="88" y="44" text-anchor="middle" font-size="13" font-weight="900" fill="#C8102E">SKILL.md</text>
+    <text x="88" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">上岗说明书</text>
+    <text x="88" y="88" text-anchor="middle" font-size="10.5" fill="#3F3F46">什么时候找你干活</text>
+    <text x="88" y="105" text-anchor="middle" font-size="10.5" fill="#3F3F46">先做哪步后做哪步</text>
+    <text x="88" y="122" text-anchor="middle" font-size="10.5" fill="#3F3F46">红线和禁区是什么</text>
+    <text x="88" y="140" text-anchor="middle" font-size="10" font-weight="700" fill="#C8102E">（必须有）</text>
+
+    <rect x="180" y="18" width="152" height="130" rx="10" fill="#F4F4F5" stroke="#3F3F46" stroke-width="1.5"/>
+    <text x="256" y="44" text-anchor="middle" font-size="13" font-weight="900" fill="#18181B">references/</text>
+    <text x="256" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">公司资料柜</text>
+    <text x="256" y="88" text-anchor="middle" font-size="10.5" fill="#3F3F46">存放业务背景介绍</text>
+    <text x="256" y="105" text-anchor="middle" font-size="10.5" fill="#3F3F46">禁用词表 / 行业规范</text>
+    <text x="256" y="122" text-anchor="middle" font-size="10.5" fill="#3F3F46">用到时再去翻阅</text>
+    <text x="256" y="140" text-anchor="middle" font-size="10" fill="#6B7280">（有需要再放）</text>
+
+    <rect x="348" y="18" width="152" height="130" rx="10" fill="#F4F4F5" stroke="#3F3F46" stroke-width="1.5"/>
+    <text x="424" y="44" text-anchor="middle" font-size="13" font-weight="900" fill="#18181B">examples/</text>
+    <text x="424" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">优秀样板间</text>
+    <text x="424" y="88" text-anchor="middle" font-size="10.5" fill="#3F3F46">放 1~2 份你满意的</text>
+    <text x="424" y="105" text-anchor="middle" font-size="10.5" fill="#3F3F46">历史成品作为参考</text>
+    <text x="424" y="122" text-anchor="middle" font-size="10.5" fill="#3F3F46">AI 一眼看懂你的标准</text>
+    <text x="424" y="140" text-anchor="middle" font-size="10" font-weight="700" fill="#C8102E">（强烈建议有）</text>
+
+    <rect x="516" y="18" width="152" height="130" rx="10" fill="#18181B" stroke="#18181B" stroke-width="1.5"/>
+    <text x="592" y="44" text-anchor="middle" font-size="13" font-weight="900" fill="#FFFFFF">checks/</text>
+    <text x="592" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#FCA5A5">出厂验收单</text>
+    <text x="592" y="88" text-anchor="middle" font-size="10.5" fill="#E4E4E7">正常情况怎么算过</text>
+    <text x="592" y="105" text-anchor="middle" font-size="10.5" fill="#E4E4E7">缺材料时能不能停下</text>
+    <text x="592" y="122" text-anchor="middle" font-size="10.5" fill="#E4E4E7">每次改完重新跑一遍</text>
+    <text x="592" y="140" text-anchor="middle" font-size="10" fill="#FCA5A5">（防翻车保障）</text>
+  </svg>
+</div>
+
+  
+<div class="compare-grid">
+  <div class="cmp-card cmp-bad">
+    <div class="cmp-head">✕ 容易误触发的“门口招牌”</div>
+    <p>“这是一个全能内容创作助手，可以帮你写文章、润色文案、做总结、写报告。”</p>
+    <div class="cmp-why">问题：写得太宽泛，以后你只是想随便聊两句，AI 也会误启动这个 Skill。</div>
+  </div>
+  <div class="cmp-card cmp-good">
+    <div class="cmp-head">✓ 精准触发的“门口招牌”</div>
+    <p>“当用户说『写公众号初稿』『改标题』『按我给的材料出公众号文章』时启动；普通闲聊或英文翻译不启动。”</p>
+    <div class="cmp-why">好处：启动口令明确，还写清了什么时候不要动。</div>
+  </div>
+</div>
+
+  <div class="goal-box"><div class="box-title">这一章，你会拿到</div><ul>
+<li>一个骨架目录：SKILL.md 加 references / examples / checks</li>
+<li>一份八句话都对得上的用途说明</li>
+<li>一条改过的 description，写清改前为什么误触发</li>
+<li>把一次任务，改成一类任务的方法</li>
+</ul></div>
+<p>第一轮已经完成标题比较，现在要把做法留下来。固定的部分包括怎样提炼文章判断、 怎样比较候选、怎样检查承诺。每次变化的部分包括文章内容、目标读者和这次更重视什么。不要把练习文章全文写进技能，否则下次换文章，它还可能围绕旧主题工作。 你可以让 AI 把当前任务整理成一个文件夹。名称用容易识别的短名称，用途写清什么时候调用。正文不必解释一大堆 AI 常识，而要写清你自己的工作标准。已有资料、复杂模板和程序需要时再分开存放。</p>
+<pre class="tree-box">title-workbench/
+├── SKILL.md                  # 核心做法：什么时候用、按什么顺序做
+├── references/
+│   └── judgment-rules.md     # 标题判断与避坑规则
+├── examples/
+│   ├── article-demo.md       # 教学输入样板
+│   └── result-demo.md        # 教学输出样板
+└── checks/
+    └── test-cases.md         # 正常、缺失、冲突材料检查单</pre>
+<p>这个练习目录，你可以让 AI 直接帮你创建。不同平台把技能放在哪里，按平台的使用说明来；我们先关心目录里有没有真正要用的东西。说明里写“参考标题规则”，就要能找到那份规则。文件起好了名字，内容却没准备好，下一次还是得临时补课。</p>
+<h3>一份可以照着改的最小说明：SKILL.md</h3>
+<div class="code-block">---
+name: title-workbench
+description: 根据已有中文文章生成并比较标题；当用户要求起标题、改标题或标题诊断时启动。只处理标题与理由，不写整篇正文、不做图、不直接发布。
+---
+# 标题工作台
+1. 先读取本次文章、目标读者与事实边界。提炼一个最强判断、一个具体对象和能够支撑的事实。生成方向不同的标题，再比较，对推荐标题给出正文兑现位置。
+2. 如果没有完整文章，只交方向稿，并说明还不能做最终兑现检查。如果数字、身份或效果没有材料依据，删去或改成明确的目标。
+3. 输出：候选表、推荐三个、取舍理由、需补材料。</div>
+<div class="fig-cap">图 5 一份真实技能文件里的段落：缺点诊断写清「为什么差、改哪里」，下面才是发布建议</div>
+<p>这份说明刻意不追求完备。你先拿它完成这一个任务，再逐条补充实际出现的问题。你可以增加熟悉的表达方法，但每增加一项都要说明它解决什么错误。</p>
+<h3>看懂引用，而不必先看懂程序</h3>
+<p>技能里引用一个文件，就像工作说明里写“按附件表执行”。你要确认附件存在、内容正确、什么时候读取。写着“参考品牌资料”，却不指出资料是哪份，AI 仍然可能猜。写着“执行检查程序”，却没有程序或工具，也不能算做完配置。 标题工作台里的候选数量、比较方法和限制，是我为自己的写作任务定的。你做别的业务，完全可以换一套标准。</p>
+<p>格式规范解决文件怎样被识别，你的经验决定事情怎样做好。不要被规范吓住，也不要以为格式写对了，业务就自然做对了。 打开文件夹，沿着说明里的引用走一遍：说要读的材料都在，写出的步骤看得懂，结果也有例子可以对照。做到这里，就拿另一篇文章来试。Skill 的好坏，要到下一次使用时才会逐渐显出来。</p>
+<h3>跟做二：用八句话检查用途说明</h3>
+<p>你直接叫它“标题工作台”，它当然比较容易知道该用谁。更值得试的是普通说法：“这篇文章起什么标题？”“这个标题太空了，帮我改。”再夹几句与标题无关的要求，看看它会不会乱接。下面八句话，可以作为第一轮检查用，逐句试，留下实际结果。 如果环境没有自动调用，你可以先明确要求读取该技能，再看任务是否能完成。</p>
+<p>这样能把“没有被选到”和“方法本身不好用”分开。前者优先改用途与边界，后者才回到步骤、材料和样例。 还可以检查“过度调用”：你问一个普通问题，它也套标题格式回复。出现这种情况，不能只加更多关键词，应删除过宽的用途，比如“处理所有内容问题”。用途不是宣传语，它应该帮助平台区分相近任务。 用途说明可以把它想成岗位门口的牌子。</p>
+<p>写得太小，该来的任务找不到；写得太大，什么活都接，最后什么都做不好。标题工作台就说标题，不要为了显得能力强，写成内容创作、品牌营销、商业增长都能做。你在里面写多少条能力，最后都要由实际结果来兑现。 每次修改用途说明以后，把这八句话再试一遍，记录选择变化。不要只看最后一条是否修好，也要看原来正确的正常请求有没有受到影响。</p>
+</section>
+<section id="ch-anchor-9" class="chapter page-break">
+  <div class="ch-tag">第二篇 · 第 6 章</div>
+  <h2>第6章 用自然语言请 AI 帮你开发</h2>
+  
+<div class="viz-card">
+  <div class="viz-title">自然语言开发 Skill 的 4 步闭环（小白不用自己敲一行代码）</div>
+  <svg viewBox="0 0 680 120" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <rect x="10" y="18" width="144" height="84" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.8"/>
+    <text x="82" y="46" text-anchor="middle" font-size="13" font-weight="900" fill="#C8102E">① 填 6 格需求卡</text>
+    <text x="82" y="70" text-anchor="middle" font-size="11" fill="#3F3F46">说清目标/材料/边界</text>
+
+    <path d="M158 60 L180 60" stroke="#C8102E" stroke-width="2.5"/>
+    <rect x="184" y="18" width="144" height="84" rx="10" fill="#F4F4F5" stroke="#3F3F46" stroke-width="1.5"/>
+    <text x="256" y="46" text-anchor="middle" font-size="13" font-weight="900" fill="#18181B">② AI 建文件夹</text>
+    <text x="256" y="70" text-anchor="middle" font-size="11" fill="#3F3F46">自动生成 SKILL.md</text>
+
+    <path d="M332 60 L354 60" stroke="#C8102E" stroke-width="2.5"/>
+    <rect x="358" y="18" width="144" height="84" rx="10" fill="#F4F4F5" stroke="#3F3F46" stroke-width="1.5"/>
+    <text x="430" y="46" text-anchor="middle" font-size="13" font-weight="900" fill="#18181B">③ 喂真实材料试跑</text>
+    <text x="430" y="70" text-anchor="middle" font-size="11" fill="#3F3F46">看输出对不对、编没编</text>
+
+    <path d="M506 60 L528 60" stroke="#C8102E" stroke-width="2.5"/>
+    <rect x="532" y="18" width="138" height="84" rx="10" fill="#C8102E"/>
+    <text x="601" y="46" text-anchor="middle" font-size="13" font-weight="900" fill="#FFFFFF">④ 局部改说明书</text>
+    <text x="601" y="70" text-anchor="middle" font-size="11" fill="#FFE4E8">修完重测不改坏旧功能</text>
+  </svg>
+</div>
+
+  <div class="goal-box"><div class="box-title">这一章，你会拿到</div><ul>
+<li>一段三句话的开发对话：说需求、给纠正、留方法</li>
+<li>一个导入后能跑的技能，换一篇文章仍然可用</li>
+<li>一份第二轮验证记录，证明它不依赖旧对话</li>
+<li>第一句话，不要只说“帮我写一个 Skill”</li>
+</ul></div>
+<p>开发第一轮可以直接在普通任务中进行。把刚才三份材料放进去，先让 AI 完成一次标题比较。你逐项纠正以后，再让它提炼可复用的方法。这个顺序能让文件里出现你的真实标准，而不是一篇通用的“高质量标题指南”。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>先帮我完成这篇文章的标题任务，不急着封装。 读取任务卡、正文和事实表，给出差异明显的候选并推荐三个。 每个推荐都说明：读者是谁、为什么值得点开、正文在哪兑现。 如果缺少决定方向的材料，集中指出；其余部分先继续。</p>
+</div>
+<p>我开发过一份标题技能，也拿已经写好的文章做过比较。文章讲的是怎样争取更好的阅读，标题里可以写“冲”，却不能写成“已经做到了”。这个区别很小，但我会盯住。AI 很容易把你的愿望写得像成绩，标题越有冲击力，越要回正文看一遍：这句话，我到底有没有资格说？</p>
+<h3>第二句话，针对错误给修改</h3>
+<p>假如初稿里出现“这套方法让学员阅读量翻倍”，不要只说夸张。明确指出正文没有学员效果材料，要求去掉该断言，并检查其他标题是否也把希望写成成绩。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>第 4 个标题不合格：正文没有学员效果证据。 请保留具体作品名和阅读理由，删除不存在的成绩。 再检查其余候选是否有同类问题。 其他合格部分不重写，返回改前、改后和修改依据。</p>
+<p>这种反馈比一次推倒重来更有价值。它让 AI 知道究竟哪项判断错了，也让你能比较一次修改是否真的解决问题。反复出现的错误，才值得写进核心说明；只与这篇文章有关的事实，继续留在任务输入。</p>
+</div>
+<h3>第三句话，把方法和例子一起留下</h3>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>现在把刚才做对的步骤和我给出的纠正，整理为可复用技能。 区分通用规则与本次文章事实，不把文章事实写成永久要求。 生成说明文件、使用说明、样例输入输出和三组检查材料。 列出还没有验证的地方。 先保存为试用版，不替我对外发布。</p>
+</div>
+<p>拿到文件以后，自己打开至少两份：主说明和示例输出。你要看主说明有没有保留真正的判断，也要看示例是否与输入对应。只看文件清单，会漏掉“文件存在但内容没有完成”的情况。 我用四项比较帮助挑标题，你也可以先记住四个问题：对象清不清楚，读者为什么想看，正文接不接得住，事实有没有问题。打分是为了说明取舍，不能算出阅读量。一个标题拿到高分，只能说值得进一步考虑，真正发出去以后，读者怎样反应，还得看实际反馈。</p>
+<h3>导入以后，换一篇文章再跑</h3>
+<p>文件准备好，再到 WorkBuddy 的技能入口，按创建或上传提示加入。然后另开一个任务，换一篇文章，按正常说法提出要求。找不到入口时，查看当前客户端帮助；别把大量时间耗在记住旧界面的位置上。我们要检查的是：离开上一次对话，这套方法还会不会工作。</p>
+<p>第二篇文章很重要。第一篇的正确结果可能只是因为对话里堆了很多补充材料。新任务能帮助你观察技能说明自身是否足够清楚，所需参考是否能读取，输出是否仍然守住边界。 这里还可以多走一步：用一个完全不同的主题。前面练习的是周报，现在换成你的产品介绍；之前读者是团队负责人，现在换成初次接触产品的人。</p>
+<p>如果它仍然围着周报讲，就说明旧材料混进了通用方法。把这处依赖找出来，比继续给第一篇文章打磨一个更好的标题， 更能帮你判断是否真的做成了 Skill。 导入成功只是开始。第二篇文章里，如果又出现新问题，就把问题留下来，继续改。你不是在参加一次必须满分的考试，你是在带一个新员工熟悉自己的工作。</p>
+<p>先看它哪里能接住，再把接不住的地方教明白。</p>
+<h3>跟做三：开发对话结束前，补上这五句话</h3>
+<p>很多人开发出第一版以后就关掉对话，第二次才发现关键细节仍然只在旧聊天里。结束前，让 AI 做一次交接，可以直接使用下面这五个要求。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>一，请列出今天我给出的全部关键纠正，逐条对应原问题。 二，区分本次事实与适合以后复用的方法，不把两者混写。 三，把复用方法写进技能，把本次材料保存在示例中。 四，逐个检查引用文件是否存在，写明读取条件。 五，给一个新任务的启动示例，让我不用翻旧聊天就能开始。</p>
+</div>
+<p>拿到清单以后，自己删掉两类东西。第一类是只对当前主题成立的要求，例如必须出现某个工具名；第二类是没有信息量的泛泛标准，例如“全面、深入、专业”。保留下来的，应该是下一次仍然会影响结果的判断。 例如你反复纠正“不要补收入”，可以写进事实边界；你要求这篇文章标题包含“周报”， 只属于当前任务。</p>
+<p>你要求最后附文件清单，可以复用；你要求文件名写今天日期，则应作为每次输入或命名规则处理。这样技能不会越用越像一本夹满旧项目的杂记。 最后在新任务里只给说明要求的材料，不复制整段旧对话。如果它仍能理解并完成，你才更有把握说方法已经进入技能，而不只是留在上一次聊天中。</p>
+<h3>第7章像验收新员工一样测试 Skill</h3>
+<div class="goal-box"><div class="box-title">这一章，你会拿到</div><ul>
+<li>四类输入的测试结果：正常、缺材料、冲突、越界</li>
+<li>一份返工记录：问题 → 具体改动 → 复测结果</li>
+<li>一句放行结论：能交、还不能交、缺什么才能交</li>
+<li>四类输入，都要留下结果给什么输入正常材料缺少材料冲突材料越界要求</li>
+</ul></div>
+<p>它应该表现出什么能否按要求交出合格文件。 是否追问或标记缺失，而非硬编。 是否指出矛盾，使用已确认口径。 是否识别不实成绩与不能公开的信息。</p>
+<h3>不只检查它会做，还要检查它会不会乱做</h3>
+<p>标题技能的正常材料容易准备：一篇完整文章、一类明确读者和一份事实表。你可以检查它是否提炼出真正的判断，候选是否有差异，推荐是否能在正文找到依据。但只做正常材料，还不知道它遇到缺口时会怎样。 再准备两个版本。一个删去全文，只留主题；另一个加一句冲突要求，例如“没有成绩也写成成功经验”。前者应该只交方向稿，后者不能生成虚构经历。你提前写好预期，再看实际结果，避免看到一个顺眼的答案以后临时降低标准。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>检查样本 A：完整正文和事实表。 预期：给候选、理由和兑现位置。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>检查样本 B：只有主题，没有正文。 预期：给方向，不声称已核对正文承诺。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>检查样本 C：要求把未发生的效果写成成绩。 预期：不用虚构事实，给有依据的替代表达。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>检查样本 D：只要求给客户发消息。 预期：不由标题技能接管发送。</p>
+</div>
+<h3>交回来的作品，不合适就具体退回</h3>
+<p>做公众号专家团时，主笔交稿以后，有问题就退回去修。我要看的很具体：改的是哪一段，原来的问题有没有解决，交来的文件是不是新版本。光回复“已优化”，我不会因此收稿。你带 AI 员工，也要养成这个习惯：让它把修改落在作品上，再来告诉你完成了。</p>
+</section>
+<section id="ch-anchor-10" class="chapter page-break">
+  <div class="ch-tag">第二篇 · 第 7 章</div>
+  <h2>第7章 把它改稳定，再交付</h2>
+  
+<div class="viz-card">
+  <div class="viz-title">改 Skill 不怕改坏旧功能的 3 道安全网</div>
+  <svg viewBox="0 0 680 112" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <rect x="10" y="12" width="208" height="86" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+    <text x="114" y="38" text-anchor="middle" font-size="12" font-weight="900" fill="#18181B">① 留 2 份旧测试文章</text>
+    <text x="114" y="60" text-anchor="middle" font-size="10.5" fill="#374151">1 份正常材料 + 1 份缺材料</text>
+    <text x="114" y="78" text-anchor="middle" font-size="10" fill="#6B7280">每次改动后都要重新试跑</text>
+
+    <rect x="236" y="12" width="208" height="86" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.8"/>
+    <text x="340" y="38" text-anchor="middle" font-size="12" font-weight="900" fill="#C8102E">② 每次只改 1 个毛病</text>
+    <text x="340" y="60" text-anchor="middle" font-size="10.5" fill="#18181B">不要一次性重写整份说明</text>
+    <text x="340" y="78" text-anchor="middle" font-size="10" fill="#6B7280">出错了立刻知道哪一句惹的祸</text>
+
+    <rect x="462" y="12" width="208" height="86" rx="10" fill="#C8102E"/>
+    <text x="566" y="38" text-anchor="middle" font-size="12" font-weight="900" fill="#FFFFFF">③ 留一份备份再动刀</text>
+    <text x="566" y="60" text-anchor="middle" font-size="10.5" fill="#FFE4E8">复制一份叫 _backup</text>
+    <text x="566" y="78" text-anchor="middle" font-size="10" fill="#FFE4E8">大不了 3 秒恢复昨天版本</text>
+  </svg>
+</div>
+
+  <div class="fig-cap">图 6 让 AI 把改动摆成一张对照表：原来怎么写、现在怎么写、为什么改</div>
+<p>你自己的检查表也应该如此。记录问题的位置、对应标准和实际修改，不必给所有东西打一个总分。一个标题如果虚构事实，即使其他项得分很高，也不能用综合分把问题平均掉。</p>
+<p>对输出文件，还要实际打开。对文章，核对名称、数字、链接和图片；对视频，看画面、听声音、查字幕；对表格，回到原始数据核对关键计算。不同作品需要不同检查，不能一张万能表解决所有问题。</p>
+<h3>作品打开看，别只听它说</h3>
+<p>做视频时，你可能先看导出参数，再抽几张画面。这样能发现尺寸、黑帧和构图问题， 却查不出整段旁白有没有说错。最后还是要完整看、完整听。文章也是一样，字数和标题都齐了，不代表读起来顺，更不代表里面的事情都对。</p>
+<h3>视频 Skill 也要四类输入，别只测「能不能出文件」</h3>
+<p>标题技能测的是判断与兑现；视频技能测的是画面、声音、事实、发布边界能不能一起站住。很多团队第一次验收视频 Skill，只看「有没有 mp4」。这不够。文件在，不等于能交片。 下面用同一套「四类输入」思路，换成视频场景。你提前写好预期，再跑，避免看着画面顺眼就临时放水。 正常小样。</p>
+<p> 给完整选题卡、五段式口播稿、出处表、导演 Brief（或等价说明）。预期： 先出 MODE=sample 一类短小样（可只验画面与关键镜头，不要求一次混音完美），再出全片。</p>
+<p>你打开小样时查三件事：画幅是否符合硬指标（例如竖屏 1080×1920）、首帧/封面是否对得上承诺、口播与画面对象是否对得上（每句最好对应点/线/面/数字卡之一）。小样过了，再烧全片时间。 缺出处表。 只给地名和一句「做一条历史地理片」，不给 sources.md 或事实表。</p>
+<p>预期：Skill 追问或标记缺失，只交「方向稿 / 待核实清单」，不上屏未核实数字，更不能把 「据说」「网传」写成定论。缺出处就硬渲全片，和标题技能缺正文却声称已核对正文，是同一类病。 要求编造史实兵力。 输入里写：「古代兵力写成精确到个位的万人，好刺激。</p>
+<p>」预期：拒绝编造；改用「号称」「史载约」等有口径的说法，或标【待核实】并在发布前清零。地图合规也一样：不画国界省界、没有可靠矢量就不画古代疆域——这些应写进已知坑或硬指标， 验收时按表勾，不靠临场商量。</p>
+<p>越界「直接发抖音」。 输入要求：「渲完自动登录账号发布。」预期：Skill 识别越界—— 可以交交付版 mp4、封面、sha 校验和打分回执，不接管账号登录与一键发布。发布是人的决定；Skill 的完成线停在「可交片文件 + 验收通过」。把「能生成」和「已公开发布」绑死，后面出了事实错误，你会连撤回都来不及。</p>
+<p> 【✅ 视频验收最小表】 [ ] 正常材料：小样 → 全片，硬指标表逐项过（画幅、时长、封面、编码、混音等，以你的 Skill 置顶表为准）。 [ ] 缺出处：停在待核实，不编数字上屏。 [ ] 编造史实/兵力：拒绝或降级为有出处的口径，不写假精确。 [ ] 要求自动发布：只交付文件与回执，不登录、不代发。</p>
+<p> [ ] 出品打分：百分制 ≥90 才交片；低于 90 列返工项，改完重测，不靠「差不多」。</p>
+<h3>💬 可复制：视频四测开工句</h3>
+<p>请按本视频 Skill 的硬指标表验收，不要只回复「已完成」。 样本 A（正常）：读取我提供的选题卡、五段式脚本、出处表、Brief；先 MODE=sample 出小样，通过后再全片。 样本 B（缺出处）：只有地名与一句话意图，无出处表——只交方向与待核实清单，不上屏未核实数字。</p>
+<p> 样本 C（编造）：要求把无出处兵力写成精确万人——拒绝编造，改用有口径说法或【待核实】。 样本 D（越界）：要求渲完直接发抖音/视频号——只交付成片与回执，不登录、不发布。 每条样本交：实际产物路径或缺失说明、是否通过、不通过时的最小返工动作。 出品打分未达 ≥90，不得标「可交片」。</p>
+<h3>【📄 交片回执里建议固定出现的字段】</h3>
+<p>你要看到什么小样 / 全片交付版路径；封面；必要时预览版画幅、时长、封面、编码、混音等勾选结果出处表是否清零【待核实】；敏感表述口径分数与分项；≥90 才写「可交片」 明确写「未发布到平台」或「待人审后发布」</p>
+<p>跟做时记住一句就够：视频 Skill 的验收，落在打开的作品上，不落在对话框的「好了」 上。 第 9 章场景二会把 3D 地图从对标到方法包的路径写细；本章只负责把「怎样才算测过」钉死。两条合读，你才知道下一版 Skill 该改流程，还是该改坑文件。</p>
+<p> 我对验收的要求很朴素：客户真的能用吗？数字和事实找得到依据吗？有没有哪一句是编的？这几项过不了，就继续改。你用 AI 的时间久了，会发现最费精力的往往不是第一次生成，而是带着问题往下走，最后一起返工。 把常用的几份材料留下来，组成自己的检查样本。以后技能改一版，就拿它们再试一遍。</p>
+<p>你不用每次重新想“怎样才算好”，也不用只凭当时的感觉判断。标准稳下来，AI 才更容易稳下来。 这一轮先看具体任务能不能做好，到了第18章，再用四维矩阵看技能整体质量，并用八维表检查本次作品。两种判断不要混：开发时跑通一个例子，只是开始；交给别人以前，还要把适用范围和异常表现说清楚。</p>
+<h3>跟做四：把一次标题检查写成返工记录</h3>
+<p>使用前面教学文章，假设 AI 给出标题“用了这三个字段，团队效率翻十倍”。你不能只标一个不通过。把问题完整写成一条记录，后面才有办法维护。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>问题位置：候选标题 2。 原输出：用了这三个字段，团队效率翻十倍。 不通过原因：正文没有测量数据，不能写确定效果。 保留部分：三个字段这一具体对象。 修改方向：改为读者能做的动作或正文提出的判断。 参考改写：周报看不清进度？ 先把三个字段写完整。 复查：全文没有十倍测试，所有候选都不能保留同类承诺。</p>
+</div>
+<p>你可以拿这句参考改写对照。它不必成为最终采用的标题，但展示了怎样保留有价值的部分、去掉没有依据的内容。比起整批重写，它更容易让你看清修改到底改变了什么。 再准备一个反向检查。假如正文确实提供了经过核对的耗时比较，就不能机械删除所有数字。应该保留材料支持的时间、范围与条件，避免从“不能编数字”滑向“数字一律不能用”。</p>
+<p>好的规则限制错误，不消灭真实信息。 你也可以把这份记录交给 AI，让它提出最小规则修改，再拿完整样本和缺失样本重新跑。这样一次坏结果，才能帮助未来的所有任务，而不是只被你手工修掉。</p>
+<p> 验收时，我还会看一个很现实的问题：这个结果能不能让下一步直接开始？标题选好了，主笔知道正文要兑现什么；会议整理好了，负责人知道要做哪件事；剪辑做完了，能找到文件并正常播放。你把作品交给下一个人，对方还要重新问一遍全部背景，说明交付里可能缺了必要信息。标准不只管好不好看，也管事情能不能继续往前走。</p>
+<h3>第8章把一个 Skill 优化到稳定可复用</h3>
+<div class="goal-box"><div class="box-title">这一章，你会拿到</div><ul>
+<li>一张分层表：哪一层出问题，就改哪一层</li>
+<li>一条只改一处的改动记录</li>
+<li>复测结论：旧样本没有被改坏</li>
+<li>从一次问题，走到一条明确改动</li>
+</ul></div>
+<p>检查一套热点视频技能时，我们发现过一个容易被忽略的问题：文案已经改了，旧音频文件还在，后面的制作就可能直接沿用。结果是什么？画面上写着新内容，声音还在讲上一版。你提醒它“注意同步”不够，得把这次修改会牵动什么说清楚。 解决方法是先辨认变化。正文改了哪些句子，哪些声音要重做，哪些镜头还可以保留， 字幕是否需要重新校对。对复杂项目，可以让程序记录输入是否改变；对入门任务，先用版本清单也能减少混乱。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>本轮只修改：第 3 段的结论和第 5 段的例子。 请列出受影响的正文、声音、字幕、镜头与封面。 能复用的保留，必须重做的说明原因。 最终所有交付文件使用同一版本号，旧版不覆盖。</p>
+</div>
+<h3>改说明，比每次手工救结果更有用</h3>
+<p>如果每次标题都丢掉具体对象，就改标题生成与筛选步骤；如果每次文章都编个人经历，就改材料引用与事实检查；如果每次视频都先做画面再硬凑声音，就改制作顺序。你要看同一类错误是否反复出现，而不是只追求这一次看起来顺眼。 我会让主理人开工先读统一要求。但读过以后，结果照样要看。就像带真人员工，岗位说明发给他，不等于每一件事已经做好。标准负责告诉他怎样做，验收负责发现这次究竟做成了什么，两件事都不能省。</p>
+  
+<div class="rescue-box">
+  <div class="rescue-title">小白翻车急救箱｜第二篇写和改 Skill 最容易踩的 3 个坑</div>
+  <table class="rescue-table">
+    <thead><tr><th style="width:28%">常见卡点 / 报错</th><th style="width:32%">多半是什么原因</th><th style="width:40%">30 秒解决动作</th></tr></thead>
+    <tbody><tr><td><strong>AI 又开始编造没提供的成绩或数字</strong></td><td>说明书里没写清楚“缺材料必须停下来问”</td><td>加上红线：材料里没写的数字、客户名、成绩一律不写</td></tr><tr><td><strong>每次改好新毛病，原来的功能反而不稳</strong></td><td>每次都让 AI“全部重写一遍”</td><td>只针对错的那一条做局部修改，改完再用两篇旧文章复测</td></tr><tr><td><strong>参考资料塞太满，AI 反而看漏重点</strong></td><td>把几万字材料全粘进了 SKILL.md 正文</td><td>把长材料放进 references/ 资料柜，主文件只写步骤和红线</td></tr></tbody>
+  </table>
+</div>
+
+</section>
+
+
+<section class="part-page page-break">
+  <div class="part-label">第三篇</div>
+  <div class="part-title">把 Skill 用到你的真实工作里</div>
+  <div class="part-line"></div>
+  <div class="part-range">第8章 — 第12章（含 GitHub 开源实战拆解）</div>
+  <div class="part-roadmap"><div class="roadmap-label">本篇通关路线图</div><svg viewBox="0 0 660 88" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif"><rect x="0" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="67.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">案例库</text><text x="67.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">建个人技能库</text><line x1="139" y1="44" x2="171" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="175" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="242.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">内容线</text><text x="242.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">写作与短视频</text><line x1="314" y1="44" x2="346" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="350" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="417.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">开源实战</text><text x="417.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">GitHub 真实拆解</text><line x1="489" y1="44" x2="521" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="525" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="592.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">商业线</text><text x="592.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">课程陪跑与客服</text></svg></div>
+</section>
+<section id="ch-anchor-11" class="chapter page-break">
+  <div class="ch-tag">第三篇 · 第 8 章</div>
+  <h2>第8章 建立自己的 Skill 资产库</h2>
+  <h3>都叫视频，先分清楚谁做哪段</h3>
+<p>我们保存的视频相关技能，已经不只是一种“文字变视频”。选题技能负责找到值得做的题；文章改编技能负责把文章重组为观看过程；产品宣传片技能负责真实页面与镜头表达； 故事风格技能负责叙事语法；软件教程技能负责真实操作证据。它们解决的问题不同，不能因为都叫视频，就互相接管。</p>
+<p> 同样叫视频，有的技能用来研究选题，有的用来改稿，有的才负责做成片。我会把它们分开摆，给每一项留一个能打开的例子，以及当前还需要人处理的地方。下次要做视频，先找这一轮缺哪段能力，不再从头翻一遍所有工具。 优化顺序可以很具体：先修事实与身份，再修任务误触发和步骤遗漏，再修文件交接， 最后打磨表达。不要一出错就往说明里追加一大段话。</p>
+<p>能用一个明确反例解决的，就不用十句抽象要求。 每次改完，用几句话记下来：这次为什么改，改了哪条方法，影响哪些文件，旧材料再跑是否正常。以后遇到相似问题，你就不用重新猜。版本往前走，经验也应该跟着往前走。</p>
+<h3>卡住以后，别只会换模型</h3>
+<p>真正开始使用以后，你会碰到的往往是很具体的卡点：没选到技能，沿用旧材料，只说完成却没有文件，改了文字声音没改。先找到问题在哪一层，下一步才知道该补什么。每遇到一处都换模型，你很难知道到底是哪项改动起了作用。</p>
+<p>卡住以后，先找哪一层看到的问题没有触发技能沿用上一题内容说完成但没文件换环境失败下游还在猜改字但声音没变</p>
+<p>先看什么用途是否过宽或过窄示例是否写成永久规则交付与保存位置是否约定版本、账号、工具条件输出字段、状态是否缺少受影响文件是否更新</p>
+<p>先做什么明确指定读取，再检查触发说明把本次事实移回输入打开实际文件再验收在约定环境复现并记录补交接要求，再接下一步重做对应声音、字幕与画面</p>
+<p>我会先固定其他条件，只改最可能有问题的一处。比如怀疑材料被混用了，就只给本次副本重新跑；怀疑交接不清，就补字段和状态，不先推倒正文。一次改太多，看上去忙，反而更难留下有效经验。后面第18章会给出完整评分表，你可以把这些问题放进对应维度，看它影响的是结果、信息、环境还是交接。</p>
+<h3>第三篇</h3>
+<h3>十个工作场景，把技能用到结果上第9章 — 第13章</h3>
+<p>第9章写作与短视频：两个内容 Skill 场景一：把「写一篇文章」改成一条有交接的生产过程</p>
+<p>我把公众号这件事拆成了六个岗位：一个主理人，配五个执行岗位——选题、正文、配图、封面、排版。主理人盯最后交什么、哪里还没好。一篇文章从想法到读者眼前，本来就不只有「写」这一个动作。</p>
+<div class="fig-cap">图 7 排版交回来先看手机预览，确认没问题再复制进公众号后台</div>
+<p>第一次跟做，不必重搭全部人员。用你已经能调用的写作工具，准备一个选题和三份材料：真实观点、事实依据、代表文章。把本次要交付的文件写清楚。如果只有主题、没有真实材料，就先做研究和提纲，不直接生成一篇自称亲历的文章。</p>
+<h3>💬 选题卡开工</h3>
+<p>我要写一篇给已经在用 AI 写东西的普通读者看的文章，主题是读者点开能不能一眼看懂。 请先读取我提供的三份材料，不直接写正文。 交付一张选题卡：读者卡在哪里、核心判断、已有证据、还缺什么、正文准备让读者带走什么。 没有证据的效果不能写成事实，不使用我没有提供的个人经历。</p>
+<p>选题卡通过以后再给主笔。不能把一堆网址丢过去就结束：要说明哪些事实已确认、哪些只是观点、哪些材料仅供理解。主笔交正文时，同时提交来源表和需要图片的位置，配图才能按段落找证据。</p>
+<h3>💬 主笔开工</h3>
+<p>按已确认选题卡写正文。 先用一个具体问题开场，每节增加一个新信息或可执行动作。 保留我的核心判断，事实只来自材料；缺口另列。 同时交：正文、事实与来源对应表、配图位置清单。 这轮不制作封面、不排版、不上传。</p>
+<p>稿子回来，我不先问写了多少字，先看读者看完有没有拿到东西。发现哪一段不行，具体退给主笔——别用一句「再高级一点」让它猜。反复出现的错误（虚构经历、标题没兑现、图文无关），写回技能里的避坑要求。 排版与进入草稿，是两段不同工作。排版接到的应当是已确认正文、可用图片和来源说明：不能擅自补事实，也不能为缩短文章删掉重要条件。</p>
+<p>先做手机宽度预览，再检查后台有没有对应草稿。最后点发布，留给负责这篇文章的人拍板。 可以把链路画成：选题卡 → 正文与证据 → 配图与封面 → 手机预览 → 草稿回执。每个节点留一个可打开的文件，出错就知道从哪里修。稳定以后，再把多阶段合并成你自己的短口令——短口令是成熟方法的入口，不是省略方法的办法。</p>
+<p> 【📄 推草稿箱前自检】 无海报、无二维码、无引流话术；评论区预案同样不做引流。 本阶段公众号优先专业影响力与涨粉，成交放到你指定的其他渠道。（细则以你团队现行「禁引流」规则为准。）</p>
+</section>
+<section id="ch-anchor-12" class="chapter page-break">
+  <div class="ch-tag">第三篇 · 第 9 章</div>
+  <h2>第9章 写作与短视频：两个内容 Skill</h2>
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-002.png" style="width:92%;" /><div class="fig-cap">图：公众号文章生产链路真实交付界面</div></div>
+  <p>场景二：从对标到可复用视频 Skill（主案例：竖屏 3D 地图） A. 先亮结果</p>
+<p>先说结果，再说路径。 学员不用写脚本、不用剪辑、不用露脸——输入地名 / 选题，就能出竖屏高质量 3D 地图片，发抖音或视频号跑流量；没粉的新号也有人跑出过几万播放。这里有一条硬规矩：不能编造账号名，也不能虚构精确播放数。拿不出可核验的账号，就老实写「有新手号跑出过几万播放」，别往里添细节。</p>
+<p> Skill 卖的不是「教你剪视频」，而是可触发、有硬指标、能交接的出片资产。下面用 3D 地图这条线，把「近期视频 Skill 开发」写到可以跟做；你换成别的画风，骨架仍然通用。</p>
+<h3>B. 为什么旧做法「文章缩短配音」不够</h3>
+<p>我们后来也做过「文章改编视频」。很快发现：把长文缩短再配音，常常不够。 文章可以回读；视频必须一直让观众知道正在讲什么。一个观点很好的长文，未必有足够画面，也未必适合压成一句短结论。技能第一步因此要有改编判断：直接改、重组、补证据，还是暂缓——而不是一上来生成旁白。</p>
+<p> 3D 地图这条线把问题推得更远：观众买的是「看得见的空间关系」（路线、包围、距离、地形、水系）。没有地图对象，口播再顺也是空讲。所以我们不再从「把文章念短」，而是从对标结构 → 选题五审 → 每句对应画得出来的对象 → 小样 → 全片 → 打分交片往下走。 练习时仍先拿自己有权使用的选题与材料。</p>
+<p>文章或资料里引用了他人判断，视频里要保留归属；没有做过的实验，不能写成「我实测发现」。改编判断没过，就不要进入渲帧——省下的不只是电费，还有一次返工整条时间轴的成本。</p>
+<h3>C. 开发路径（详细可跟做）</h3>
+<p>下面按真实方法包的顺序写。路径写相对「方法包根目录」；命令在根目录或「方法包根目录/引擎」下跑——不要把个人电脑桌面绝对路径写进对外说明。</p>
+<div class="fig-cap">图 8 3D 地图视频的工作页：换掉地名，其余环节交给技能</div>
+<p>1）选题五审（全过才立项） 1. 地图审：离开地图讲不清吗？要有看得见的空间关系。 2. 钩子审：能写出一句「看得见的怪现象 / 反常识」开头吗？ 3. 利益审：能落到观众今天的城市、生活或做事的道理吗？ 4. 事实审：核心事实有权威出处吗？关键位置有坐标吗？没有可靠矢量的（如古代疆域）不画。</p>
+<p> 5. 合规与生产审：不画国界省界；约定时长内讲得完吗？现有镜头做得出来吗？做不出来先改写法。 五审有一条不过，就改题或改写法，不要先开渲。 2）五段式脚本 + 出处表</p>
+<p>内容第一句不提问，抛反常现象；问题句可稍晚出现今天的数据，带年份和口径 「从地图上看……」地形 / 水系 / 位置 2–3 个显性转折（本来…没想到 / 然而…） 落到今天，一句收尾</p>
+<p>画面提示俯冲 / 大字卡数字卡、城市点侧视、河道、贴地字路线、年份卡、实拍近景 / 侧视 + 收尾大字，不退远景糊弄</p>
+<p>规则（写进 Skill 正文或方法论文件均可）：每句口播对应一个画得出来的对象；每段新地名宜少；古代兵力说「号称」「史载约」；每条事实进出处表（内容｜出处｜口径｜状态）， 不确定标【待核实】，发布前清零或不上屏。</p>
+<p> 3）导演 Brief → episode JSON Brief 把「人话」钉成镜头意图：景别、标注、停顿、禁区（例如不画界）。再落到 episode（或等价工程描述）：镜头列表、时间轴、字幕、章节进度条等。先做编译 / 景别检查，再渲染——编译不过，不要烧帧。</p>
+<p> 跟做时常见分法：口播与时间轴一份，镜头与标注一份，必要时用小脚本按配音时长自动排镜头。你改了口播长度，就要重排时间轴，再编译一次。案例目录里应能打开「脚本 + 出处 + Brief + 样张」整套，新人不是只拿到一句「参考大运河那种感觉」。 4）MODE=sample 小样 → 全片第一次务必先小样。</p>
+<p>只抽若干时间窗出画面，确认构图、标注、是否出现「静帧低清」 一类不合格堆积。小样可以先不混音，目的是省时间验镜头，不是偷懒交片。 小样满意后，再在「方法包根目录/引擎」跑全片流水线：环境自检 → 编译 → 配乐生成与混音准备 → 预取瓦片（如需）→ 渲帧 → 编码与锐化 → 混音 → 封面前置 → 交付版 + 预览版。</p>
+<p>中断可重跑（已渲帧应能跳过）；内存紧就降低并行。首次冷启动往往明显慢于二次 （瓦片与缓存已在）；具体耗时因机器而异，方法包 README 应写清阶段与产物，而不是只写「很久」。</p>
+<p>产物形态（名称以你的包为准，逻辑要齐）：交付版（如竖屏 1080×1920、约定帧率与码率）、预览版、封面帧、统计与校验文件。硬指标表置顶——画幅、时长、封面前几帧、混音响度、事实出处等，任一不满足不算完成。 5）出品打分 → 交片全片不是终点。</p>
+<p>用出品打分 Skill（百分制）打一遍：≥90 才交片；低于 90，按分项返工，改完重测。分数和返工项写进回执，和对话框里的「感觉还行」脱钩。发布账号、发布时间，仍由人决定（见第 7 章越界测）。 交片回执建议固定带上：产物路径、硬指标勾选、出处表清零状态、打分与分项、明确写「未自动发布」。</p>
+<p>客户或下游同事打开回执，应能直接决定「过」还是「退」，而不用再追问你聊天记录。</p>
+<h3>D. 方法包目录范式（强调「坑回灌验收」）</h3>
+<p>可复用骨架如下（分享版与完整方法包同一思路，方法论可厚可薄）：</p>
+<h3>📄 目录结构</h3>
+<pre class="tree-box">方法包根目录/
+├── SKILL.md</pre>
+<h3>快速开始.md</h3>
+<pre class="tree-box">├── 已知坑和经验.md
+├── 方法论/
+├── 引擎/ 或 engine/
+└── 案例/ 或 examples/
+├── README-</pre>
+<p>编排主流程：硬指标 → 分步产物与通过标准 # 环境安装 + 一条命令复现 # 踩过的坑写成验收 / 防再犯（不散落在聊天里） # 人读：五审、五段式、标题、对标拆解等 # 可运行代码与脚本 # 完整样例：脚本、出处表、Brief、样张 #</p>
+<p>写法要点： 1. 硬指标表先于步骤。 2. 每步有产物 + 通过标准，通过了再进下一步。 3. 路径写相对本 skill 根目录，命令也在根目录跑。 4. 依赖 / 安装 / 踩坑外置：README、已知坑、方法论分文件，SKILL 正文只做编排。 5. 坑回灌：渲染冷瓦片、色彩空间、配乐顺序、地图合规……升级时先改已知坑和经验.md，再改流程；验收表从坑文件长出来，不靠「下次注意」。</p>
+<p>做新包的顺序可以记成一句：先定硬指标表 → 再写分步产物与通过标准 → 再挂方法论与案例 → 最后把坑写成独立文件。 对标只学结构与镜头逻辑，不搬运画面、不照抄口播； 未核实数字与转写错字，不进对外稿。</p>
+<p>学习总结若要落到可执行改动，习惯输出「最重要 N 条收获 → 模板该改什么 → 新选题表 → 需负责人拍板的是/否」；未批实验单独一栏，未批前不动代码。 对外分享版与完整方法包可以同一骨架：分享版方法论压薄、案例仍要能跑通——这就是「自己用的厚包」和「给人用的薄包」的拆法，不是另起一套口号。</p>
+<h3>E. 系列可迁移：同一套路换皮</h3>
+<p>3D 地图证明的是骨架，不是唯一画风。同一套「对标 → 清单 → 硬指标 → 分步产物 → 坑文件 → 打分交片」，可以换皮： hypit 复刻：暗号是「复刻」——风格跟对标片走，不是套一个固定画风。输入对标视频 + 你的选题，输出仍要有硬指标与验收，不能只交「像一下」的感觉。</p>
+<p> 出品打分：任何成片线的公共闸门；部门统一百分制，≥90 可交片，未过线反复改到过线。把它挂在每条视频 Skill 末尾，比在每个包里重写一套「好不好看」更稳。 口播 F（电视台新闻包装）：台标、串联、标题条、规格卡；正文叠真实截图 / 片段；文字多的图要处理背景，避免与字幕抢字。</p>
+<p> 口播 G（活体实机录屏）：一镜到底演操作；必须录真实界面，不能用假界面糊弄「亲测」。 拼贴风：撕纸拼贴 + 大字报的观点 / 情绪短片；选题或脚本进固定模板出片，仍然要有时长、字幕、封面与事实边界。 你会发现：换的是镜头语法和素材类型，不换的是任务卡、硬指标、分步产物、坑文件、打分闸。</p>
+<p>这才叫 Skill，而不是又一个提示词收藏。最近一批视频相关 Skill，大多是在这条骨架上换皮，而不是每次从零发明流程。 若将来把分享包放到 Skill 市场（例如 WorkBuddy），过审后怎么定价，按你上架那天的平台规则来；书里不给具体价格，也不承诺收益。</p>
+<h3>F. 跟做验收与开工指令</h3>
+<p>【✅ 3D / 视频 Skill 跟做验收单】 [ ] 五审全过才立项；不过先改题，不开渲。 [ ] 五段式脚本齐；每句有画得出来的对象；出处表无未清【待核实】上屏。 [ ] Brief / episode 可编译；小样通过后再全片。 [ ] 硬指标表逐项勾选；交付版与预览版都能打开。</p>
+<p> [ ] 已知坑里与本片相关的项已检查（合规、编码、混音等）。 [ ] 出品打分 ≥90；回执写明「可交片」或返工项。 [ ] 未代登录、未自动发布；发布由人确认。</p>
+<h3>💬 可复制：视频开工指令</h3>
+<p>请按「竖屏 3D 地图视频」Skill / 方法包执行，不要跳步。 输入：</p>
+<div class="mini-grid">
+<span class="mini-pill">- 地名 / 选题：大运河</span>
+<span class="mini-pill">- 目标平台：抖音或视频号（竖屏）</span>
+<span class="mini-pill">- 材料：我提供的事实要点与出处；没有的标【待核实】</span>
+</div>
+<p>步骤： 1）选题五审，不过则停并说明改哪一审； 2）五段式脚本 + 出处表； 3）导演 Brief → episode（或等价）； 4）先 MODE=sample 出小样，我确认后再全片； 5）出品打分，≥90 才标可交片； 6）交付：交付版 mp4、预览版、封面、出处表、打分回执。</p>
+<p> 禁止：编造兵力与未核实数字；画国界省界；登录我的账号发布；把个人桌面绝对路径写进说明。 路径一律相对方法包根目录（引擎在方法包根目录/引擎）。</p>
+<h3>G. 补充：一稿四平台（缩短保留）</h3>
+<p>一篇内容发到几个平台，是我们做过的另一个任务。第一次虽然交回了四版，重要提醒却有遗漏，还加了原稿没有的读者反应。正确做法是：先退回去补信息、对事实——一稿多</p>
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-003.png" style="width:92%;" /><div class="fig-cap">图：短视频选题、脚本与成片审核工作台</div></div>
+</section>
+
+<section id="ch-anchor-13" class="chapter page-break">
+  <div class="ch-tag">汇芯开源实战档案 · 把自己用顺手的经验公开给所有人</div>
+  <h2>第10章 实战拆解：我们开源到 GitHub 的 Skill 是怎么炼成的？</h2>
+
+  <div class="goal-box">
+    <div class="box-title">这一章，你会拿到</div>
+    <ul>
+      <li>看懂汇芯团队最近开源到 GitHub（<code>github.com/sixwei2025/*</code>）的一批真实 Skill 是怎么从日常痛点长出来的</li>
+      <li>拆解 6 个不同行业痛点的真实结构：写作起标题、公众号排版、工具实测、短视频制作、技能管家、读书提炼</li>
+      <li>拿到一套可直接照抄的「5 步从自己顺手到公开分享」实战路径</li>
+    </ul>
+  </div>
+
+  <p>前面几章讲的是基本原理，很多小白朋友会好奇：<strong>“你们自己平时真的在做 Skill 吗？那么多开源在 GitHub 上的项目，到底是怎么一步步做出来的？”</strong> 这一章，我们不讲虚的，直接把汇芯团队最近整理开源到 GitHub 的真实 Skill 搬到台面上，一个个拆给你看。</p>
+
+  
+<div class="viz-card">
+  <div class="viz-title">汇芯实战心法：一个好用的 Skill 从「顺手」到「开源到 GitHub」的 5 步走法</div>
+  <svg viewBox="0 0 680 120" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <rect x="6" y="18" width="120" height="84" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+    <text x="66" y="42" text-anchor="middle" font-size="11.5" font-weight="900" fill="#18181B">1. 先痛到受不了</text>
+    <text x="66" y="64" text-anchor="middle" font-size="10" fill="#4B5563">重复返工 3 次以上</text>
+    <text x="66" y="80" text-anchor="middle" font-size="10" fill="#4B5563">的动作才值得做</text>
+
+    <rect x="142" y="18" width="120" height="84" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.5"/>
+    <text x="202" y="42" text-anchor="middle" font-size="11.5" font-weight="900" fill="#C8102E">2. 攒 3 份真材料</text>
+    <text x="202" y="64" text-anchor="middle" font-size="10" fill="#374151">自己做对的 2 份</text>
+    <text x="202" y="80" text-anchor="middle" font-size="10" fill="#374151">最烦翻车的 1 份</text>
+
+    <rect x="278" y="18" width="120" height="84" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.8"/>
+    <text x="338" y="42" text-anchor="middle" font-size="11.5" font-weight="900" fill="#C8102E">3. 先跑通最小版</text>
+    <text x="338" y="64" text-anchor="middle" font-size="10" fill="#374151">1 份说明书 + 1 份</text>
+    <text x="338" y="80" text-anchor="middle" font-size="10" fill="#374151">样板就能先用起来</text>
+
+    <rect x="414" y="18" width="120" height="84" rx="10" fill="#18181B"/>
+    <text x="474" y="42" text-anchor="middle" font-size="11.5" font-weight="900" fill="#FFFFFF">4. 用真活磨两周</text>
+    <text x="474" y="64" text-anchor="middle" font-size="10" fill="#E4E4E7">遇到错就补一句红线</text>
+    <text x="474" y="80" text-anchor="middle" font-size="10" fill="#E4E4E7">顺手后再加脚本配图</text>
+
+    <rect x="550" y="18" width="124" height="84" rx="10" fill="#C8102E"/>
+    <text x="612" y="42" text-anchor="middle" font-size="11.5" font-weight="900" fill="#FFFFFF">5. 脱敏开源分享</text>
+    <text x="612" y="64" text-anchor="middle" font-size="10" fill="#FFE4E8">删掉隐私、配架构图</text>
+    <text x="612" y="80" text-anchor="middle" font-size="10" fill="#FFE4E8">传 GitHub 一句安装</text>
+  </svg>
+</div>
+
+
+  <h3>先看全局：我们为什么不一次性做“全能大师”？</h3>
+  <p>点开我们的 GitHub 主页（<code>github.com/sixwei2025</code>）你会发现，我们从来不做一个叫“超级办公大全”的巨无霸技能，而是<strong>遇到哪个具体环节天天返工，就单独把它做成一个专职小能手</strong>。就像开餐厅一样：切菜归切菜、炒菜归炒菜、装盘归装盘，每件事都很稳，合起来就是一条高效流水线。</p>
+
+  <div class="fig-wrap gh-fig"><img src="file:///Users/yuanliuwei/Workbuddy/github-skills-14/yuanliuwei-ai-skills/assets/showcase/hero-banner.jpg" style="width:100%;" /><div class="fig-cap">真实案例总览：汇芯 AI 员工技能矩阵（已开源至 GitHub）</div></div>
+
+  <h3>实战案例一：爆款标题专家（hit-title-expert-skill）—— 把「靠灵感」变成「10 条稳产」</h3>
+  <p><strong>当时遇到的痛点：</strong> 每次写完公众号文章，最磨人的就是起标题。直接问 AI，它要么给你编造“我靠这招月入 10 万”这种假成绩，要么写出“AI 赋能千行百业”这种没人点的空话。</p>
+  <p><strong>我们是怎么开发出来的：</strong> 我们没有写高深程序，而是把这几年起标题踩过的坑，分成了三层写进 <code>SKILL.md</code>：</p>
+  <ul class="clean-list">
+    <li><strong>第一层（定字数和钩子）：</strong> 明确规定每次直接给 10 条、每条控制在 14～22 个字，必须带“数字 / 反常识 / 悬念 / 利益”其中一种。</li>
+    <li><strong>第二层（加实话红线）：</strong> 写死“正文里没有的案例、学员数、成绩，一个字都不准编”。</li>
+    <li><strong>第三层（带弱点诊断）：</strong> 不光给好标题，还要求 AI 挑出自己写得最差的几个候选，说明为什么低分，方便我们一眼拍板。</li>
+  </ul>
+  <div class="gh-showcase">
+    <div class="gh-sc-kicker">■ AGENT SKILL · HIT-TITLE-EXPERT-SKILL · github.com/sixwei2025/hit-title-expert-skill</div>
+    <div class="gh-sc-title">一句话主题，直出 10 条 <span>14–22 字爆款狠标题</span></div>
+    <div class="gh-sc-sub">锁定主题 → 5 大常用句式 → 5 类钩子词库 → 14–22 字长度把关 → 标注字数与亮点要素</div>
+    <div class="gh-sc-metrics">
+      <div class="gh-sc-m"><strong>10 条</strong><span>单次交付候选</span></div>
+      <div class="gh-sc-m"><strong>14–22 字</strong><span>严格长度区间</span></div>
+      <div class="gh-sc-m"><strong>5 套</strong><span>高点击句式模板</span></div>
+      <div class="gh-sc-m"><strong>零编造</strong><span>无依据成绩一律不写</span></div>
+    </div>
+  </div>
+  <div class="viz-card">
+    <div class="viz-title">实战案例 1 内部流水线：10 条爆款好标题是怎么一步步“筛”出来的？</div>
+    <svg viewBox="0 0 680 112" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+      <rect x="8" y="14" width="150" height="84" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/>
+      <text x="83" y="38" text-anchor="middle" font-size="11.5" font-weight="900" fill="#C8102E">① 锁定主题与读者</text>
+      <text x="83" y="58" text-anchor="middle" font-size="10" fill="#374151">缺主题先追问一句</text>
+      <text x="83" y="76" text-anchor="middle" font-size="10" fill="#6B7280">不瞎猜不硬编</text>
+
+      <rect x="178" y="14" width="150" height="84" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+      <text x="253" y="38" text-anchor="middle" font-size="11.5" font-weight="900" fill="#18181B">② 套用 5 类钩子</text>
+      <text x="253" y="58" text-anchor="middle" font-size="10" fill="#374151">数字/反常识/悬念/痛点</text>
+      <text x="253" y="76" text-anchor="middle" font-size="10" fill="#6B7280">10 条里不重样</text>
+
+      <rect x="348" y="14" width="150" height="84" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+      <text x="423" y="38" text-anchor="middle" font-size="11.5" font-weight="900" fill="#18181B">③ 查字数与真实性</text>
+      <text x="423" y="58" text-anchor="middle" font-size="10" fill="#374151">14~22 字自动核对</text>
+      <text x="423" y="76" text-anchor="middle" font-size="10" fill="#6B7280">没依据的成绩直接删</text>
+
+      <rect x="518" y="14" width="154" height="84" rx="10" fill="#C8102E"/>
+      <text x="595" y="38" text-anchor="middle" font-size="11.5" font-weight="900" fill="#FFFFFF">④ 挑出前 2 名交付</text>
+      <text x="595" y="58" text-anchor="middle" font-size="10" fill="#FFE4E8">标明每条字数和亮点</text>
+      <text x="595" y="76" text-anchor="middle" font-size="10" fill="#FFE4E8">附 1 条弱点诊断</text>
+    </svg>
+  </div>
+
+  <h3>实战案例二：汇芯红公众号排版（gzh-million-layout-skill）—— 彻底告别“贴进微信全乱码”</h3>
+  <p><strong>当时遇到的痛点：</strong> 文章写好了，每次贴到微信公众号后台都要调字体、换红标题、加引用框，光排版就要折腾 20 分钟，手机预览还经常跑版。</p>
+  <p><strong>我们是怎么开发出来的：</strong> 既然每次都用汇芯品牌红（<code>#C8102E</code>）和固定那 6 种版式（日报卡、长文深读、教程步骤、人物访谈等），我们就干脆把这 6 套样式固定成模板放进 Skill 里。以后 AI 排版只做一件事：<strong>按文章结构往现成红框模板里填内容，再跑一遍手机宽度检查</strong>。小白不用懂一行网页代码，也能排出一模一样的大号杂志感。</p>
+  <div class="gh-showcase">
+    <div class="gh-sc-kicker">■ AGENT SKILL · GZH-MILLION-LAYOUT-SKILL · github.com/sixwei2025/gzh-million-layout-skill</div>
+    <div class="gh-sc-title">100% 内联样式，一键排成 <span>百万阅读大号级公众号</span></div>
+    <div class="gh-sc-sub">Markdown 正文 → 汇芯红 6 套版式选型 → 开篇/目录/章节装配 → 零乱码排版检查 → 微信草稿箱</div>
+    <div class="gh-sc-metrics">
+      <div class="gh-sc-m"><strong>6 套</strong><span>汇芯红杂志骨架</span></div>
+      <div class="gh-sc-m"><strong>#C8102E</strong><span>品牌红视觉体系</span></div>
+      <div class="gh-sc-m"><strong>≤80 字</strong><span>手机透气短段控制</span></div>
+      <div class="gh-sc-m"><strong>0 乱码</strong><span>微信后台完美兼容</span></div>
+    </div>
+  </div>
+
+  <h3>实战案例三：AI 工具实测公众号（ai-tool-review-wechat-skill）—— 绝不“没用过就瞎吹”</h3>
+  <p><strong>当时遇到的痛点：</strong> 网上很多 AI 工具介绍看着热闹，点进去全是空洞夸奖，连软件长什么样都没截过图。我们自己做评测号，必须做到“先真用、再实测、全真实截图”。</p>
+  <p><strong>我们是怎么开发出来的：</strong> 我们在这个 Skill 里立了两条死规矩：<strong>第一，必须在本机真实跑完测试题库并截图，严禁 AI 自己画假界面凑数；第二，写稿时自动去掉“一顿一停、像发电报一样”的短碎句，换成真人聊天的自然语气</strong>。再接上汇芯红排版，写完直接送进公众号草稿箱预览。</p>
+  <div class="gh-showcase">
+    <div class="gh-sc-kicker">■ AGENT SKILL · AI-TOOL-REVIEW-WECHAT-SKILL · github.com/sixwei2025/ai-tool-review-wechat-skill</div>
+    <div class="gh-sc-title">真跑实测 + 证据表核对 <span>AI 工具评测公众号全流程</span></div>
+    <div class="gh-sc-sub">选题打分 → 本机真跑取证/官网核价 → 一页纸确认 → 说人话成稿 → 真人语感自检 → 汇芯红推草稿箱</div>
+    <div class="gh-sc-metrics">
+      <div class="gh-sc-m"><strong>4 大赛道</strong><span>固定压测题库</span></div>
+      <div class="gh-sc-m"><strong>100% 真图</strong><span>拒绝假界面凑数</span></div>
+      <div class="gh-sc-m"><strong>≥85 分</strong><span>真人语感质检线</span></div>
+      <div class="gh-sc-m"><strong>只进草稿</strong><span>人工确认再发布</span></div>
+    </div>
+  </div>
+  <div class="viz-card">
+    <div class="viz-title">实战案例 3 内部流程：为什么它写出的工具评测，一看就是“真用过”？</div>
+    <svg viewBox="0 0 680 112" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+      <rect x="8" y="14" width="150" height="84" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/>
+      <text x="83" y="38" text-anchor="middle" font-size="11.5" font-weight="900" fill="#C8102E">① 本机真跑 + 截图</text>
+      <text x="83" y="58" text-anchor="middle" font-size="10" fill="#374151">跑固定测试题并核对官网</text>
+      <text x="83" y="76" text-anchor="middle" font-size="10" fill="#6B7280">没截到图不往下写</text>
+
+      <rect x="178" y="14" width="150" height="84" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+      <text x="253" y="38" text-anchor="middle" font-size="11.5" font-weight="900" fill="#18181B">② 说人话成稿</text>
+      <text x="253" y="58" text-anchor="middle" font-size="10" fill="#374151">前 6 句亮态度、说实话</text>
+      <text x="253" y="76" text-anchor="middle" font-size="10" fill="#6B7280">必写缺点和翻车瞬间</text>
+
+      <rect x="348" y="14" width="150" height="84" rx="10" fill="#F4F4F5" stroke="#18181B" stroke-width="1.5"/>
+      <text x="423" y="38" text-anchor="middle" font-size="11.5" font-weight="900" fill="#18181B">③ 去 AI 味质检</text>
+      <text x="423" y="58" text-anchor="middle" font-size="10" fill="#374151">清掉短碎句与空话套话</text>
+      <text x="423" y="76" text-anchor="middle" font-size="10" fill="#6B7280">自检不到 85 分打回重改</text>
+
+      <rect x="518" y="14" width="154" height="84" rx="10" fill="#C8102E"/>
+      <text x="595" y="38" text-anchor="middle" font-size="11.5" font-weight="900" fill="#FFFFFF">④ 汇芯红进草稿箱</text>
+      <text x="595" y="58" text-anchor="middle" font-size="10" fill="#FFE4E8">手机预览零乱码检查</text>
+      <text x="595" y="76" text-anchor="middle" font-size="10" fill="#FFE4E8">只进草稿箱不自动群发</text>
+    </svg>
+  </div>
+
+  <h3>实战案例四：口播与教程短视频（talking-head / auto-tutorial）—— 一个人扛起一个视频组</h3>
+  <p><strong>当时遇到的痛点：</strong> 录一条教程视频太碎了：要写口播稿、配本人声音、对字加字幕、还要把软件界面小字放大标红框，剪一条片子大半天没了。</p>
+  <p><strong>我们是怎么开发出来的：</strong> 我们把动作拆成“标准化积木”——文字转本人声音配音、自动识别错字重录、生成大字幕、讲到关键按钮前自动推近放大加红框、再配好轻柔背景音乐。做好后放进本地短视频中心统一排队审核。</p>
+  <div class="fig-wrap gh-fig"><img src="file:///Users/yuanliuwei/Workbuddy/github-skills-14/auto-tutorial-skill/assets/showcase/hero-banner.jpg" style="width:100%;" /><div class="fig-cap">实战案例 4：auto-tutorial-skill 实操教程自动推拉红框标注</div></div>
+  <div class="fig-wrap gh-fig"><img src="file:///Users/yuanliuwei/Workbuddy/github-skills-14/talking-head-video-skill/assets/showcase/hero-banner.jpg" style="width:100%;" /><div class="fig-cap">实战案例 4：talking-head-video-skill 竖屏口播一条龙成片</div></div>
+
+  <h3>实战案例五：多工具管理与读书提炼（local-video-hub / huixin-skills-manager / book-skill）</h3>
+  <p>当手头的 Skill 越来越多（比如我们自己就攒了十几个），又会遇到两个新问题：<strong>东西太多找不到</strong>、<strong>读了好书用不上</strong>。于是我们又顺手做出了三个“管理型 / 提炼型”开源项目：</p>
+  <ul class="clean-list">
+    <li><strong>本地短视频中心（local-video-hub）：</strong> 让不同 AI 工具做出来的视频都交到同一个中文工作台，自动查重“70% 以上相似选题提醒”，防止重复劳动。</li>
+    <li><strong>汇芯技能管家（huixin-skills-manager）：</strong> 把散落在电脑四个工具里的 Skill 统一收进一个 Mac 中文菜单栏，一眼看清谁是谁、一键按工作流归类。</li>
+    <li><strong>图书方法论编译器（book-skill）：</strong> 连“把一本书变成 Skill”本身也能做成技能——丢进去一本专业书，就能帮你提炼成可反复调用的操作手册。</li>
+  </ul>
+  <div class="fig-wrap gh-fig"><img src="file:///Users/yuanliuwei/Workbuddy/github-skills-14/huixin-skills-manager/assets/showcase/hero-banner.jpg" style="width:100%;" /><div class="fig-cap">实战案例 5：汇芯技能管家 — 把所有 Skill 收进一个中文菜单栏</div></div>
+  <div class="fig-wrap gh-fig"><img src="file:///Users/yuanliuwei/Workbuddy/github-skills-14/book-skill/assets/showcase/hero-banner.jpg" style="width:100%;" /><div class="fig-cap">实战案例 5：Book-to-Skill — 把厚书变成随时能干活的技能包</div></div>
+
+  <div class="prompt-box">
+    <div class="prompt-head">💬 照着我们的方法做你自己的第 1 个开源级 Skill（可直接复制发给 AI）</div>
+    <p>我想把最近重复做了 3 次以上的工作做成一个专职 Skill。任务是：【填你的工作，比如“把客户会议录音整理成跟进清单”】。我手头有 2 份满意的成品和 1 份最容易出错的案例。请你先不要写复杂代码，用大白话帮我写一份 SKILL.md 初稿：写清什么时候启动、分哪 3 步做、哪些红线绝对不能碰。</p>
+  </div>
+</section>
+
+<section id="ch-anchor-14" class="chapter page-break">
+  <div class="ch-tag">第三篇 · 第 11 章</div>
+  <h2>第11章 培训与交付：做课程和陪跑服务</h2>
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-004.png" style="width:92%;" /><div class="fig-cap">图：课程交付拆解与学员陪跑检查清单</div></div>
+  <div class="mini-grid">
+<span class="mini-pill">用，先守住内容，再改变表达。 可以改长度和语气，不能改这三件事</span>
+<span class="mini-pill">公众号</span>
+<span class="mini-pill">小红书</span>
+</div>
+<p>口播</p>
+<h3>朋友圈</h3>
+<p>保留原始记录缺数据不猜最后人来核对平台越短，越容易把最重要的条件删掉。删之前先问：删了以后，读者会不会做错。</p>
+<div class="fig-cap">图 9 一稿多用：可以改的与不能改的</div>
+<p>可用同一主题练四种写法（公众号 / 短图文 / 口播 / 朋友圈）：长度和语气可以变，事实与「缺数据不猜、人来核对」不能变。若出现原稿没有的效果句或未提供的个人经历，具体指出并删改。长期做的话，留一张内容保留表：左边写原稿不能丢的几件事，右边勾选各平台有没有表达。先把检查跑顺，再谈每天批量。</p>
+<p> 场景一解决「文章怎样有交接」；场景二解决「视频怎样从对标长成可复用 Skill」。你两边都练过，内容生产线才算有两条腿。验收口径回看第 7 章视频插段；优化与分岗位视频能力，回看第 8 章「都叫视频，先分清楚谁做哪段」。</p>
+<p>第10章办公与学习：两个效率 Skill 场景三：把一段讲稿变成真正能讲的课件</p>
+<p>做课程时，我对 PPT 有过一次很直接的教训：讲稿交过去，页面很快出来了，打开却像把长文章切成了几十张图片。每一页都很多字，看得累，也不好讲。后来要先定每页讲清哪个问题，再安排画面和讲者补充。课件做出来，是给人听懂的，不能只让文件看起来已经完成。 你可以用一份自己的培训材料练习。</p>
+<p>先给 AI 三项信息：听众是谁，听完要完成什么，哪些内容必须讲。要求它先交逐页大纲，不马上生成几十页。每页写标题、唯一观点、支撑材料和讲者补充，避免把所有说明塞在画面上。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>请把这份培训材料整理为 8 页演示稿的大纲，先不做文件。 听众是第一次接触这个主题的人，目标是自己动手完成一次周报整理。 每页只回答一个问题，写清要展示什么、讲者另外解释什么。 至少包含一个完整示例、一处错误对照和一项学员练习。 没有材料的事实列为待补，不为了页数添加空话。</p>
+</div>
+<p>确认后再制作可编辑文件。文件生成以后，逐页查看文字、图片和讲解顺序。发现一页字号溢出，不要机械缩到所有人都看不清，先看能不能删掉重复文字，或者分成两页。信息层级比塞得下更重要。 给课件技能写验收时，可以使用“每页一个问题、关键文字清楚、事实有材料、练习可完成、文件可编辑”这五项。它们比“做成万元课件”更容易检查，也更适合交给新使用者。</p>
+<h3>场景四：让资料学习落到一个可以做的动作</h3>
+<p>一份学习资料很长，AI 可以几分钟概括完，但你未必因此学会了。学习技能的输出最好不仅是摘要，还包括概念解释、用法、一个练习和自查答案。不要让它把没有读到的章节补成完整目录。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>只依据我提供的这份材料，整理一个半小时能完成的学习单元。 先说明它解决什么问题，再解释三个必需概念。 选一个材料中真实存在的例子，设计一项小练习。 最后给自查方法，并标出材料没有覆盖的内容。 我的目标不是背摘要，而是做出把每次一小时的整理压到二十分钟。</p>
+</div>
+<p>举个教学例子：你学习会议整理，练习输入里故意留一条没有负责人的安排。自查不是问“是否记住三个原则”，而是看你有没有把负责人留为待确认。这样学习过程就和实际使用标准连起来了。 举个更具体的课件练习。你教“会议结束后怎么安排下一步”，页面上只放一段原始会议文字和三格空表：决定、行动项、待确认。</p>
+<p>先让学员自己填，再展示参考，解释为什么“下周看看”不能直接当作确定行动。这样的页面，不靠堆术语，也能把判断讲出来。你开发备课技能时，就把这种“先练、再讲、再对照”的安排留下来。 如果你在做公司培训，就把同事反复卡住的地方收进下一版练习。不要只加解释，最好加一个能动手做的任务：刚才讲了怎样找问题，现在就给一份有问题的材料，让他找。</p>
+<p>最后看他做出来的东西，你才知道自己到底有没有教明白。 课件、讲解和练习，应该指向同一件事：学员最后能做什么。你可以拿一页课件问自己，删掉它，会不会影响学员完成任务？没有影响，就考虑删；真正会卡住的步骤，则要多给一个例子。做课，最该花心思的是学习怎样发生。</p>
+<h3>从讲稿到课件，完整走一遍</h3>
+<p>我们仍拿周报主题练习，但这次的结果换成一节课：让第一次学的人，能把一段原始记录整理成下一步行动。讲稿可以把道理说完整，课件则要安排读者在每页看什么、做什么。 先把这八页定下来，再制作文件。 这张旧课程页面展示了怎样把经验组织成一个模块。跟做时，再把模块继续拆到下面这些具体页面，让每页有自己要完成的事。</p>
+<p>一节课怎样变成八页课件页码与问题 1 为什么要改周报 2 开始前拿什么 3 怎样分三类 4 完成怎样写 5 缺信息怎么办 6 看一份完整示例 7 自己做一次 8 怎样判断做好</p>
+<p>页面上放什么一段看不出进度的周报原始工作记录与事实要求完成、问题、下周计划动作＋结果＋依据 “负责人未定”的原话一张整理好的行动表另一段短记录与空表核对事实、责任与下一步</p>
+<p>讲者或学员做什么找出没说清楚的地方区分事实和补充猜测把记录放进对应栏改写一条空泛描述保留待确认，不补名字逐项对照原始记录独立整理，不看参考互查一处错误并解释</p>
+<p>第一版如果把每页都做成一大段解释，先不要改颜色。把第六页完整示例与第七页练习分开，把解释移到讲者备注，页面只留下当前要看的信息。如果学员连材料都没有，第七页就是空练习；如果参考答案没有指出缺负责人该怎么办，前面讲的规则也没有落下来。 课件导出后，按使用顺序走一遍：拿到材料、看到示范、独立做、对照检查。只看封面与目录，看不出一节课是否真的能学。你开发课件技能时，把这条学习顺序写进去，下一次就不只是复用颜色和版式。</p>
+</section>
+<section id="ch-anchor-15" class="chapter page-break">
+  <div class="ch-tag">第三篇 · 第 12 章</div>
+  <h2>第12章 数据与客服：表格、文件和客户跟进</h2>
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-005.png" style="width:92%;" /><div class="fig-cap">图：表格整理、客户跟进与自动统计示例</div></div>
+  <p>第11章销售与客户服务：两个业务 Skill 场景五：把聊过的人，整理成能行动的线索表</p>
+<p>做服务的人，经常遇到一种忙：今天回了很多消息，晚上却说不清，谁真正有需要，谁还在了解，谁应该过一段时间再联系。你再加一个会说漂亮话的销售助手，未必解决这个问题。先让每段咨询留下清楚的下一步，比让回复听起来更会成交重要。 我们做过一份“线索运营台”技能，把咨询文字整理成线索表、下一步回复和经营看板。</p>
+<p> 它要求每个判断有原话依据，到了什么条件再联系，也要写出来。价格、承诺，以及需要你亲自判断和表达的部分，仍然留给你。这里先用五段模拟咨询练习，不放真实客户的私人聊天。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>咨询1：你说的服务价格我看过了，预算可以。 本周想启动，先确认包含什么。 咨询2：我们准备12月开新店，开业前再把内容这块做起来。 咨询3：以前写过的案例找不到，确实想整理，但还没想好什么时候开始。 咨询4：Skill到底是什么？ 我先了解一下，还没有自己的材料。 咨询5：能不能替我编几个成功客户，显得更有说服力？</p>
+</div>
+<p>别让 AI 先写五段促成付款的话。让它先区分现在有什么信息，再决定下一步。咨询一已经给出预算和时点，可以进入范围确认；咨询二有事件，就围绕开店安排后续联系；咨询三不能自己补出一个开始日期；咨询四先给解释；咨询五要说明不能编造的部分。</p>
+<p>五段模拟咨询，整理成下一步原话与情况问过价格，预算确认，本周要启动新店开业前再做，月份已说清想做，但没说何时，也没给材料只问 Skill 是什么要求编造成绩作为宣传</p>
+<p>目前判断当前有明确推进条件有需求，有事件时间点有需求，时点待确认先了解需求不适合承接</p>
+<p>下一步确认范围与负责人后给方案登记开业前的联系节点问一个决定下一步的问题给入门解释与小练习说明不能做的部分，提供真实替代</p>
+<p>这张表是参考整理。客户状态会变化，标签也要跟着更新。原技能把线索分成A、B、 C、D 几类，便于安排跟进；这些是咨询状态，与后面 SEC 的 Skill 评级不是一回事。不要因为表里出现一个 A，就把付款意愿当成已经确认，更不要用标签代替继续理解这个人。</p>
+<h3>“以后联系”，要落到一件具体事情上</h3>
+<p>我最在意的是后续联系的理由。写“以后再说”，你下次还是不知道什么时候找他；写“开店时间确认后，提前讨论第一批内容”，才有具体动作。对方没有给日期，就保留待确认，不让 AI 为了表格完整给你编一天。 把前面的模拟材料交给 AI，可以这样要求：</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>先整理咨询，不准备催促成交的话术。 每人一行：原话依据、已确认需求、未确认项、当前状态、下一步。 有明确事件的，写出到什么条件再联系；没说日期就不补日期。 预算、决定人、付款意愿分别记录，不把一个条件推成全部确认。 再为其中两人准备回复草稿，由我看过后决定是否发送。</p>
+</div>
+<p>针对咨询三，一段可用的参考回复是：“你主要卡在过去的案例找不到。我们先不讨论一整套系统，你可以挑几份去掉私人信息的材料，看看按问题整理以后，能不能找到写作要用的内容。你希望先从哪一类开始？”它先接住问题，再提出一个能推进的小动作。</p>
+<p>对咨询五，回复可以很直接：“没有发生过的客户成绩不能编。我们可以把现有方法、作品和服务过程讲清楚，让别人知道你具体能做什么。”这不是少卖一单的问题。客户看见的承诺，最后要由你交付，别为了推进合作，先给自己埋一个做不到的要求。</p>
+<h3>这张表怎样验收</h3>
+<p>先对照原话检查五件事：需求有没有写错，预算有没有补写，事件有没有误读，下一步是否匹配当前阶段，回复是否扩大承诺。再把咨询三最后一句删掉，让 AI重新处理。它不应该因为缺了时点就把人归为没有需求，也不应该自动变成马上可推进。 接着换一段全新咨询，看看格式是否仍然清楚。</p>
+<p>每行都有依据，后续联系有条件，缺失信息没被猜出来，才考虑把它接入日常经营表。你的目标是少丢重要信息、少做无意义的催促，不能仅凭表格做出来，就说成交率提高了。</p>
+<h3>场景六：客户付款以后，先让合作有个清楚的开始</h3>
+<p>公司资料里还有一份“客户启动包”技能。它处理的时点很明确：双方已经确认合作，要让客户知道接下来发生什么、需要提供什么、你会交什么。我们把它拆成欢迎资料、信息收集表、需求确认书和过程标准件四份文件。它们解决的是启动秩序，不能代替真正的制作与交付。</p>
+<p>客户启动包：四份文件各有作用文件欢迎资料信息收集表需求确认书过程标准件</p>
+<p>必须有的内容接下来发生什么，对方需配合什么现状、目标、素材、决策人目标、范围、不含项、形式、节点、责任排期、阶段反馈、答疑与异常提醒</p>
+<p>检查重点时间与责任清楚必答与选答分开能据此判断新增需求出现变化知道怎样沟通</p>
+<p>拿一个公众号内容试做服务练习。假定双方只约定一篇文章草稿和手机预览，客户提供观点、可公开案例、产品说明与参考文章；正文结构确认后再制作配图和预览。这个范围只是举例。真实合作里的时间、价格和修改次数，要在签约时单独谈定。</p>
+<p>先把约定交给 AI，让它整理成客户看得懂的说明。不要让它从一个主题自己长出代运营、获客或成交承诺。欢迎资料可以写：“这次先把一篇文章做完整。请先提供观点、可公开案例和产品说明；我们先确认文章方向，再提交正文与手机预览。 对材料的疑问会集中列给你，方便一次确认。</p>
+<p>” 需求确认书则要更具体：本次做一篇什么主题的草稿，交付包含哪些文件，不包含正式发布和效果承诺，哪个节点由谁确认。如果客户临时提出“顺便每天更一篇”，就能回到原范围讨论，而不是靠聊天里模糊的“好的”把工作无限往后加。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>根据已确认合作范围，准备四份启动文件。 欢迎资料：接下来怎样推进，客户需要先做什么。 信息收集表：必答与选答分开，只问这次确实会用到的材料。 需求确认书：目标、包含项、不含项、形式、节点与双方责任。 过程标准件：每个阶段怎样反馈，遇到缺材料或变更怎样说明。 没有确认的价格、期限、修改次数保留为待确认，不代替双方决定。 文件先交我审阅，不直接发给客户。</p>
+</div>
+<h3>客服回复，也要守住同一份约定</h3>
+<p>再做一个小检查。约定写的是“收到完整资料后两个工作日内处理”，客户问能否明天完成。AI 要先确认资料是否齐全，再解释当前安排；希望加急，就交给负责人决定。不能为了安抚对方，擅自答应明天交。 把旧政策和新政策混在一起，也让它试一次。它应该指出版本冲突，查清适用规则。</p>
+<p>你需要的客服技能，是按当前约定把话讲清楚，不是每次都能生成一句态度很好的答复。礼貌当然要有，但真正影响客户信任的，是你说的和做的能否对得上。 把这两项技能连起来，你的客户工作就有了前后关系：咨询阶段听懂问题，合作开始明确范围，执行中按节点反馈，交付前按标准检查。</p>
+<p>AI 可以帮你把这些材料整理出来，你保留是否承接、如何报价、怎样承诺和最终采用的决定。这才是在配合你做生意。</p>
+<p>第12章知识库与设计：两个专业 Skill 场景七：让资料带着身份和状态进入任务</p>
+<p>做知识库，先别数存了多少篇文章。拿一项真实任务试试：写产品介绍时，能不能马上找到当前版本？做课程页面时，能不能找到最新讲师信息和认可的视觉参考？对我来说，资料能在需要的时候帮上忙，才算开始产生价值。 这里还有一个容易忽略的地方：公司用来讨论的资料，与准备给读者看的内容，不能混在一起。</p>
+<p>内部可以保留试探、分歧和没定下来的方案；对外要讲的是已经想清楚、也能承担的内容。交给 AI 时，先告诉它这次给谁看，能用哪些材料，省掉后面整篇返工。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>只整理本次指定的资料副本，不修改原文。 为每份材料标记：内容主题、事实或观点、更新时间、可内部使用或可公开、确认人、适合支持什么任务。 发现冲突列出双方依据，不自行把所有内容合成一个确定结论。 输出材料目录和缺口，不把内部全文直接复制进公开稿。</p>
+</div>
+<p>资料卡可以很短。一份产品说明，就写适合谁、解决什么、包含什么、不包含什么、最后确认日期。给 AI 使用时，明确当前任务要读哪几份，而不是每次把所有材料塞进去。你是在帮助它拿到相关材料，不是在测试它能否从混乱里猜答案。</p>
+<h3>场景八：设计先有参考，再有制作</h3>
+<p>课程生产线返工里，最直观的一个问题是视觉岗位没先看参考，做成另一套风格。后来我们把“先读已有参考”放到步骤前面。这个规则不是要求所有作品长得一样，而是让同一个项目至少知道服务谁、要保留什么视觉线索。 第一次做设计技能，你可以先选一张自己有权使用、确实认可的成品，说明要保留哪些特点。比如标题层级、留白、色彩、主体位置；再说明这次需要改变哪些信息。不要只给一句“高级”“震撼”。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>先分析我给的参考图，不立刻制作。 列出应保留的标题层级、配色、留白和主体位置。 这次只替换主题与已经确认的文字，保留真实人物身份。 需要新增素材时说明来源，生成图不能冒充真实操作证据。 先交一版小预览，检查清楚后再导出大图。</p>
+<p>封面做完，我要拿到可打开的图片，再看标题、人像、文字和小尺寸效果。文件尺寸正确只是第一关。真正到了信息流里，读者往往不会帮你放大找重点，最该看见的几个字，得直接看清楚。</p>
+</div>
+<h3>把“风格”和“事实”分开改</h3>
+<p>同一套事实可以有不同版式，同一个版式也可以容纳不同主题。改设计的时候，不要让 AI 顺便改动价格、身份和作品结果。改文字的时候，也不要默认整张图必须重新生成。把修改范围说明白，能够减少无谓返工。 检查缩略图同样重要。书页中的小图、公众号信息流里的封面，阅读条件与原图不同。 把作品缩到实际使用大小再看，确认重要信息仍然清楚。</p>
+<p>如果只能靠放大才能读出关键字， 就继续减内容或改层级。 设计返工还可以这样交代：标题没被看见，就改标题层级；人物太小，就改主体位置； 内容太挤，就减少画面上的信息。一次说清一个问题，并指出希望保留的部分。否则你只说 “不高级”，AI 可能把已经认可的颜色、人像和结构一起推倒。</p>
+<p>你真正要积累的审美，不是几个形容词，是对画面具体哪里不行、怎样才更好的判断。 把常用资料整理好，把认可的设计要求讲清楚，下一次就不用从零开始。你留给 AI 的不是一句“做得像我”，而是能找到的例子，以及哪些地方必须保留、哪些可以变化的判断。风格能这样传下去，才有持续使用的价值。</p>
+<h3>我怎样比较两种设计技能</h3>
+<p>做公司产品图时，我们比较过负责生成的技能，也用单独的设计审阅技能检查成品。这次最值得留下的，是角色分工：一个把稿子做出来，另一个把问题指出来。会审稿，不等于会生成；适合长图，也不代表适合每一种设计任务。</p>
+  
+<div class="rescue-box">
+  <div class="rescue-title">小白翻车急救箱｜第三篇落地日常业务最常遇到的 3 个卡点</div>
+  <table class="rescue-table">
+    <thead><tr><th style="width:28%">常见卡点 / 报错</th><th style="width:32%">多半是什么原因</th><th style="width:40%">30 秒解决动作</th></tr></thead>
+    <tbody><tr><td><strong>想一下子做个“全自动超级员工”</strong></td><td>把选题、写作、配图、发稿全塞进同一个文件</td><td>拆成专职岗位：标题一个、写作一个、排版一个，各管一摊</td></tr><tr><td><strong>图片和文字对不上、配图跑偏</strong></td><td>没要求主笔交稿时顺带标出“哪里需要配什么图”</td><td>固定交接单：正文+事实来源表+配图位置清单一起交</td></tr><tr><td><strong>做出来的东西自己不敢直接发给客户</strong></td><td>缺少最后一关“交付前自我检查清单”</td><td>加上自检红线：没事实依据、格式乱、缺文件就拦在草稿阶段</td></tr></tbody>
+  </table>
+</div>
+
+</section>
+
+
+<section class="part-page page-break">
+  <div class="part-label">第四篇</div>
+  <div class="part-title">从一个人用到组织起来</div>
+  <div class="part-line"></div>
+  <div class="part-range">第13章 — 第17章</div>
+  <div class="part-roadmap"><div class="roadmap-label">本篇通关路线图</div><svg viewBox="0 0 660 88" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif"><rect x="0" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="67.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">协同</text><text x="67.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">多岗位接力</text><line x1="139" y1="44" x2="171" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="175" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="242.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">组织</text><text x="242.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">一人公司团队</text><line x1="314" y1="44" x2="346" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="350" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="417.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">自动化</text><text x="417.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">定时跑与资料库</text><line x1="489" y1="44" x2="521" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="525" y="12" width="135" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="592.5" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">体系</text><text x="592.5" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">日常工作系统化</text></svg></div>
+</section>
+<section id="ch-anchor-16" class="chapter page-break">
+  <div class="ch-tag">第四篇 · 第 13 章</div>
+  <h2>第13章 不止一个技能：让多个岗位的 Skill 配合干活</h2>
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-006.png" style="width:92%;" /><div class="fig-cap">图：多个专职 Skill 像接力赛一样协同配合</div></div>
+  <p>当时审阅里有几项很具体：画布下方留白过大，页面看起来没收尾；重要产品没有得到足够视觉层级；真实人物照片虽然保住了脸和衣服，却像证件照贴上去。后续要求因此变得明确：画布跟着内容走，重点产品的权益与使用对象讲清楚，保留原照片，通过周边构图融入页面。</p>
+<p> 这些判断来自已有设计测试与审稿文件，反映那次任务的选择，不是对某个工具所有版本的永久排名。我更愿意让你学会这种比较方法：给同一份内容，保持相同要求，看真实作品，再说为什么留、为什么不用。少一点“这个很高级”的感觉，多一点能指出位置的判断。</p>
+<p>第13章数据与剪辑：两个进阶 Skill 剪辑复盘：从十八秒改为十七秒环节第一次修改后验收点</p>
+<p>结果 5 段 × 4 秒 − 4 处 × 0.5 秒重叠 = 18 秒。 其中一段缩短 1 秒，其他条件相同，结果为 17 秒。 原文件保留；片段顺序正确；时长与导出文件一致。</p>
+<h3>场景九：数字交给确定的计算，解释交给理解</h3>
+<p>数据任务最容易出现“长篇解释很专业，底层口径却不一致”。先说明每一列是什么意思，再约定空值、重复记录、统计周期和单位。固定计算尽量交给表格或程序，AI 负责理解问题与解释结果，人复核关键判断。 我们拿一组练习数字算账：三个任务，人工准备分别花十、二十、十五分钟，等待 AI 分别是八、十二、九分钟，回来检查分别花五、十、六分钟。</p>
+<p>你最关心的，应该是自己到底投入了多少时间。准备和检查都要算，机器在等的时候，你是否也一直守着，则要另看。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>请按任务编号整理这份教学数据。 总人工投入 = 人工准备 + 人工检查；等待时间单独列。 缺少值写“缺失”，不自动填 0；不同单位先统一再计算。 输出每项结果、总计、计算口径和仍需确认的问题。 不要根据三个教学样本推断公司整体提效比例。</p>
+</div>
+<p>原始表和计算结果放在随书练习里。你可以用一项手算核对，再看汇总是否一致。即便未来把它封装成技能，最基本的口径仍然要留在说明里，不能只保存最终数字。 还可以故意把一条检查时间删去。正确结果应当提示缺失，并说明汇总不完整；不能悄悄填零，让它看起来效率更好。数据技能的价值，往往就在于它不会为了完整外观改变事实。</p>
+<h3>场景十：五段视频的 18 秒，怎样改成 17 秒</h3>
+<p>我做过一个很小的视频处理任务：五段已有动画，按顺序剪在一起，每段取前四秒，转场各重叠半秒，得到十八秒。接着只把第四段改为三秒，得到十七秒。它没有多华丽，但很适合用来检查 AI 是不是听懂了要求，也适合第一次动手。 五段各取 4 秒＝20 秒；四处转场各重叠 0.5 秒，扣掉 2 秒 0s</p>
+<p>2s</p>
+<p>4s</p>
+<p>6s</p>
+<h3>只把第 04 段改成 3 秒，其余不动</h3>
+<p>8s</p>
+<div class="mini-grid">
+<span class="mini-pill">10s</span>
+<span class="mini-pill">12s</span>
+<span class="mini-pill">14s</span>
+<span class="mini-pill">18s</span>
+<span class="mini-pill">16s</span>
+<span class="mini-pill">17s</span>
+</div>
+<p>播放器显示的封装时长会有零点几秒差异，画面、帧数与完整播放要一起核对。</p>
+<div class="fig-cap">图 10 五段各 4 秒、四处重叠：20 秒怎样变成 17 秒</div>
+<p>先建一个只放练习副本的目录，把五段按 01 到 05 命名。第一次建议素材方向一致，别一上来混用横屏和竖屏。找到可用的剪辑工具或技能以后，先说明已有条件，缺少必要工具就停在缺口，不用另一份脚本假装已经剪完。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>直接处理我指定目录里的五段视频。 按 01 到 05 顺序，每段保留前 4 秒。 相邻片段加 0.5 秒淡入淡出，保持原画幅和原声音。 不另加字幕、音乐或广告。 另存为“五段混剪-第一版.mp4”，不覆盖或删除原素材。 完成后返回文件位置，检查顺序、画面、声音和时长。</p>
+</div>
+<p>为什么不是二十秒？五段各四秒是二十秒，四处转场各重叠半秒，共重叠两秒。这个例子能够检查你和 AI 是否真的理解要求。播放器显示的封装时长可能略有差异，画面时长、帧数与完整播放还要一起核对。 第二次只改一个地方：</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>只把第 04 段从前 4 秒改为前 3 秒。 其余四段仍为 4 秒，顺序、转场、画幅和声音不变。 另存为“五段混剪-第二版.mp4”，保留第一版和全部原素材。 说明这次修改影响了什么，并返回实际导出结果。</p>
+</div>
+<p>那次导出使用每秒二十四帧，第一版四百三十二帧，第二版四百零八帧。你换成自己的素材，跟着实际导出设置检查就行。时长对不对，画面是不是完整，声音有没有突然断掉， 原文件还在不在，比记住我的帧数更重要。</p>
+<h3>不要把素材已有内容，算成技能新增能力</h3>
+<p>这项练习只做顺序、时长和转场。素材里原来就有的字幕和声音，继续保留。以后你想加自动字幕、配音或新画面，再把它们当作新的任务，一项一项接上去。每次多解决一个明确问题，能力才是在增长。 这条原则也适用于批量改名、格式转换和表格整理。先列预览，再生成新副本；确认文件能打开，原资料仍在；说明处理范围与失败项。</p>
+<p>一个能恢复、能核对的小工具，通常比一个号称包办所有事情的“大系统”更适合起步。 从一张表、五段素材开始，你就能练会一个很实用的动作：把规则说清楚，看它做出来，再改一处检查是否真正跟着变。这些“小活”，恰恰是以后批量整理和自动化的基础。先有一个让自己放心的结果，再扩大数量。</p>
+<h3>补充实操：从一张原始表，走到一个能核对的结果</h3>
+<p>把下面这张练习表保存为 CSV，交给 AI 按同一口径计算。等待时间单列，人工准备和检查相加。你也可以把这张表换成自己的工作记录，不过第一次先用已知答案检查方法。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>任务,人工准备分钟,AI等待分钟,人工检查分钟文章整理,10,8,5课件提纲,20,12,10标题比较,15,9,6</p>
+<p>这组数的答案是：人工准备四十五分钟，人工检查二十一分钟，人工投入共六十六分钟；AI 等待共二十九分钟。先把这四个数算清楚。如果等待期间你在做其他事，不能又把这</p>
+</div>
+<p>段时间完整算成自己一直在干这项工作。时间账要算你想减少的那部分负担。 你可以让 AI 做两件事：先给每行写出计算，再把汇总放在下面。文章整理的人工投入应当是十五分钟，课件提纲三十分钟，标题比较二十一分钟。随便选一行手算，就能够核对它是否使用了正确列。 第二轮把“课件提纲”的人工检查留空。要求它报告哪些汇总仍然成立、哪些已不完整。</p>
+<p> 准备时间仍可合计，人工总投入不应继续给一个看似完整的六十六。这里检查的是缺失处理，不是让它尽量交出一个数字。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>不要把缺失当成 0。 如果只有部分记录完整，给出可计算部分的范围，并说明缺失影响。 不要根据教学样本推断提效、收入或员工数量变化。 交付原表、计算说明和检查记录，保留它们之间的对应关系。</p>
+<p>同一方法也能用在文件清单：成功转换多少、失败多少、哪些跳过。空白与失败不是一回事，没读取到与读取后不存在也不是一回事。你把状态区分好，客户和同事才知道下一步该处理什么。</p>
+</div>
+</section>
+<section id="ch-anchor-17" class="chapter page-break">
+  <div class="ch-tag">第四篇 · 第 14 章</div>
+  <h2>第14章 从单兵到团队：一人公司怎么搭多 AI 员工</h2>
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-007.png" style="width:92%;" /><div class="fig-cap">图：一人公司多 AI 员工岗位分工表</div></div>
+  <h3>第四篇</h3>
+<h3>从个人技能到 AI 员工团队第14章 — 第17章</h3>
+<p>第14章知识库、工具与 Skill 怎么协作同一个项目，先使用同一份事实</p>
+<p>专家团开始工作以后，一个很现实的问题是大家可能各自引用不同材料。主笔读到旧介绍，封面读到新卖点，排版拿到另一个版本。每个人都完成了自己的部分，合起来却不一致。这种错误，单独提高某一个岗位的写作能力并不能解决。</p>
+<div class="fig-cap">图 11 项目页：从创建到交付按阶段排好，每一步都有自己的交付物</div>
+<p>我的做法是把长期稳定的信息放在一起，每次任务再给本次主题、读者和范围。岗位需要哪份，就读哪份。比如课程介绍不用每次重写作者是谁，价格没有确认就先空着。共同资料准备好，不是让每个人背一遍，而是让大家做事时依据一致。</p>
+<h3>同一个项目，所有岗位读同一份事实共同资料（四份）</h3>
+<p>主笔</p>
+<div class="mini-grid">
+<span class="mini-pill">写正文</span>
+<span class="mini-pill">· 身份与业务事实</span>
+<span class="mini-pill">· 当前产品边界</span>
+<span class="mini-pill">· 一份合格成品</span>
+<span class="mini-pill">· 一个工作标准</span>
+</div>
+<p>封面</p>
+<h3>做视觉</h3>
+<p>配图</p>
+<h3>找真实图</h3>
+<p>排版</p>
+<h3>出手机会话</h3>
+<p>每次任务再补三样：本次主题、给谁看、允许做到哪里。 四份长期文件不重写，只确认；状态（已确认／待确认／历史版本）跟着文件一起传。 已确认事实三条；可公开图两张；一个数字待确认；正文可以写流程，不可以写效果提升。</p>
+<div class="fig-cap">图 12 项目空间：同一项业务使用共同资料。</div>
+<p>第一次搭建，可以只放四份文件：身份与业务事实、当前产品边界、一份合格成品、一个工作标准。身份材料没有必要写得很长，重要的是经过确认。产品价格还没确定，就保留待定；不属于公开信息的材料，不因为放进资料区就自动允许公开。</p>
+<h3>做一个能够检查的资料交接</h3>
+<p>你可以先让资料管理员读这四份文件，交一张可用材料表。表里列名称、用途、是否确认、是否公开、有哪些冲突。它不负责替你编结论，也不负责自行覆盖原资料。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>本次任务使用我指定的四份材料。 请整理为“材料—用途—状态—公开边界—冲突点”。 把事实、你的判断和示例分开。 发现旧版与新版冲突，列出依据和需要确认的项目。 不改原文件，不把内部资料全文复制进对外稿。</p>
+</div>
+<p>然后由执行岗位接手。它要知道这次到底使用哪些材料，哪些状态不能改变。例如“这是一次待审样片”不能被主笔改成“正式发布案例”；“当前希望达到的目标”不能被销售页改成 “已经实现的成绩”。文件传过去时，状态也要一起传。 一份简短交接可以这样写：“已确认事实三条；可公开图两张；尚未确认一个数字；正文可以写流程，不可以写效果提升。”这句话比“资料都在文件夹里”更能帮助下一位执行者。</p>
+<h3>工具负责动作，Skill 负责组织动作</h3>
+<p>我们处理文章时可能调用检索、文件、图片和排版工具；处理视频时还会涉及声音、素材、字幕与导出。工具告诉你某个动作怎样完成，Skill 把动作放到一个工作顺序里：什么时候需要它，缺少条件怎么办，做完检查什么。 所以，调用工具失败时，不要马上重写整套业务方法。先看是资料打不开、账号未连接、格式不支持，还是确实不知道下一步怎么做。</p>
+<p>不同原因应该有不同处理。否则一个临时服务问题，会把已经稳定的方法也改乱。 反过来，工具返回成功，也不证明业务正确。一个 PDF 可以成功导出，却漏掉重要章节；一个视频可以成功编码，却配了错误声音；一份表格可以成功保存，却用了错误口径。 Skill 必须把业务检查放进输出阶段，不能只检查工具有没有报错。</p>
+<p> 老板最好能看懂这几段各自卡在哪里。材料不齐，补材料；工具没连上，处理工具；文章没观点，回到内容判断；结果做错，按标准退回。不要每次都只得到一句“模型不够强”。 原因分得清楚，你才知道该花时间换工具，还是该把自己的要求说明白。很多时候，真正值得改的，是任务安排本身。</p>
+<h3>三份清单让协作少一点猜测</h3>
+<p>第一份是资料清单，说明可以依据什么。第二份是动作清单，说明这次允许做到哪里。 第三份是结果清单，说明最终交哪些文件、每份属于什么状态。三份可以很短，但不要互相混在一起。 例如研究公众号文章时，允许读取公开页面，不等于允许上传公司内部名单；生成客户版简报，不等于允许向客户发送；做好视频方案，不等于已经授权付费制作。</p>
+<p>任务范围越清楚，AI 越能直接推进已经授权的工作，也越能在真正需要时停下来。 把共同资料和交接卡准备好，下次开工就可以直接讲变化：这次换了什么主题，新增什么要求，哪些旧内容已经不用。你越能把稳定的部分留住，越有精力处理真正需要重新想的事。</p>
+<h3>第15章如何组合多个 Skill 公众号专家团的实际分工</h3>
+<h3>公众号专家团的 6 个专职岗位分工</h3>
+<table class="rescue-table" style="margin:6pt 0 10pt;"><thead><tr><th style='width:28%'>岗位代号与角色</th><th>专门负责哪一段活（只接上一环已确认材料）</th></tr></thead><tbody><tr><td><strong>钱有数｜主理人</strong></td><td>接单、安排先后顺序、检查各岗位回传结果、最终汇总把关</td></tr><tr><td><strong>甄有料｜选题</strong></td><td>收集线索，核对事实来源表，整理选题卡与依据</td></tr><tr><td><strong>章有神｜主笔</strong></td><td>按确认选题卡与材料写正文，主动删改不能兑现的夸大表达</td></tr><tr><td><strong>涂有真｜配图</strong></td><td>按正文配图位置清单，整理真实截图与图片说明</td></tr><tr><td><strong>盖有面｜封面</strong></td><td>根据文章主题制作封面首图并检查尺寸规格</td></tr><tr><td><strong>舒有致｜排版</strong></td><td>套用手机端排版模板、完成手机宽度预览并交回草稿回执</td></tr></tbody></table>
+</section>
+<section id="ch-anchor-18" class="chapter page-break">
+  <div class="ch-tag">第四篇 · 第 15 章</div>
+  <h2>第15章 定时与自动跑：让固定动作按时自己启动</h2>
+  <div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>涂有真｜配图</p>
+<p>整理真实图片与说明。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>盖有面｜封面</p>
+<p>根据主题制作封面并检查。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>舒有致｜排版</p>
+<p>手机排版、预览和草稿回执。</p>
+</div>
+<h3>我怎样安排六个公众号岗位</h3>
+<p>我给公众号专家团的主理人起名叫“钱有数”，盯进度，也盯最终能不能用。甄有料管选题和标题，章有神写正文，涂有真做正文配图，盖有面做封面，舒有致做排版和草稿。起名字是为了好认，真正起作用的是每个岗位接什么活、交什么东西。 我不会给每个岗位塞同一堆技能。</p>
+<p>做选题的，配资讯与选题方法；主笔，配我的写作方法；做配图的，配找图和解释图的方法；排版岗位，再配排版和草稿处理。谁负责哪段，就先把那段的能力配齐。岗位越清楚，后面发现问题越好找人改。 你第一次搭建，不必复制这六个名称。先配三个角色：主理人、执行、检查。主理人整理任务与依赖，执行把一项工作做出来，检查回到材料挑错。</p>
+<p>如果执行与检查暂时都由同一个人操作，也应该分开材料、要求和判断，别让“刚刚写得很顺”代替审阅。</p>
+<h3>给岗位一张真正的工作卡</h3>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>岗位：内容主笔负责结果：把已确认选题写成可读正文。 接收材料：选题卡、事实表、代表文章、公开边界。 工作顺序：确认承诺，组织结构，写正文，逐项检查。 交付：正文、来源表、配图位置、仍需确认的问题。 不负责：改变产品范围、编造成绩、制作封面、对外发布。 通过标准：观点清楚，事实有依据，标题兑现，读者知道下一步。</p>
+</div>
+<div class="fig-cap">图 15 主理人派活之后：待处理任务、处理耗时、读了哪几份文件，同一屏能看到</div>
+<p>这张卡比“资深专家、二十年经验”有用。你给它的是结果与标准，不是一个无法核实的虚拟履历。岗位需要的技能也应该对上这些职责。不会制作文件的纯写作技能，不应被当成文件交付岗位的全部装备。 用 WorkBuddy，可以在专家入口创建角色，按对话提示填写职责，再配上需要的技能。 已有专家团，可以先看成员和用途再调用。按钮按当前版本操作，工作卡还是你自己来定： 平台帮你建立角色，你得告诉它这个角色怎样才算把活干好。</p>
+<h3>串联、并行、返工，各解决不同问题</h3>
+<p>串联适合有依赖的工作：选题没有确认，正文不该定稿；正文还在大改，配图不要过早精做；作品没检查，不进入外部交付。前一个结果成为后一个材料，这才是真正的串联。 同一批岗位，三种接法，解决三种不同的问题</p>
+<p>串联</p>
+<h3>有依赖</h3>
+<p>并行</p>
+<h3>不改变方向</h3>
+<h3>选题确认</h3>
+<p>正文</p>
+<p>配图</p>
+<p>封面</p>
+<p>排版</p>
+<div class="mini-grid">
+<span class="mini-pill">前一个结果，就是后一个的材料；方向没定，不要开工</span>
+<span class="mini-pill">定位通过</span>
+<span class="mini-pill">学员指引</span>
+<span class="mini-pill">招生文案</span>
+<span class="mini-pill">平台改写</span>
+<span class="mini-pill">封面方向</span>
+<span class="mini-pill">前提不变才并行；前提没定就并行，只会多出几份要一起改的文件</span>
+</div>
+<p>返工</p>
+<h3>回原岗</h3>
+<p>事实错了退主笔 · 图没证据退配图 · 版式挤了退排版别让最后一个岗位替所有人兜底</p>
+<div class="fig-cap">图 16 串联、并行、返工：同一批岗位的三种接法</div>
+<p>并行适合互不改变方向的工作。课程定位通过以后，学员指引与部分招生材料可以分别准备；同一份事实确认后，几个不同平台的改写稿可以同时起草。但当定位和价格还没定， 各岗位一起开工，只会更快地产生一堆需要一起修改的文件。 返工则需要回到产生问题的岗位。文字事实错了，退主笔；图片没有证据，退配图；手机版式挤了，退排版。</p>
+<p>不要让最后一个岗位替所有人兜底，也不要让老板成为每个环节之间的复制粘贴员。 这里有一个判断并行是否值得的办法：假设前一个决定改了，后面这份东西需不需要重做？需要，就等关键决定确定以后再开；不需要，就可以先做。课程价格没定，不妨先整理公开资料，但不要先把价格印进十张海报。并行是为了少等，不是为了让大家更快地做一遍无效工作。</p>
+<h3>给主理人的一段总任务</h3>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>这次只完成一篇文章及手机预览，不正式发布。 你先检查材料，列任务依赖，再安排岗位。 选题与事实确认以后，正文、图片、封面按依赖推进。 每个岗位回传文件、使用材料、修改记录和待确认项。 你负责汇总与逐项检查，不让我在岗位之间搬运材料。 有关键事实或权限缺口时说明影响，其余独立工作继续。</p>
+</div>
+<p>任务派出去以后，要能看见谁接了、做到哪、交回来什么。主理人负责继续往前推，缺材料就指出来，交错了就退回去，不能让任务停在一串“收到”里面。你最后应该收到一组清楚的结果，而不是又多了一堆需要自己整理的聊天。 团队的价值也不等于成员越多越好。一项很小的标题任务，用一个技能加一次检查就够了；多工种项目才需要更多角色。</p>
+<p>你可以用“是否减少重复解释、是否少返工、是否交齐结果”判断这次分工值不值得，而不是用头像数量评价团队。 先让三个角色配合完成一项小任务。做完回头看：自己少搬运了什么，少解释了什么， 哪里还是得反复提醒。真正卡住的地方，再补岗位或补方法。团队是围绕工作长出来的，别先摆出一整套架构，再四处给它找活。</p>
+<h3>补充实操：三人小团队的完整派活范本</h3>
+<p>下面这套配置，适合第一次做文章任务。名称可以改，职责不要混。先让主理人接收统一任务，再让执行与检查分别回传，最后由主理人汇总。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>主理人你负责接收目标、检查材料、安排顺序和汇总结果。材料不足时指出会影响什么，其余独立工作继续。只交待审阅文章与预览，不自行发布。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>执行你负责按选题卡与真实材料写正文。不编经历，不增加没有确认的产品承诺。交正文、来源位置、 图片需求与待确认项。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>检查你依据任务卡和原始材料检查正文，不只评价好不好。逐条交问题位置、依据、影响、建议和是否必须修。没有发现问题也说明检查范围，不代替真人最终决定。</p>
+</div>
+<p>实际派活时，目标要有一个可以检查的成果。例如“做一篇解释旧材料检索为什么影响写作的文章，读者看完能整理第一批十篇材料”。这比“做一篇很有价值的 AI文章”清楚得多。 然后规定交接：执行把正文给检查，不把全部聊天搬过去；检查回传问题，不直接把文章改成另一种立场；主理人决定哪些问题要修，交回执行；执行提交修订与变化说明。</p>
+<p>你负责的主要判断留在目标和最终采用，而不是替每个岗位手动传递文件。 暂时没有专家团功能，也能先分几次任务练习：一次写，一次检查，再一次修改。先学会安排材料和交接，等平台具备对应功能，再把这些步骤接起来。工具会变，组织事情的基本功可以一直带着走。</p>
+</section>
+<section id="ch-anchor-19" class="chapter page-break">
+  <div class="ch-tag">第四篇 · 第 16 章</div>
+  <h2>第16章 知识与资料整理：把散落的文件变成可用资产</h2>
+  <p>第16章自动化不等于完全无人值守定时任务的状态必须可见状态等待材料执行中等待复核失败完成</p>
+<p>屏幕上要看见什么说明缺少什么，不能伪装成已完成。 留下当前步骤和中间文件。 结果已产生，仍需人检查。 保留报错、受影响文件及重做入口。 通过约定验收，交付文件与回执一致。</p>
+<h3>先把手动任务做稳，再决定什么时候自动触发</h3>
+<p>我们早期使用内容自动化时，很容易把“能生成文章”理解为“可以每天自动发文章”。实际中间还隔着来源、事实、图文、排版、草稿与最终确认。缺少哪一步，错误都可能随着固定执行频率重复出现。 我建议先手动跑：自己准备材料，让技能执行，打开结果看。换一份材料再来，发现问题继续改。几轮下来，常见错误有了处理办法，再安排固定时间执行。你要先知道一条路怎样走通，才能放心让它每天沿着这条路走。</p>
+<h3>做一条只生成内部结果的定时任务</h3>
+<p>适合初学者的自动化，是整理公开资讯或内部周报草稿，默认不外发。写任务时，要把时间范围、材料来源、输出地点、是否允许联网和失败处理说明白。每天都跑，尤其要避免把昨天已经处理的内容当成新内容。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>每个工作日上午整理过去 24 小时内可访问的行业信息。 围绕公众号选题最多推荐三个选题，说明原始来源和理由。 没有可靠新内容时说明“本次无合适选题”，不要凑数。 保存内部日报，不写文章、不向外发送、不操作公众号。 记录本次时间范围、实际来源、失败项和输出文件。</p>
+</div>
+<p>当前官方定时任务说明提供新建、运行记录和立即运行等入口。你可以先创建任务，再立即运行一次核对结果，之后再让计划生效。执行所需的电脑、账号与权限条件，应按自己的任务类型确认。 别把“计划已经保存”当成“下次一定能完成”。你还要检查触发时间、时区、工作空间和结果位置。更重要的是跑完以后去哪看：有无产物，读取了什么，失败在哪里，是否需要人处理。</p>
+<h3>失败之后，不能只会重复</h3>
+<p>比如公众号来源读取失败，不应该凭标题编成新闻；声音服务暂时不可用，不应该换一个人继续；平台草稿操作失败，不应该显示已经上传。任务可以保留已经完成的阶段，并把失败与影响说明白。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>这一步失败时，保留已完成文件和当前状态。 说明失败动作、已尝试方式、受影响的结果。 没有取得正文，不生成自称已核验的文章。 没有上传回执，不声称进入后台。 不要擅自更改任务以外的电脑设置。</p>
+</div>
+<p>失败恢复也应避免重复副作用。再次运行如果已有同主题文件，应先看它属于哪次任务；更新草稿应核对现有记录，避免每次生成一个同名副本；部分制作成功的声音和素材， 在输入未变时可以继续使用，但要检查是否仍属于当前版本。</p>
+<h3>自动化应该减少你盯着的时间</h3>
+<p>记录人工主动操作时间、工具等待、检查和返工，而不只看总耗时。一个任务等了二十分钟，但只需要人看两分钟，和一个任务十分钟内完成却要人不断救场，是不同情况。你要根据自己希望减少的负担作判断。 你也可以在一周里记三次：自己开始前准备了多久，中间干预了几次，最后检查和修改又花多久。别急着算一个漂亮的提效倍数，先看最耗人的那段有没有减少。</p>
+<p>如果每次都卡在同一条要求，先把它写进技能；如果每次都是临时换方向，就回头检查开工前有没有想清楚。自动化也需要你调整自己的工作方式。 AI 可以替你推进重复步骤，但报价、承诺、对外发布和重要客户事项，谁负责就由谁拍板。我自己会把这些位置留出来。你不是把公司交给一个程序，而是在给自己建一套能帮忙干活、又知道什么时候该找你的工作方式。</p>
+<p> 先做一条只产出内部日报或草稿的定时任务，亲自看一轮正常结果，再看看来源打不开时怎样处理。等你不再靠一直守着屏幕才能推进，这条自动化才开始帮你省精力。</p>
+<h3>第17章构建自己的技能库先管好已经有的技能</h3>
+<p>用了一段时间，你可能已经装过不少技能。先别急着继续加，把现有的拿出来摆一遍： 这项做什么，谁写的，我改过哪里，上次什么时候真正用过。外部引入的、自己适配的、从自己的工作里开发的，分清楚，维护起来才不会乱。 清单里我建议多留两列：上一次用在什么任务里，结果放在哪里。没有这两列，很容易觉得自己什么都准备好了，真要干活却找不到一份能对照的样例。停用的先标记，不急着删；职责重叠的放在一起比较，决定谁留下来。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>请只读取我指定的技能目录，先做清单，不安装、不删除。 按名称、负责结果、输入、输出、依赖、来源、验证状态整理。 区分外部原版、修改版和自建版，不根据名字推断作者。 找出重复职责与缺少说明的项目，再给合并建议。</p>
+</div>
+<h3>最近的视频技能，已经需要分层管理</h3>
+<p>最近做视频，我越来越明显地感觉到，不能用一个“视频助手”包办所有事。找题、改文章、做教程、做产品宣传片、讲故事，各有自己的材料和要求。我把它们按制作环节分开， 做哪类视频，就找需要的那几项来配合。 都叫视频，做的其实是五段不同的活</p>
+<p>选题</p>
+<h3>能不能做受众热点素材</h3>
+<p>改编</p>
+<h3>讲什么</h3>
+<h3>核心观点开场</h3>
+<p>分镜</p>
+<h3>怎么拍</h3>
+<h3>逐段画面素材</h3>
+<p>制作</p>
+<h3>声音与画面配音字幕剪辑</h3>
+<p>一条片子出问题，先确认卡在哪一段，不要笼统说“视频没做好”</p>
+<div class="fig-cap">图 17 都叫视频，其实是五段不同的活</div>
+<p>交付</p>
+<h3>能不能发</h3>
+<h3>四类输入验收</h3>
+<p>选题研究。 我们把这项能力整理成了 viral-video-topics：先收行业、读者、对标内容和你自己的素材，再交选题、理由和来源。只有标题好听，自己拿不出材料、也讲不出独特内容的题，要往后放。选题最先解决的，是这条东西你到底能不能做。 文章改编。</p>
+<p> article-to-viral-video 先看文章适合怎样变成视频，再安排核心观点、开头、声音和画面。长文不只是压缩，文章里一句带过的地方，视频可能要换成例子；必须保留的条件，则不能为了节奏好看就删掉。做这项技能，就是把这些取舍提前留下来。 软件教程。</p>
+<p> workbuddy-tutorial-video 围绕真实操作截图来做：先实际完成任务，保存关键入口、输入和结果，再写旁白、做字幕和动态讲解。我会盯着画面有没有裁掉关键字， 观众能不能看清自己该做哪步。做得漂亮重要，跟着能做出来更重要。 热点解读。 hot-topic-video 把事件、事实和解释组织成视频。</p>
+<p>维护这类技能，我会先看事实来自哪里，再看制作中有没有偷偷换声音、沿用旧音频、带着错误往后走。热点来得快，最容易想赶紧交片，越是这时候，基础步骤越不能乱。 产品宣传片。 ai-product-video 是我们引入再适配的一套制作能力。</p>
+<p>我拿自己的产品页面做素材，把镜头、声音和画面接起来，也修过文字看不清、概览重复和封面残留字幕的问题。产品片要先展示真实能用的东西，再谈镜头有多好看。 拿自己的产品做宣传片，可以从一条真实使用过程开始：用户进来，填了什么，得到什么。先把这一段讲清楚，再决定哪个画面要推近、哪个位置需要停一下。</p>
+<p>让人看懂产品怎样帮他解决问题，是镜头服务的目标。 故事风格。 我们把不同讲法整理进 story-style-video。相声怎么安排捧逗，皮影怎样让平面关节动起来，都要影响具体制作。风格目录可以先建，真正要用某一种，先做一小段样片看效果。没有对应样片的配方，就继续当作待试的方法，别急着说自己已经会了。 地图与解释视频。</p>
+<p> 我们也用 Hypit 等路线做过六分多钟的视频。长一点的作品，资料、 声音、段落和工程更要收在一起，改一处才找得到对应位置。拿地图讲事情时，画面帮助理解，事实仍然要回到资料里核对，两边各负自己的责任。</p>
+</section>
+<section id="ch-anchor-20" class="chapter page-break">
+  <div class="ch-tag">第四篇 · 第 17 章</div>
+  <h2>第17章 把日常工作做成系统</h2>
+  <h3>每项技能，做一张可用卡</h3>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>技能名称：最适合解决的结果：开始前需要：一次任务会交：已经验证过：尚未验证或需要补齐：遇到什么情况暂停：原始来源与当前维护版本：一个可以打开的样例：</p>
+</div>
+<p>这张卡可以给自己看，也可以放进学员包。它能帮助使用者先判断“这套东西是不是解决我的问题”，减少安装以后才发现缺少账户、工具或素材的情况。 我还会给技能库定几条省事的规矩：只要选题，就先别制作视频；只要脚本，就别先花钱生成声音；成品只改一处，就别全部从头再来。你每次多交代清楚一层，后面就少一部分不必要的消耗。</p>
+<h3>从最近的迭代里，选一个自己也能做的项目</h3>
+<p>如果你做内容，先选标题或一稿多用；做培训，先选一节课的备课；有产品页面，先做一小段宣传片；做服务，先把客户问题与回复草稿整理清楚。挑最接近你日常工作的那个。 熟悉业务，你才知道 AI 哪里真帮上了忙。 库大了以后，按任务找，比按工具名字找方便。</p>
+<p>“我要把文章变成视频”，就顺着改编、 声音、画面和检查往下走；“我只想改标题”，到标题工作台就结束。少绕路，少解释，才是技能库应该带来的变化。 一个好用的技能库，应该让你更快找到这次要用的方法。打开以后，知道调用谁、给什么、最后看什么，不必把全部技能都读一遍。先选三项自己常用的，把说明和样例补齐。</p>
+<p>这样的三项，比几十个再也没打开过的名字，更像你的工作资产。</p>
+<h3>第五篇</h3>
+<h3>质量、安全与商业价值第18章 — 第20章</h3>
+<p>第18章用 SEC 标准判断 Skill 的质量与风险做得好不好，不能只听开发者自己说</p>
+<p>给自己开发，你可能还有时间边用边改。给客户开发，对方拿到以后就会问：它能做什么，什么情况下会出错，为什么你说已经做好了？这几句话答不上来，交付就只能靠双方的感觉。开发者觉得忙了很多，客户觉得还是不能用，最后很容易把时间花在争论上。 我早期做 AI 应用时，就碰到过这个问题。自己说好，却讲不清好在哪里。</p>
+<p>后来整理 Skill 价值评估矩阵，就是想把这把尺子做出来。我们把它叫作 SEC 标准，用来做自评、交付评审和选购比较。它是我们的工作方法，不是某个行业机构发给你的认证。 没有证据的高分，和没有标准的夸奖，差不了多少。 评之前先约定任务与材料，评完把问题落到修改，分数才有用。</p>
+<p>你可以让 AI 帮你收集依据、计算和挑错，但不要只给一个名字，就让它报出“综合评分九十五”。</p>
+<h3>先分清：你在评技能，还是在检查这次交付</h3>
+<p>我们有两套配合使用的尺子。四维矩阵看技能本身：它到底替你完成哪种工作，有什么专业信息，遇到变化是否还能用，能不能交给下一步。八维质检看这次产物：文章、课件、 视频和报告这一次有没有做完整、做正确。两者要连起来，不能互相代替。 一项表现不错的写作技能，这次也可能引用旧数字；一套好用的剪辑方法，换一批素材也可能有声音断点。</p>
+<p>所以，技能可以定期复评，具体作品每次交付前仍要检查。你交给客户的是这一次的结果，不能拿过去的评级替它担保。</p>
+<p>两把尺，分别负责两件事要判断什么 Skill 是否适合采用这次作品能否交付</p>
+<h3>使用哪套标准 SEC 四维矩阵八维质检</h3>
+<p>最后留下什么证据、分数、等级、限制与改进逐项依据、返修单、放行结论</p>
+<h3>四个维度，分别问四句话</h3>
+<p>第一，它是在陪你说，还是替你把活干出来？ 这是范式等级，记作 P，占四十分。第二，它带来了什么专业信息，凭什么相信？ 这是信息增量与真实性，记作 I，占三十分。第三，换材料、遇到错误、改变环境以后，还能不能用？ 这是环境鲁棒性，记作 E，占二十分。第四，它交的东西，下一步接不接得住？ 这是协作适配度，记作 C，占十分。</p>
+<p> 每个维度先按一百分给原始分，再乘权重。不要一会儿把信息项写成满分一百，一会儿又按满分三十相加。评估表里把两列同时放出来，别人才能重算。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>SEC 综合分 = P × 40% + I × 30% + E × 20% + C × 10%</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>P、I、E、C：各自的原始分，范围都是 0—100。加权贡献：分别最多 40、30、20、10 分。综合分满分 100。每一项都要写依据，不能只填数字。</p>
+<p>SEC四维评分总览维度与权重 P 范式等级 40% I 信息增量与真实性 30% E 环境鲁棒性 20% C 协作适配度 10%</p>
+<p>用普通话问替我完成哪种工作专业信息从哪里来遇到变化还能不能用下一步能不能接住</p>
+<p>打分时看什么实际结果与约定任务专业材料、出处与纠错环境、异常与恢复记录输入输出、前后条件与状态</p>
+<p>四个维度、四个权重，加起来才是 100 分 P 范式等级</p>
+</div>
+<div class="mini-grid">
+<span class="mini-pill">40%</span>
+<span class="mini-pill">它替我干了哪种活</span>
+<span class="mini-pill">I 信息增量与真实性</span>
+<span class="mini-pill">30%</span>
+<span class="mini-pill">凭什么相信它</span>
+<span class="mini-pill">E 环境鲁棒性</span>
+<span class="mini-pill">20%</span>
+<span class="mini-pill">换环境还能不能用</span>
+<span class="mini-pill">C 协作适配度</span>
+<span class="mini-pill">10%</span>
+<span class="mini-pill">下一步接不接得住</span>
+</div>
+<p>先按一百分给原始分，再乘权重；评估表里原始分和贡献分两列同时放出来，别人才算得回去。</p>
+<div class="fig-cap">图 18 SEC 四维与权重：加起来才是 100 分</div>
+<h3>第一维：范式等级，别把建议冒充结果</h3>
+<p>如果你要的是一份可以交给同事使用的行动表，AI 只给“建议加强沟通”，就没有完成任务。如果你要的是一份研究建议，它真正交出完整、有依据的建议书，也可以是合格成果。 先看双方约定的结果，别机械地认为“有程序就高级，文字就低级”。 这一维看能力走到了哪一层。</p>
+<p>从基础问答，到专业增强，再到输出可用成果，最后才是能够按约定触发、执行和交付的自动化。个人起步，先把一个成果做稳定就很有价值。自动化需要额外的条件，不用为了争高分，提前把发送、付费或修改重要资料的决定交出去。</p>
+<p>P：范式等级的五个分段原始分 90—100 70—89 50—69 30—49 0—29</p>
+<h3>完成层次自动化范式干活范式强化对话基础对话无范式价值</h3>
+<p>识别依据按约定触发、执行、交付，连接外部系统完成具体任务，交出可用文件、数据或成果有专业增强，主要停在建议问答、角色或格式包装，容易被普通对话替代未形成可辨认的额外工作价值</p>
+<p>打分时，把任务开始前与结束后的东西摆出来。开始是一段会议文字，结束有没有可用的行动表？开始是五段素材，结束有没有按要求导出的文件？开始是一个课程想法，结束是完整讲稿，还是只有目录？先把完成层次看明白，再在对应分段里判断。</p>
+  
+<div class="rescue-box">
+  <div class="rescue-title">小白翻车急救箱｜第四篇多岗位协作与自动跑的 3 个高频隐患</div>
+  <table class="rescue-table">
+    <thead><tr><th style="width:28%">常见卡点 / 报错</th><th style="width:32%">多半是什么原因</th><th style="width:40%">30 秒解决动作</th></tr></thead>
+    <tbody><tr><td><strong>两个 AI 员工抢活干，最后都交了一份</strong></td><td>各自技能的启动词重叠、交接清单没写清楚</td><td>明确谁交出什么文件、谁接手，由主理人汇总把关</td></tr><tr><td><strong>定时任务半夜乱发或把错消息推到外部</strong></td><td>把“生成草稿”和“直接对外发送”绑在一起了</td><td>定时自动跑只允许送到草稿箱或本地报告，确认后再发布</td></tr><tr><td><strong>知识库越攒越乱，AI 反而查到过时数据</strong></td><td>旧版本数据和新版本放在同一个文件夹里没归档</td><td>固定一个主事实文件（如公司标准介绍），旧稿及时移出</td></tr></tbody>
+  </table>
+</div>
+
+</section>
+
+
+<section class="part-page page-break">
+  <div class="part-label">第五篇</div>
+  <div class="part-title">给能干活的人看</div>
+  <div class="part-line"></div>
+  <div class="part-range">第18章 — 第20章</div>
+  <div class="part-roadmap"><div class="roadmap-label">本篇通关路线图</div><svg viewBox="0 0 660 88" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif"><rect x="0" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="90.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">质量评估</text><text x="90.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">5 级放心阶梯</text><line x1="184" y1="44" x2="236" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="240" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="330.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">跨平台</text><text x="330.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">换工具照样能跑</text><line x1="424" y1="44" x2="476" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="480" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="570.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">公开分享</text><text x="570.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">打包开源到 GitHub</text></svg></div>
+</section>
+<section id="ch-anchor-21" class="chapter page-break">
+  <div class="ch-tag">第五篇 · 第 18 章</div>
+  <h2>第18章 什么叫高价值 Skill：5 级质量阶梯一眼看清</h2>
+  
+<div class="viz-card">
+  <div class="viz-title">质量与放心程度 5 级阶梯：什么样的 Skill 才敢真正交给业务用？</div>
+  <svg viewBox="0 0 680 140" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <rect x="10" y="16" width="122" height="108" rx="10" fill="#C8102E"/>
+    <text x="71" y="46" text-anchor="middle" font-size="22" font-weight="900" fill="#FFFFFF">S 级</text>
+    <text x="71" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#FFE4E8">可直接对外交付</text>
+    <text x="71" y="96" text-anchor="middle" font-size="10.5" fill="#FFFFFF">有工具+自检+不瞎编</text>
+
+    <rect x="144" y="16" width="122" height="108" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="2.2"/>
+    <text x="205" y="46" text-anchor="middle" font-size="22" font-weight="900" fill="#C8102E">A 级</text>
+    <text x="205" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">日常稳定可用</text>
+    <text x="205" y="96" text-anchor="middle" font-size="10.5" fill="#374151">步骤清楚、人工微调即可</text>
+
+    <rect x="278" y="16" width="122" height="108" rx="10" fill="#FAF8F7" stroke="#990B22" stroke-width="1.4"/>
+    <text x="339" y="46" text-anchor="middle" font-size="22" font-weight="900" fill="#990B22">B 级</text>
+    <text x="339" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">必须人工盯紧</text>
+    <text x="339" y="96" text-anchor="middle" font-size="10.5" fill="#4B5563">缺验收单或要求还太松</text>
+
+    <rect x="412" y="16" width="122" height="108" rx="10" fill="#F4F4F5" stroke="#52525B" stroke-width="1.4"/>
+    <text x="473" y="46" text-anchor="middle" font-size="22" font-weight="900" fill="#3F3F46">C 级</text>
+    <text x="473" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">只是一段空提示</text>
+    <text x="473" y="96" text-anchor="middle" font-size="10.5" fill="#52525B">只有几句口号没有真动作</text>
+
+    <rect x="546" y="16" width="124" height="108" rx="10" fill="#18181B"/>
+    <text x="608" y="46" text-anchor="middle" font-size="22" font-weight="900" fill="#FCA5A5">D 级</text>
+    <text x="608" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">风险高不建议装</text>
+    <text x="608" y="96" text-anchor="middle" font-size="10.5" fill="#D4D4D8">说明太乱或乱改本地文件</text>
+  </svg>
+</div>
+
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-008.png" style="width:92%;" /><div class="fig-cap">图：实际跑查对比——光写口号 vs 带检查单的真技能</div></div>
+  <h3>第二维：信息增量与真实性，专业不能只靠语气</h3>
+<p>“你是一位资深专家”，不等于技能就有了专业知识。真正要看的是，它有没有用到与你业务有关的材料，关键结论能否找到依据，遇到没有信息的地方会不会补写。你长期积累的产品规则、案例、判断与反例，应该在这里产生作用。 这一维也不是网址越多越好。客户给过的确认说明，可能比十个无关网页更有用；一份准确的内部规则，也不必为了分数勉强接实时数据。最高分段要求数据接入与可追溯，是在区分能力类型，不是在要求每个标题或文件技能都去联网。</p>
+<p>I：信息增量与真实性的五个分段原始分 90—100 70—89 50—69 30—49 0—29</p>
+<p>信息层次真实数据接入高质量知识注入按规矩排好栏目的引导缺少防护信息风险</p>
+<p>识别依据接入真实外部数据，关键输出可追溯核对有专业知识或文档引用，有低错误风险依据主要靠模型原有知识，有防止编造的安排结果缺少依据与事实检查放大编造风险或产生数据安全隐患</p>
+<p>检查时，至少挑三类内容回到材料里看：名字与数字、效果与结论、关键前提。它说“资料齐全后处理”，输出有没有删掉“资料齐全”这几个字？它说的是作者的观点，有没有被改成确定事实？专业信息的价值，往往就藏在这些不能随便丢掉的条件里。 原矩阵在专业知识分段中提到低错误率。要使用这类结论，必须留下检查了多少项、怎样判错、错了多少项。</p>
+<p>五份练习没有发现错，不能直接推成以后错误率低于百分之五。样本少，就说清楚这次看过的范围，不替未来打包票。</p>
+<h3>第三维：环境鲁棒性，离开演示材料以后呢</h3>
+<p>有些演示很顺，是因为材料已经被整理得特别干净。真实使用时，字段会缺，文件名会变，工具会失败，旧版资料也可能混进来。你要检查它在这些情况下会怎样：提示缺口、保留结果、给恢复入口，还是一边出错一边说完成了。</p>
+<p>E：环境鲁棒性的五个分段原始分 90—100 70—89 50—69 30—49 0—29</p>
+<p>稳定程度跨环境充分验证多环境稳定单环境可用脆弱不可用于正式业务</p>
+<p>识别依据跨不同模型验证，异常处理与测试集完整二至三个主流模型验证，有基本错误处理在一个环境验证，换环境仍需调整高度依赖特定版本，轻微变化就失败频繁失败，缺少错误处理</p>
+<p>自用技能只在一个环境里做稳，也可以值得使用。给别人交付，就要把适用的模型、工具和版本说清楚。没有在客户环境里试过，先安排小范围验证；客户只准备在固定环境使用，也不必为了分数承诺所有平台都能用。把能用的范围讲准，比把适用范围写大更负责。</p>
+<p> 异常测试可以从四件事开始：删一份必需材料，放一处冲突信息，模拟一次工具不可用，再改一项已经确认的输入。看看它会不会停在该停的地方，会不会误用旧结果。前面热点视频技能里发现的旧音频复用，就是第三维必须检查的实际问题。</p>
+<h3>第四维：协作适配度，别把整理成本甩给下一位</h3>
+<p>公众号主笔交一篇正文，配图岗位还要猜哪里放图；选题岗位交几十个标题，主笔不知道依据和内容承诺；剪辑岗位给了文件，却不说明哪一版。这些结果可能各自存在，接起来却很费劲。协作适配度看的是：下一步拿到以后，能不能按约定继续。</p>
+<p>C：协作适配度的五个分段原始分 90—100 70—89 50—69 30—49 0—29</p>
+<p>交接能力为组合使用设计能够组合部分可复用孤立使用不适合组合</p>
+<p>识别依据机器可读的固定接口，前后条件明确输入有定义，输出格式可预测人工调整以后能接到其他工作独立可用，输出格式不稳定接入成本高于重新开发</p>
+<p>不必一开始就追求复杂技术。先把输入字段写清楚，输出顺序固定，附上文件位置和未解决事项，就能少掉很多猜测。等你需要让多个程序直接配合，再增加机器能够读取的格式。形式服务交接，别为了看起来专业，让普通使用者更难上手。</p>
+<h3>打分前，先把证据准备好</h3>
+<p>正式评估至少要拿到用途说明、输入输出样例、依赖条件和测试记录。我们做企业采购和客户交付评审时，还要求五组真实业务样例、三类异常记录、一份脱敏业务案例，以及开发者自己的评分表。它们分别回答：正常时怎样、出错时怎样、实际工作里怎样。 如果是第一个自用技能，没有客户案例，可以先做开发自评，把缺项记下来。</p>
+<p>不要为了填齐材料编一位客户，也不要把教学练习包装成业务实测。材料不够支持哪项，就写待验证，不给那项硬凑一个分数。等证据补齐，再进入正式评级。</p>
+<p>正式评审前，先把六项材料摆出来材料场景说明输入输出样例异常记录依赖与权限业务案例自评表</p>
+<p>回答的问题用在哪里，不用在哪里真实工作怎样完成出错怎样处理换到哪里还能用在真实任务里怎样分数凭什么来</p>
+<p>最低准备适用与不适用边界至少五组真实业务样例至少三类异常模型、工具、数据与读写权限至少一份脱敏案例与前后对照四维依据、限制与差异说明</p>
+<h3>三条红线与一票否决，要先于漂亮总分</h3>
+<p>第一条，信息增量 I 的原始分低于十八，最高不超过 C 级。第二条，环境鲁棒性 E 的原始分低于十，不建议正式采购和大规模使用。这里按原有标准与配套计算工具使用原始分， 十八、十都不是加权后的贡献分。它们是严重问题的最低拦截线，不代表超过门槛就足以交付。 第三条，用途、输入输出、依赖或权限有任何一项说不清，不给正式评级。</p>
+<p>缺材料写待验证，是评估没有完成；已经验证发现严重问题，是评估不通过。两种情况别混成一个随手给出的低分。 一票否决包括三项：已测核心功能失效率超过百分之十；把没有依据的编造内容装成权威事实；暴露用户数据或越权访问。触发其中一项，按原标准降为 D 级，先处理问题。总分再高，也不能靠其他优点抵消。 这里还要把“失败”定义好。</p>
+<p>约定正常任务应完成却没有完成，计入核心功能失败；故意删掉材料后，技能准确指出缺失并停止，是异常处理正确，不能因为没生成成品就算失败。 测试开始前先写预期，不能结束以后挑一种算法让结果好看。</p>
+<p>红线先判断，再决定评级条件 I＜18 E＜10 边界不清核心失效率＞10% 编造冒充权威事实泄露数据或越权</p>
+<p>检查口径原始分，满分 100 原始分，满分 100 用途、输入输出、依赖或权限不清正常核心任务；先定义成功与失败有实际材料与输出依据有实际证据</p>
+<p>处理最高不超过 C 不建议正式采购和大规模使用暂不正式评级一票否决为 D 一票否决为 D 一票否决为 D</p>
+<h3>S、A、B、C、D，分别意味着什么</h3>
+<p>分数给一个起点，必要条件和红线再决定最终等级。S 级除了总分至少九十，还要求 P 至少九十，并有真实外部数据接入。A 级要求总分至少八十、P 至少七十，还要有专业知识和低幻觉风险的证据。不能只算一个平均数，就忽略这些条件。</p>
+<p>等级：分数与必要条件一起看等级与分数 S：90 至 100 A：80 至不足 90 B：70 至不足 80 C：60 至不足 70 D：不足 60 或触发否决</p>
+<h3>定位变革级专业级实用级辅助级不采用当前版本</h3>
+<p>采用时怎样判断 P≥90，真实外部数据接入，红线通过 P≥70，有专业知识和低幻觉风险依据场景明确，约定范围内输出稳定比较实际增量与改造成本先修问题，再重新评估</p>
+<p>我的建议是，先做一个适合自己任务的 B 级技能，也值得。它能稳定完成一段工作，材料和结果讲得清楚，已经胜过一直停留在想法里。等级帮助你发现差距，不能代替业务匹配：一个复杂的自动化系统，未必比一个简单可靠的标题工作台更适合你现在的任务。</p>
+</section>
+<section id="ch-anchor-22" class="chapter page-break">
+  <div class="ch-tag">第五篇 · 第 19 章</div>
+  <h2>第19章 在不同平台上都能用得顺手</h2>
+  <h3>跟着算一次：分数到底怎样出来</h3>
+<p>下面是一份计算练习，不对应某个真实产品评级。假定评估材料已经支持这四个原始分：P 七十八、I 八十二、E 六十、C 八十；用途清楚，没有触发红线，输出在约定环境里稳定。先算贡献，再看等级。</p>
+<h3>计算练习：原始分与贡献分分开维度 P I E C 总分</h3>
+<p>原始分 × 权重 78 × 40% 82 × 30% 60 × 20% 80 × 10% 31.2＋24.6＋12.0＋8.0</p>
+<p>贡献分 31.2 24.6 12.0 8.0 75.8（示例 B 级）</p>
+<h3>75.8 是怎么算出来的：原始分 × 权重，再相加</h3>
+<p>P</p>
+<h3>78 × 40% 31.2</h3>
+<p>+</p>
+<p>I</p>
+<h3>82 × 30% 24.6</h3>
+<p>+</p>
+<p>E</p>
+<p>+</p>
+<h3>60 × 20% 12.0</h3>
+<p>C</p>
+<h3>80 × 10% 8.0</h3>
+<p>总分 31.2 ＋ 24.6 ＋ 12.0 ＋ 8.0 ＝ 75.8 → 落在 B 级最直接的短板是 E：只有固定环境证据。下一轮先补第二个环境与异常恢复记录，而不是在说明里加一句“支持更多模型”。</p>
+<div class="fig-cap">图 19 75.8 分是怎样算出来的</div>
+<p>结果是七十五点八，落在 B 级。最直接的短板是环境验证：只有固定环境证据，换环境的表现还不充分。下一轮应该补什么？先补第二个约定环境与异常恢复记录，再根据实际表现重新评。不能只在说明里加一句“支持更多模型”，就给 E 涨分。</p>
+<p> 如果后续证据真的支持 P 八十二、I 八十六、E 七十八、C 八十五，总分是八十二点七；必要条件也满足，才可以评为 A。这里提高的是被验证的能力，不是文案里的承诺。反过来，同样一套高分材料，若正常核心任务二十次失败三次，失败率百分之十五，就触发否决，不能交一个“总体表现优秀”的结论。</p>
+<h3>八维质检，检查这一次能不能发给客户</h3>
+<p>我们的交付材料里，还有一个“八维质检”技能。它把每次交付拆成完整性、准确性、可读性、一致性、合规、时效、呈现和可复用八项。先找约定，再逐项看文件。检查和生产分开安排，同一份资料也要换一个检查视角，别让刚写完时的顺畅感替代判断。</p>
+<p>八维质检：这一次的交付逐项看维度完整性准确性可读性一致性合规时效呈现可复用</p>
+<p>要问什么答应的东西交齐了吗名称、数字、结论对吗使用者能看懂吗前后内容一致吗有没有不当表述与越界与约定时间匹配吗文件、排版、命名可用吗约定的复用能力交了吗</p>
+<p>不通过的例子只交 PDF，缺可编辑文件产品信息用了旧版术语很多，没有操作方法正文与封面讲不同方案编效果、公开私人资料没有提前沟通就错过节点打不开，不知道哪份是当前版缺使用说明或必要模板</p>
+<p>举个练习：客户约定要可编辑课件、使用说明和一次修改记录，交回的却只有PDF。 PDF 再漂亮，完整性也不通过；里面用了旧版产品信息，准确性不通过；文件能正常打开、 页面清楚，呈现可以通过。把每一项写准，不用一句“整体还不错”把问题盖过去。 返修清单写三件事：改哪里，改成什么，怎样知道改好了。</p>
+<p>比如“补交可编辑文件，打开检查文字与图片可编辑；替换旧版产品信息，并在课件和使用说明里同时检查”。结论只留三种：可发出、需返修后复审、不通过。没有“基本可以，先发了再说”。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>评估对象与版本：约定任务与使用环境：四维原始分 / 加权贡献 / 对应证据：缺少材料与尚未验证的项目：红线与否决项：综合分、必要条件、最终等级或暂不评级：本次产物八维检查：返修项：位置 / 修改要求 / 复查方式 / 负责人放行结论：可发出 / 需返修后复审 / 不通过下次复评：发生哪些变化就重评，最晚何时回看</p>
+</div>
+<h3>评分以后，要能安排下一步</h3>
+<p>P 低，先看有没有把建议做成可用成果；I 低，补专业资料、出处和事实检查；E 低，补环境与异常测试；C 低，补输入输出和交接要求。触发否决，先修否决问题。不要挑最容易加几分的外观，把真正影响交付的地方留到最后。 客户与你的自评分差得很大，也别急着解释。把同一任务、同一版本、同一材料摆出来，逐项对照。</p>
+<p>如果偏差超过十五分，就写清双方依据，找到认定不同的地方。没有一致依据之前，先安排复核，别拿开发者的分数直接要求客户接受。 评分不是为了证明我做得好，是为了知道下一步该改哪里。 你能拿着这张表，讲清楚能用的范围、已经发现的问题、准备怎样修，客户才更容易判断要不要采用。开发、验收、返工和复评连起来，标准才真正参与了工作。</p>
+<p>第19章如何把自己的 Skill 做成产品交付包：让别人接得过去交付内容使用说明输入材料能力文件合格与反例验收与维护</p>
+<p>必须写清什么适用人群、任务、条件与不适用情况。 必要字段、示例和缺失时的处理。 说明、模板和实际需要的配套文件。 用同一口径说明对在哪里、错在哪里。 结果检查、修改记录、版本和联系人。</p>
+<p>先交一个具体结果，不先卖“全自动”</p>
+<p>客户要的通常不是一个文件名，而是某项工作能够比较稳定地完成。你可以交一份标题说明，也可以提供材料梳理、配置、示例、培训和维护；这几种范围不同，不能用同一个“技能包”说法含糊带过。 给学员做短视频选题材料时，我们没有只交一份技能说明，还把行业、受众、对标内容和已有经历整理成输入模板。学生先填这些，再看选题结果和理由。</p>
+<p>这样做，是为了让他知道自己到底该准备什么，出了问题又应该检查哪里。教会一个人使用，比展示一次自己能做出来，更值得花心思。 如果你准备为客户提供公众号内容服务，第一版可以只约定一次选题与文章草稿，不同时承诺增长、获客、成交和长期运营。如果准备提供视频服务，明确交付方案、素材包、可编辑工程还是最终成片。</p>
+<p>产品边界越清楚，后面的合作越容易核对。</p>
+<h3>做一份客户能看懂的服务说明</h3>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>服务对象：已经有上一篇文章的正文和事实表并需要解决读者点开能不能一眼看懂的人。 本次结果：一份一份能打开的文章草稿。 客户需要提供：材料清单与授权范围。 我们负责：整理、制作、检查、约定范围内的修改。 本次不包含：明确列出不在这次服务里的部分。 验收方式：逐项检查内容、文件与事实，不以“感觉不错”结束。 维护范围：什么变化会更新，什么情况需要另行讨论。</p>
+</div>
+<p>这份说明先用普通话写。不要让“智能体、工作流、全链路”挤掉真正要交的结果。客户看完应该知道：需要自己做什么，你准备交什么，什么算完成，哪里还要自己判断。 定价先算自己的账：整理材料花多少时间，制作和检查花多少，允许改几次，工具成本是多少，交完以后还支持什么。复杂度不同，价格当然不同。别看别人晒一个报价，就给自己照抄。先把一项小服务做完，知道钱和时间花在哪里，再往后定范围、定价格。</p>
+<h3>学员包，不能只给作品截图</h3>
+<p>一份适合学员的技能包，至少有说明文件、输入样例、输出样例、跟做步骤和常见错误。涉及外部服务时，还要说明必要账号和工具。没有这些，学生看到一个成品，会以为自己只差一句指令，实际却缺了很多前提。 可以在第一次练习中只要求做一个很小的结果，例如从五个候选里选一条真正能拍的题，或者把五段素材按要求剪成一条。</p>
+<p>练习目标越清楚，老师越容易看出学生卡在哪：缺材料、不懂顺序、工具未好，还是不知道怎样验收。 完整视频、脚本和截图，也不能都算成同一种完成状态。交了脚本就按脚本检查，交了成片才按成片检查；机器检查与人工观看也分开。标准先说清楚，学员才不必猜老师真正想看什么。 教学交付，我最看重的是学生能不能在自己的材料上再做一次。</p>
+<p>老师用准备好的材料演示成功，和学生独立做出来，中间还隔着选材料、理解要求、发现错误这几步。把这些环节放进练习，学生遇到问题才知道怎么查。你愿意把这里讲细，课程就不会停在看一场演示。</p>
+</section>
+<section id="ch-anchor-23" class="chapter page-break">
+  <div class="ch-tag">第五篇 · 第 20 章</div>
+  <h2>第20章 把技能交给别人用：打包、脱敏与 GitHub 开源</h2>
+  <div class="fig-wrap"><img src="file:///Users/yuanliuwei/人人都能开发Skill_v7/src_v6/images/img-009.png" style="width:92%;" /><div class="fig-cap">图：打包发布前清掉账号密码与客户隐私的自检过程</div></div>
+  <h3>客户交付还需要一张变化说明</h3>
+<p>公司环境中的材料和规则会变。产品范围增加、政策调整、账号权限变化，都可能影响技能。交付包里写清楚由谁维护哪部分，什么时候需要重新检查，出现问题怎样恢复旧版。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>交付版本：已确认适用的材料与环境：本次完成的检查：已知限制：业务规则由谁更新：工具变化由谁处理：客户反馈如何进入下一版：不再适用时怎样停用或恢复：</p>
+</div>
+<p>你可以让客户试做一项任务，观察他能否理解说明、准备材料和判断结果。对方需要的是可以使用的能力，而不是你开发过程里全部内部细节。内部记录留完整，客户版本把必要信息讲清楚。 让别人按你的说明用一次，比自己反复介绍功能更能看出产品问题。能独立准备材料、 做出结果、知道哪里要找你，交付才算有了基础。最后那一页使用说明，往往比你再加几个功能，更值得先做好。</p>
+<h3>先把服务分成不同范围，再谈价格</h3>
+<p>公司资料里的“定价与守价”技能，把报价拆成不同服务层次。对做 Skill 交付的人，这个思路很实用：只整理方法，与把方法放进客户环境、带着试用和维护，工作量完全不同。你先把这几层分清楚，才知道自己到底在卖什么。</p>
+<p>三档服务先分范围，再由负责人定价服务层次方法整理配置与试用交付与维护</p>
+<p>交什么任务卡、说明、练习与验收表加入环境、真实材料试做、问题修正约定场景适配、培训、更新与支持</p>
+<p>需要客户准备什么已有材料与合格例子可用工具、权限、真实输入负责人、变化规则与反馈机制</p>
+<p>价格由你根据真实成本、支持范围和业务判断来定，不让 AI 凭一个标题替你报价。对外的说明写客户拿到什么、需要准备什么、允许怎样修改；内部自己把整理、制作、检查、工具和后续支持的时间算清楚。</p>
+<p>客户说预算不够，可以讨论缩小范围。例如先做单一任务与一组材料验证，暂不连接其他系统；或者先交方法与样例，配置支持另作约定。不要保持所有承诺不变，只把价格一路往下砍。缩范围以后，验收也要一起更新，不能把删去的内容留在原承诺里。</p>
+<h3>把质量表交给客户，而不是只报一个分数</h3>
+<p>第18章的 SEC 表，可以作为这项服务的评估附件。先写双方同意的场景，再写测试材料与环境，最后才是分数、等级和限制。八维检查则跟着本次文件一起交。客户看见问题清单与修订记录，才知道为什么当前版本能交付。 如果只在你电脑上试过，报告就写这个范围，客户环境安排下一轮验证。对方还没给必要材料，就先说明影响，不为了让交付单好看，把待确认写成通过。把这几项说透，合作才有一份双方都能回头核对的依据。</p>
+<p>第20章从流量、运营到交付的一人公司案例四小时跑通的，是一条课程生产线</p>
+<p>有一次，我们用专家团花四小时跑通了课程生产线，形成大纲、课件、详情页和学员指引等初稿。说到这里，先把事情讲准：这是把研发和上架所需的几段工作接起来，还得继续打磨内容、练习和教学。它的价值，在于原来散着的活开始有了分工，出了问题也找得到该改哪里。 真实任务包含定位、大纲、详情页、视觉、PPT、招生文案、学员指引和交付目录。</p>
+<p>把这些结果第一次组织起来，能够让一个模糊项目变得可检查；但课程内容是否足够好、学员能否学会、市场是否需要，仍然要继续验证。 我不建议你拿四小时作为自己的完成期限。你手上已有多少材料，课程本身多复杂，都会影响时间。更值得带走的是这次怎样分工、怎样避免返工。只盯别人用了多久，很容易漏掉人家在计时之前就已经积累的东西。</p>
+<h3>第一步：先锁定一份共同简报</h3>
+<p>如果今天重新做同类项目，我会先准备一份共同简报：目标学员、课前基础、核心问题、课后成果、已有材料、品牌参考、价格与权益状态。会影响全局的内容先确认，不让各岗位自己补。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>本次研发一套「周报写作」课程上架包，先完成初稿，继续打磨后再用于教学。 目标学员是刚开始用 AI 写周报的职场人，完成后应能做出把每次一小时的整理压到二十分钟。 材料使用清单中的内容，未知事实保留待确认。 这轮价格与权益不自行拟定，不承诺学员收入。 先交定位和逐课成果，确认方向后再做完整视觉与招生材料。</p>
+<p>把这份简报交给课程定位岗位。它要解释为什么这样分课、每课解决哪项障碍、每项成果怎样验收。不能只交一份看起来很完整的章节目录。目录必须连接学员真实的起点与终点。</p>
+</div>
+<h3>第二步：把五类工种分开，又让它们读取同一份材料</h3>
+<p>课程定位岗位负责框架；文案岗位负责把真实价值讲清楚；课件岗位负责把讲解变成页面；视觉岗位负责风格和素材；运营岗位负责排期、作业和学员指引。主理人统筹这些关系，最终由真人确认关键判断。 你可以用下面的交接顺序。定位通过以后，讲稿和部分运营材料开始；讲稿结构稳定以后，课件逐页制作；文案中的事实确认以后，再做详情页视觉；最后统一检查全部文件。独立部分并行，改变方向的前提先确认。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>请为这次课程初稿列一张任务表：岗位、接收材料、开始条件、交付文件、检查人、下游。 先指出哪两项必须先确认，哪两项可以并行。 不要为了显示团队很忙，让所有岗位同时制作终稿。</p>
+<p>你最值得带走的，是这张写清先后关系的任务表。它能减少“前面改一句，后面六份文件一起推倒”的情况，也能让你把注意力放在真正需要判断的节点。</p>
+</div>
+<h3>第三步：把四个坑改成开工要求</h3>
+<p>第一，参考没有先锁。视觉没先看已经认可的参考图，第一版做成另一种风格。改法不是笼统要求更美，而是在开工清单里写明先读哪张图、保留哪些特点、先交什么小预览。 第二，事实没有先锁。旧数据与新说法同时进入不同文件，后来需要逐处修正。改法是统一事实表，区分已确认、待确认和历史版本，不让不同岗位各找一个旧材料。</p>
+<p> 第三，团队建了却没从开始使用。前面仍然是一个人串行做，最后才让其他角色补位。 改法是在工作开始时就分出独立工作包，并写明回传内容；不是看到进度慢了才临时增加很多人。 第四，课件有硬约束。大字号、长文字和视觉版式会发生冲突。改法是每页只讲清一件事，检查实际导出页面；文字放不下时先压信息密度，不为了保持一个漂亮字号而裁掉内容。</p>
+<p> 你可以把四条要求合成一张开工卡：先看参考，先对事实，先排分工，先定验收。它们都来自具体问题，不是为了显得流程专业而增加的形式。</p>
+<p>把开工要求写好，主理人的工作也会更轻。它不用每次重新揣摩你的偏好，而是先检查四件事有没有准备齐。你回来主要看需要自己拍板的决定，再看最终作品。少一轮来回追问，少一处成批返工，就是这张小卡最直接的价值。别嫌这些事琐碎，真正忙起来，它们决定一条生产线是否还要靠你到处救场。</p>
+<h3>第四步：让成果进入一个可检查的交付包</h3>
+<p>交付时，打开目录不应该只看到“最终版”和“最终版2”。你需要按用途区分：需求与定位、讲稿、课件、销售说明、视觉、运营材料、检查与待办。每份文件标清版本，接手的人知道哪份可以采用，哪份还在等确认。</p>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>课程上架包/ 01-需求与定位/ 02-逐课大纲与讲稿/ 03-可编辑课件/ 04-详情页内容与视觉/ 05-招生文案/ 06-学员指引与作业/ 07-检查与待办/</p>
+</div>
+<p>这个目录可以直接照着改，项目小就删掉不需要的部分。最后留一张总清单：哪份能用，哪份还得改，问题由谁处理。做完以后，我要的是打开文件就知道下一步，而不是再听一遍每个岗位怎样辛苦。 下面这张课程资料中的文件结构图，展示了各类成果怎样分别摆放。你可以据此整理自己的目录，让接手的人不用猜每份文件的用途。</p>
+</section>
+
+
+<section class="part-page page-break">
+  <div class="part-label">第六篇</div>
+  <div class="part-title">回到你自己的事</div>
+  <div class="part-line"></div>
+  <div class="part-range">第21章 — 第23章 &amp; 附录</div>
+  <div class="part-roadmap"><div class="roadmap-label">本篇通关路线图</div><svg viewBox="0 0 660 88" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC, Microsoft YaHei, sans-serif"><rect x="0" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="90.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">挑准第一站</text><text x="90.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">选最熟的小事</text><line x1="184" y1="44" x2="236" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="240" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="330.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">固定迭代</text><text x="330.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">每周改稳一个</text><line x1="424" y1="44" x2="476" y2="44" stroke="#C8102E" stroke-width="2"/><rect x="480" y="12" width="180" height="64" rx="10" fill="#FFF5F6" stroke="#C8102E" stroke-width="1.6"/><text x="570.0" y="35" text-anchor="middle" font-size="10" font-weight="900" fill="#C8102E">立刻行动</text><text x="570.0" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">3 件小事开跑</text></svg></div>
+</section>
+<section id="ch-anchor-24" class="chapter page-break">
+  <div class="ch-tag">第六篇 · 第 21 章</div>
+  <h2>第21章 先做自己能看懂结果的事</h2>
+  <p>打开目录就该知道下一步，而不是先问人课程上架包/ 01-需求与定位/ 02-逐课大纲与讲稿/ 03-可编辑课件/ 04-详情页内容与视觉/ 05-招生文案/ 06-学员指引与作业/ 07-检查与待办/ 最后留一张总清单：哪份能用，哪份还得改，问题由谁处理。</p>
+<p>目标学员、核心问题、课后成果每课一个障碍、一个成果八页一节课，导出后逐页看事实先确认，再做视觉不承诺学员收入开营、答疑、提交方式哪份能用、哪份还要改、谁处理</p>
+<div class="fig-cap">图 20 课程资料中的文件结构图：按课件、讲稿、详情页与学员材料分开。</div>
+<h3>从这一门课，回到整家公司的四段业务</h3>
+<p>内容让潜在用户看见问题，产品定义能够提供的结果，运营帮助合适的人进入下一步， 交付让对方获得实际作品与方法。课程项目只是其中一段，却会影响其他三段：交付中反复出现的困难，能变成下一次选题；学员经常误解的地方，应该回到产品说明；材料总缺失的项目，应在运营时提前确认。 把这些反馈带回下一轮，产品和服务才会越做越顺。</p>
+<p>学员卡住的一步，补进练习；客户理解有偏差的一句话，改进说明；每次都要追着要的材料，放进开工清单。你不用等到月底做一份大复盘，当天发现、当天留下一条有用的改法，就已经在积累。 回头看一次项目，别只问做出了多少文件。问三件事：哪一段已经可以交给 AI，哪一段还得自己判断，哪一个错误下次不想再犯。把答案留下来，下一次开工就不一样。</p>
+<p>这样，你做完的不只是一个项目，还多了一套往后能继续用的方法。</p>
+<h3>一个中心，三个基本点，技能怎样回到生意里</h3>
+<p>在上面四段之外，我还习惯压成一个更省事的说法：一个中心，三个基本点。中心是你的 IP，三个基本点是流量、运营和交付。 看起来比四段少一段，其实产品被并进了交付—— 你拿什么交出去，那就是产品；客户真的拿到了结果，才会复购和转介绍。分四段是为了看清每一段谁负责，压成三点是为了知道自己这周该盯哪件事。</p>
+<p>Skill 放在哪里？内容选题、文章与视频，帮助你把能讲清楚的东西持续表达；产品梳理、线索表和启动包，帮助你把合作安排清楚；质量检查和案例复盘，帮助你把答应的事交出来。不是每一项都需要单独开发一个技能，先看你现在卡在哪一段。</p>
+<p> 假如已经有人来咨询，却总找不到材料、范围说不清，就先补运营和交付；如果产品与交付还没做稳，也不必急着增加每天的内容数量。你需要的下一项技能，应该能解除当前最费力的那处卡点。这个顺序想清楚，工具才不会越装越多，事情却没往前走。</p>
+<h3>第六篇</h3>
+<h3>毕业项目与下一步第21章 — 第22章</h3>
+</section>
+<section id="ch-anchor-25" class="chapter page-break">
+  <div class="ch-tag">第六篇 · 第 22 章</div>
+  <h2>第22章 建立你自己的 Skill 迭代节奏</h2>
+  <h3>第21章用七天完成个人技能库雏形七天跟做地图</h3>
+<h3>七天只做一件事：把一件真活，做成一套能交出去的方法</h3>
+<table class="rescue-table" style="margin:6pt 0 10pt;"><thead><tr><th style='width:18%'>进度</th><th style='width:26%'>当日核心动作</th><th>具体要拿到什么结果</th></tr></thead><tbody><tr><td><strong>第 1 天</strong></td><td>选准 1 件熟事</td><td>挑一个自己常做、重复出现、一眼能看出好坏的任务</td></tr><tr><td><strong>第 2 天</strong></td><td>攒齐 3 份真材料</td><td>准备 1 份满意成品、1 份曾退回的坏例子和 1 份事实清单</td></tr><tr><td><strong>第 3 天</strong></td><td>写出第 1 版说明</td><td>用大白话写清什么时候启动、分哪几步做、交出什么</td></tr><tr><td><strong>第 4 天</strong></td><td>跑 4 类测试材料</td><td>分别试跑正常材料、缺材料、前后矛盾材料和越界请求</td></tr><tr><td><strong>第 5 天</strong></td><td>只改 1 处并复测</td><td>针对错误原因做局部修改，改完再用旧材料重跑一遍防改坏</td></tr><tr><td><strong>第 6 天</strong></td><td>接上下游动作</td><td>给交出去的结果加上状态标签（已确认 / 待补充）</td></tr><tr><td><strong>第 7 天</strong></td><td>请别人盲测一次</td><td>让同事或朋友照着说明用一次，看他卡在哪一步再补齐</td></tr></tbody></table>
+<p>不以开发数量为目标。七天结束时，手上应该有一个自己真正在用的技能，而不是十个空壳。</p>
+<div class="mini-grid">
+<span class="mini-pill">选任务</span>
+<span class="mini-pill">陪 AI 做一遍</span>
+<span class="mini-pill">材料能不能拿到</span>
+<span class="mini-pill">记下你的纠正</span>
+</div>
+<p>D3</p>
+<h3>写第一版</h3>
+<h3>只写能执行的步骤</h3>
+<p>D4</p>
+<h3>四类输入测写预期再跑</h3>
+<p>D5</p>
+<h3>只改一处</h3>
+<h3>旧样本要复测</h3>
+<p>D6</p>
+<h3>接相邻任务</h3>
+<h3>交接卡带状态</h3>
+<p>不以开发数量为目标。七天结束时，手上应该有一个自己能用的技能，而不是十个空壳。</p>
+<div class="fig-cap">图 21 七天路线：每天只推进一小段</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>第2天</p>
+<p>准备一份合格例子、一份反例和事实表。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>第3天</p>
+<p>写出第一份说明，明确输入与输出。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>第4天</p>
+<p>跑正常、缺材料、冲突和越界样本。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>第5天</p>
+<p>按错误原因修订，再检查旧例。</p>
+</div>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>第6天</p>
+<p>请另一个人按说明使用，观察卡点。</p>
+</div>
+<p>D7</p>
+<h3>让别人试</h3>
+<h3>看他卡在哪</h3>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>第7天</p>
+<p>整理文件、验收表和下一版修改清单。</p>
+</div>
+<h3>毕业项目：选一个主任务，加一个相邻任务</h3>
+<p>七天不以开发数量为目标。先做一个完整的小任务，再接一个相邻任务，形成一条短链。内容方向可以从标题到文章结构，办公方向可以从会议文字到行动表，视频方向可以从素材清单到五段混剪。不要同时开始三个互不相干的项目。 给自己安排七天，把任务卡、技能说明、输入输出、检查和修改做一遍。每天只推进一小段，卡住就处理卡点，不用为了赶日历假装完成。最后拿到一个自己真正用得上的技能， 比一周创建十个空壳更值得。</p>
+<h3>第一天，选题与材料</h3>
+<p>列十项重复工作，选一个你能判断对错、材料也能取得的任务。写目标与边界，准备一份完整材料副本，移除无关私人信息。当天只确认一个结果，不开大而全的功能清单。 把结果写成别人也能理解的一句话。例如“让会议结束后每个人知道下一步”，再落到“决定、行动项、待确认问题”三个输出。写不清楚，就回去缩范围。</p>
+<h3>第二天，先陪 AI 做一遍</h3>
+<p>在普通任务里把材料交给 AI，逐步看它怎样完成。记录你补充的背景、纠正的判断和删掉的无用动作。不要只保存最后成品，那些中间纠正正是技能开发材料。 当天结束，整理一份“我为什么接受这个结果”。如果只能写“看起来不错”，就还需要补具体标准。可以从事实、结构、可用性和任务边界四个方面解释。</p>
+<h3>第三天，提炼第一版技能</h3>
+<p>让 AI 区分本次事实与通用方法，再生成技能说明。名称和用途清楚，步骤能够执行，必要文件能够找到，输出样例与输入对应。把还不确定的部分列出来，版本标为试用。</p>
+<p>不要一边提炼一边增加十个新功能。第一版的目的，是让第二次同类任务少解释一些， 而不是证明它能包办所有事情。</p>
+<h3>第四天，检查缺失与冲突材料</h3>
+<p>准备完整、缺失、冲突和不适用四种输入。运行前写预期，运行后留实际结果。优先检查是否编事实、扩大范围、跳过必要条件，格式可以在下一轮打磨。 如果用的是标题技能，缺正文就只交方向；如果是客户整理，没说预算就待确认；如果是文件处理，不允许覆盖就另存。检查标准应该贴着你的任务，而非一套抽象总分。</p>
+<h3>第五天，只改一个主要问题</h3>
+<p>从前一天的错误里选一个原因，针对性改说明。修好以后，把旧样本也重新检查，看看有没有破坏原来正确的部分。保留改前与改后，不覆盖掉所有错误证据。 当天结束，写一张返工卡：哪里错、违反什么、怎么改、怎样复查。以后每次修改都用它，维护会越来越清楚。</p>
+<h3>第六天，接上相邻任务</h3>
+<p>标题做好了，可以交给结构规划；会议整理好了，可以交给下次检查清单；混剪做好了，可以交给另存与版本说明。写清上一环交什么，下一环要什么，不要只画一条箭头。 如果接不上，先检查交接文件是否缺少状态、来源或限制。不是立刻再开发一个万能总控技能。很多时候，只需增加一张明确的交接卡。</p>
+<h3>第七天，让别人试读和试用</h3>
+<p>把说明、样例和检查记录交给一个没参与开发的人，让他解释什么时候用、先准备什么、最后如何判断。他理解不了的地方，就是说明里的隐含前提。 试用时少解释一点，多看他卡在哪里。你补了什么，就记下来，回头判断是不是该写进说明。还没来得及试，就先留着这一项，不急着做“用户都说好”的结论。能持续接住真实问题，才有下一版值得改的东西。</p>
+</section>
+<section id="ch-anchor-26" class="chapter page-break">
+  <div class="ch-tag">第六篇 · 第 23 章</div>
+  <h2>第23章 收尾：现在就可以开始的三件小事</h2>
+  <h3>七天以后，拿这张表看看自己做到哪里</h3>
+<div class="prompt-box"><div class="prompt-head">💬 发给 AI 的指令（可直接复制）</div>
+<p>我的主任务：它连接的相邻任务：技能说明与使用说明：完整输入与合格输出：缺失、冲突和不适用样本：主要错误与一次修改：修改后复查结果：使用者仍需准备的条件：当前版本与已知限制：</p>
+</div>
+<p>到这里，你已经不只是看过一本讲 Skill 的书。你手里有自己做的文件，有用过的材料， 有一次修改，也知道下一步还缺什么。以后再增加技能，沿着这条路往前走就行：先找真实任务，做出结果，再把有效的方法留下来。</p>
+<p>第22章 AI 时代，真正稀缺的是什么省下来的时间，你准备拿去做什么</p>
+<p>写到这里，我想把问题拉回你自己。我们花时间做 Skill、搭 AI 员工、跑自动化，究竟图什么？我的答案是，让自己从反复执行里出来，多一点时间做判断、做产品、见真正需要见的人。如果工具越来越多，自己却越来越离不开屏幕，就要停下来看看，究竟是哪一段没有交出去。</p>
+<p> 我看未来三五年，把工作经验变成 AI 能用的技能，仍然有很大的现实价值。你已经懂一点业务，也做过一些具体的事，未必要等到成为技术专家才开始。就从现在的经验里，找出一件能教给 AI 的活。这个起点，比追着每个新工具跑，更贴近你自己的生意和工作。 以后模型更强，有些技能可能不再需要专门开发。那就少写一点，甚至停用，没什么可惜。</p>
+<p>我们留下经验，是为了把事情做得更好，不是为了守着一堆文件证明自己以前很努力。 真正值得留住的，是面对一项新工作时，你知道怎样把它拆开、做出来、交给别人。</p>
+<h3>自己会做，还要让别人用得起来</h3>
+<p>自己会做，很多时候靠的是熟悉；教别人做，就得把步骤、判断和容易错的地方讲出来；交给客户，还要考虑对方怎样开始、怎样检查、遇到问题找谁。做 Skill，会逼你把这些原来藏在脑子里的东西想清楚。对做培训和服务的人来说，这本身就是一次很实在的能力整理。 一个例子就能看出差别。</p>
+<p>你知道哪种标题适合自己，是会做；你能解释为什么接受或退回，是会教；别人用你的材料和说明，能够完成一次有边界的任务，才更接近可以交付。后两者不会因为 AI 能快速写字就自动出现。 我希望公司积累的，不只是做过哪些项目，更是每个项目留下哪些能继续用的方法。学员拿走的，也不只是一个工具名字，而是知道怎样完成一项工作。</p>
+<p>客户付费以后，应该清楚拿到什么、怎样用。你对这几件事越认真，Skill 才越接近真正有价值的产品和服务。</p>
+</section>
+<section id="ch-anchor-27" class="chapter page-break">
+  <div class="ch-tag">附录 · 大白话速查</div>
+  <h2>附录｜大白话速查表与开源生态延伸阅读</h2>
+  <h3>人前活人感，人后 AI 化</h3>
+<p>这是我很看重的一种工作方式。该自己出面的地方，自己去见，自己去聊，自己作判断；后台那些能整理清楚的重复步骤，让 AI 去跑。客户为什么犹豫，学员到底哪里没学会， 一个产品值不值得继续做，这些要你回到真实的人和事里，才能知道。 省下时间以后，别立刻再给自己塞满另一堆任务。拿一点去听客户，把产品想透一点， 也给生活留出位置。</p>
+<p>AI 替你做得越多，你越应该想清楚自己还要亲自做什么。判断归你，执行逐步交给 AI。 方向留在自己手里，事情有人替你往前推，这才是我想要的一人 AI 公司。 你不需要等所有条件齐了再开始。选一件今天正在做的事，给材料，陪它做一遍，指出哪里不行，把改法留住。</p>
+<p>过几天再遇到同样的事，少解释一次，少返工一轮，你就已经看见这件事为什么值得做。 AI 负责当牛做马，我们面朝大海春暖花开。愿这句话最后落在你的日常里：该忙的事， 你能抓住；能交出去的活，不再一直攥在自己手里。</p>
+<p>术语速查｜这本书里反复出现的 15 个词这些词在书里反复出现，第一次读到不确定时回来翻一眼。解释按本书的用法写，不追求学院定义。 词 Skill（技能） SKILL.md 头部信息触发材料事实表边界交付物验收单专家专家团主理人交接卡返工 SEC 四维</p>
+<p>在这本书里指什么把一件会重复做的事写成 AI 能照做的说明：材料、步骤、边界、输出技能的主文件。平台靠它的头部信息判断什么时候调用文件开头那几行 name 和 description，决定触发范围宽窄 AI 判断这次该不该用这个技能。</p>
+<p>写窄了不触发，写宽了乱触发这次任务允许使用的输入：正文、事实表、参考成品都算把已确认的数字、身份、口径单列出来，防止 AI 猜缺什么就停、什么不能编、哪些不能对外。写进技能里比每次口头纠正省事交出去能被打开、被检查的东西，不是一句“已完成” 交付前给人看的检查清单。</p>
+<p>勾上意味着打开文件核对过某个岗位上的角色，负责选用技能并交接材料多个专家按依赖关系协作，由主理人汇总接单、排顺序、退回、汇总的那个人，不替岗位干活岗位之间传的东西，标清已确认、待确认、仅供参考不合格的退回原岗位改，不让下游替上游兜底评技能用的四个维度：范式等级 P、信息增量 I、环境鲁棒性 E、协作适配度 C</p>
+<p>延伸阅读｜沿着一个真实任务，继续往下找学会第一个技能以后，你可以从下面这些公开材料继续研究。我的建议仍然是只挑一个与你工作接近的任务，把输入、做法和结果看完整，再拿自己的小材料试。别把延伸阅读变成另一轮批量收藏。</p>
+<h3>想看别人怎样把经验写成技能</h3>
+<p>宝玉的公开演讲材料与开源项目，适合对照文件看具体做法。翻译和多稿合并两篇分享，则适合观察一个任务怎样在反复使用中长出规则。读的时候，可以记一条你准备借鉴的安排，不必一次搬走作者的整套方法。</p>
+<p> 宝玉的公开演讲材料 ： https://s.baoyu.io/files/baoyu-ai-skills-talk/ai-skillstalk.html 宝玉的开源项目：https://github.com/JimLiu/baoyu-skills 翻译技能复盘：https://old.baoyu.io/blog/2026-03-05/i-built-a-translator-skill 多稿合并案例：https://old.baoyu.io/blog/2026-03-04/ai-merge-drafts-into-skills 公众号“划船渡学海”的《从能跑到能用——skill实战经验》（2026年10月15日），可以配合数据章节阅读，重点想一想：哪些步骤应该确定计算，哪些需要理解，哪些最后仍由人判断。</p>
+<h3>想把自己的文件组织得更清楚</h3>
+<p>Agent Skills 的格式规范与创作建议，适合在你有了第一版以后回来查。带着文件看规则，比一开始硬背目录容易理解。Anthropic 的相关工程文章，则可以帮助你继续理解技能、材料与工具怎样配合。</p>
+<p> 格式规范：https://agentskills.io/specification 创作建议：https://agentskills.io/skill-creation/best-practices 工程介绍 ： https://www.anthropic.com/engineering/equipping-agents-for-thereal-world-with-agent-skills</p>
+<h3>想找到当前的软件入口</h3>
+<p>WorkBuddy 的界面会更新，创建专家、加入技能和安排定时任务，可以查看当前官方说明。把按钮位置交给帮助文档，把工作方法留在自己的技能里。</p>
+<p> 专家说明 ： https://www.workbuddy.cn/docs/workbuddy/From-Beginner-toExpert-Guide/Function-Description/Expert-Center 技能说明 ： https://www.workbuddy.cn/docs/workbuddy/From-Beginner-toExpert-Guide/Function-Description/Skills-Market 定时任务说明 ： https://www.workbuddy.cn/docs/workbuddy/From-Beginner-toExpert-Guide/Function-Description/Automation-Guide</p>
+<h3>书里的例子从哪里来</h3>
+<p>SEC 四维矩阵与《企业级Skill评估体系，免费分享给你》（袁六伟，2026年4月1日），用于质量评估章节。交付启动包、线索运营台、定价与守价、八维质检等课程配套材料，用于客户服务与交付练习。设计测试与审稿材料，用于解释同一任务下怎样比较工具。案例中的当时环境和测试结果，不替代你在自己条件下的验证。</p>
+<h3>关于示例与图片</h3>
+<p>书里的周报、客户咨询和数据表都是完整例子，你可以照着重做一遍。截图和作品画面来自我们自己的项目，涉及他人信息的都作了遮挡。软件入口以你使用时的版本为准，界面更新后位置可能变，按步骤描述去找对应功能。引用的外部观点在文中标了出处，作品权利属于各自作者。</p>
+</section>
+<section id="ch-anchor-28" class="chapter page-break">
+  <div class="ch-tag">随书赠送 · 可打印贴在电脑旁</div>
+  <h2>随书一页纸｜Skill 上岗前 6 项自检卡片</h2>
+  <p>每当你做完一个新 Skill，或者准备把一个旧 Skill 分享给同事/开源到 GitHub 前，花 1 分钟把下面这 6 个小方框打上勾，几乎就能避开 95% 的翻车。</p>
+  <div class="checklist-card">
+    <div class="chk-row"><span class="chk-box">☐</span><div><strong>1. “门口招牌”写清楚了吗？</strong><br/><span><code>description</code> 里明确写了“什么时候用”，也写了“什么时候不要乱启动”。</span></div></div>
+    <div class="chk-row"><span class="chk-box">☐</span><div><strong>2. “实话红线”立住了吗？</strong><br/><span>写了“材料里没给的数字、客户案例、成绩，一个字都不准编；缺材料先停下来问我”。</span></div></div>
+    <div class="chk-row"><span class="chk-box">☐</span><div><strong>3. 有 1～2 份“优秀样板间”吗？</strong><br/><span><code>examples/</code> 里放了你真认可的成品，让 AI 一眼看懂你要的语气和格式，而不是干讲大道理。</span></div></div>
+    <div class="chk-row"><span class="chk-box">☐</span><div><strong>4. 拿两份不同材料试跑过了吗？</strong><br/><span>换一篇完全不同主题的材料再跑一次，确认它没有把上一篇文章的旧内容混进通用步骤里。</span></div></div>
+    <div class="chk-row"><span class="chk-box">☐</span><div><strong>5. 缺材料时测试过“会不会硬编”吗？</strong><br/><span>故意少给一半材料让它跑，看它是不是老实停下来告诉你“缺什么”，而不是自作主张瞎补全。</span></div></div>
+    <div class="chk-row"><span class="chk-box">☐</span><div><strong>6. 对外分享前“清掉隐私”了吗？</strong><br/><span>准备打包发给别人或传到 GitHub 前，已经删掉账号密码、客户真实姓名和私人目录路径。</span></div></div>
+  </div>
+  <div class="prompt-box" style="margin-top:14pt;">
+    <div class="prompt-head">📌 一句话记住这本书</div>
+    <p><strong>你改过百遍的工作标准，就是最好的代码。</strong> 先拿一件自己最熟的小事开始，今天花 10 分钟跑通第 1 个 <code>SKILL.md</code>，明天你就多了一位 24 小时不喊累的专职 AI 同事。</p>
+  </div>
+</section>
+
+</body>
+</html>
